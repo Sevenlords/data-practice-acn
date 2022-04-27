@@ -2,7 +2,7 @@
 create procedure [dbo].[LoadDimCustomer]
 as
 -- first commit from VS
-
+-- commit from clone
 truncate table dbo.DimCustomer
 
 insert into dbo.DimCustomer
