@@ -1,0 +1,1 @@
+﻿create procedure dw.load_dim_customer as;
