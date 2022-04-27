@@ -1,4 +1,4 @@
-﻿
+﻿--COMMENT
 
 create procedure dbo.LoadDimCurrency
 as
