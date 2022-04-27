@@ -1,6 +1,7 @@
 ﻿
 create procedure [dbo].[LoadDimCustomer]
 as
+-- first commit from VS
 
 truncate table dbo.DimCustomer
 
