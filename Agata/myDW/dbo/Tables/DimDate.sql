@@ -8,9 +8,9 @@
     [Quarter]     CHAR (1)    NULL,
     [QuarterName] VARCHAR (9) NULL,
     [Year]        CHAR (4)    NULL,
-    [YearName]    CHAR (7)    NULL,
-    [MonthYear]   CHAR (10)   NULL,
-    [MMYYYY]      CHAR (6)    NULL,
+    [YearName]    CHAR (7)    NOT NULL,
+    [MonthYear]   CHAR (10)   NOT NULL,
+    [MMYYYY]      CHAR (6)    NOT NULL,
     [IsWeekday]   BIT         NULL,
     [CreateDate]  DATETIME    NULL,
     PRIMARY KEY CLUSTERED ([DateKey] ASC)
