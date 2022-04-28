@@ -1,8 +1,4 @@
 ﻿
-
-
-
-
 CREATE procedure [dbo].[LoadDimProduct]
 as
 
@@ -76,7 +72,7 @@ set
 ProductLine=coalesce(ProductLine, 'N/D'),
 class=isnull(Class, 'N/D'),
 style=isnull(Style, 'N/D')
-
+GO
 
 
 
