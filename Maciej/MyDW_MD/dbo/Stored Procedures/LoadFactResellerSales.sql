@@ -39,6 +39,6 @@ SELECT
 	join [MyDW].[dbo].DimProduct as p on p.ProductID = o.ProductID
 	join [MyDW].[dbo].DimReseller as r on r.CustomerID = h.CustomerID
 	join[MyDW].[dbo].DimDate as d on h.OrderDate = d.Date
-	where h.OnlineOrderFlag = 0
+	
 
 exec [dbo].[LoadFactResellerSales]
