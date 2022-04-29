@@ -8,11 +8,13 @@ CREATE TABLE [stg].[sales_txt](
 	[product] [varchar](25) NOT NULL,
 	[qty] [smallint] NULL,
 	[unit_price] [money] NULL,
-	[Timestamp] [datetime] NULL
+	[Timestamp] [datetime] NULL,
+	[Filename] [varchar](50)
 ) ON [PRIMARY]
 GO
 
 ALTER TABLE [stg].[sales_txt] ADD  DEFAULT (getdate()) FOR [Timestamp]
 GO
+
 
 
