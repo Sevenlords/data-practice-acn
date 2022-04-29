@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{0DF81135-4DBB-48C1-8F68-BB37FE1E9534}">
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{A1FFC2B3-8453-458C-963A-F8F53271890F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -562,6 +562,98 @@
               DTS:TextQualified="True"
               DTS:ObjectName="timesthamp"
               DTS:DTSID="{06CEB4C0-769D-489B-8C6E-F5EA66EDF3A3}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[salestxt]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A5E6FB13-7857-4678-B8E4-8DC55EDC4F8B}"
+      DTS:ObjectName="salestxt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\agata.dyrda\OneDrive - Accenture\!Sync\Desktop\szkółka\sales_01.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_number"
+              DTS:DTSID="{6DF03FEF-6B0A-40DE-A3F0-73CAA13FC53A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="line_number"
+              DTS:DTSID="{676081F8-0B77-4619-A7A5-E9B58BEAA1BF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="date"
+              DTS:DTSID="{ECF6D8EF-EDD8-4E41-82FF-3528D87B7E2F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="reseller"
+              DTS:DTSID="{9268814D-5659-4B77-B407-D615C02B8010}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="country"
+              DTS:DTSID="{73E3A316-D205-4EFD-B156-2B80B399DE84}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product"
+              DTS:DTSID="{E8CBDF75-08BA-4FFB-988A-D4E19CEFBCDD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="qty"
+              DTS:DTSID="{416EEC5A-B573-4AF7-AF52-4C5C496198F2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="unit_price"
+              DTS:DTSID="{4BFFD218-E899-48B5-A825-D8A3363D2ABD}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -2852,9 +2944,8 @@
     <DTS:Executable
       DTS:refId="Package\Data Flow Task 12"
       DTS:CreationName="Microsoft.Pipeline"
-      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{405635C9-4B0F-4FB7-A0F8-706E0BB20424}"
+      DTS:DTSID="{304A684A-61E9-4CA4-8C05-29A8D01AB9FC}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task 12"
@@ -2865,12 +2956,12 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task 12\Flat File Source 1"
+              refId="Package\Data Flow Task 12\Flat File Source"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
               localeId="1033"
-              name="Flat File Source 1"
+              name="Flat File Source"
               usesDispositions="true"
               version="1">
               <properties>
@@ -2885,25 +2976,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 12\Flat File Source 1.Connections[FlatFileConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 4]"
-                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 4]"
+                  refId="Package\Data Flow Task 12\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[salestxt]"
+                  connectionManagerRefId="Package.ConnectionManagers[salestxt]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output]"
+                  refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[order_number]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[order_number]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
                       name="order_number"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -2918,14 +3009,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[line_number]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[line_number]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
                       name="line_number"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -2940,14 +3031,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[date]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[date]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[date]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
                       name="date"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -2962,14 +3053,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[reseller]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[reseller]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[reseller]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[reseller]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[reseller]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[reseller]"
                       name="reseller"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -2984,14 +3075,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[country]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[country]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[country]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
                       name="country"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -3006,14 +3097,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[product]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[product]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[product]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
                       name="product"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -3028,14 +3119,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[qty]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[qty]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
                       name="qty"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -3050,14 +3141,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[unit_price]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
+                      codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                      externalMetadataColumnId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
                       length="50"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[unit_price]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
                       name="unit_price"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -3075,77 +3166,77 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[order_number]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="order_number" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[line_number]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="line_number" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[date]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="date" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[reseller]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[reseller]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="reseller" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[country]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="country" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[product]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="product" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[qty]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="qty" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="unit_price" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Error Output]"
+                  refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -3154,11 +3245,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 12\OLE DB Destination 1"
+              refId="Package\Data Flow Task 12\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="OLE DB Destination 1"
+              name="OLE DB Destination"
               usesDispositions="true"
               version="4">
               <properties>
@@ -3169,7 +3260,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[stg].[sales_01]</property>
+                  name="OpenRowset">[stg].[sales_txt_delta]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -3182,11 +3273,11 @@
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">65001</property>
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
                   description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">true</property>
+                  name="AlwaysUseDefaultCodePage">false</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
@@ -3211,7 +3302,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 12\OLE DB Destination 1.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task 12\OLE DB Destination.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[localhost.mydw]"
                   connectionManagerRefId="Package.ConnectionManagers[localhost.mydw]"
                   description="The OLE DB runtime connection used to access the database."
@@ -3219,152 +3310,160 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[order_number]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_number]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_number"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[order_number]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[line_number]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[line_number]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="line_number"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[line_number]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[date]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="date"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[date]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[date]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[date]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[reseller]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[reseller]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="reseller"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[reseller]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[reseller]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[reseller]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[reseller]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[country]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[country]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="country"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[country]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[country]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[country]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[product]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="product"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[product]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[product]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[product]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[qty]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[qty]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="qty"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[qty]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[qty]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[unit_price]"
-                      cachedCodepage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[unit_price]"
+                      cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="unit_price"
-                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
-                      lineageId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output].Columns[unit_price]" />
+                      externalMetadataColumnId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                      lineageId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="order_number" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="line_number" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[date]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="date" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[reseller]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[reseller]"
+                      codePage="1252"
                       dataType="str"
-                      length="50"
+                      length="10"
                       name="reseller" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[country]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="country" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[product]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="product" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="qty" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
-                      codePage="65001"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                      codePage="1252"
                       dataType="str"
                       length="50"
                       name="unit_price" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[timesthamp]"
-                      dataType="dbTimeStamp"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[timesthamp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
                       name="timesthamp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="filename" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 12\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 12\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 12\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 12\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 12\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 12\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 12\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 12\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -3376,9 +3475,9 @@
           <paths>
             <path
               refId="Package\Data Flow Task 12.Paths[Flat File Source Output]"
-              endId="Package\Data Flow Task 12\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              endId="Package\Data Flow Task 12\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task 12\Flat File Source 1.Outputs[Flat File Source Output]" />
+              startId="Package\Data Flow Task 12\Flat File Source.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -6408,6 +6507,23 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\delete from salestxt delta"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8C5D3E5C-DD5E-4D70-A8BF-5B63170D5FA2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="delete from salestxt delta"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="8">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5DF20CDE-C1BF-4035-B76B-AFB5EBF5E203}"
+          SQLTask:SqlStatementSource="delete from stg.sales_txt_delta" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\delete person_address"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -6416,7 +6532,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6433,7 +6549,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_businessEntityAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6450,7 +6566,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_EmailAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6467,7 +6583,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_Personphone"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6484,7 +6600,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete production_product"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="14">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6501,7 +6617,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete production_product model"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6518,7 +6634,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete production_ProductCategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="13">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6535,29 +6651,12 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete production_productSubcategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="10">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5DF20CDE-C1BF-4035-B76B-AFB5EBF5E203}"
           SQLTask:SqlStatementSource="delete from STG.production_ProductSubcategory" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\delete sales01"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{9BAAE323-1C57-48BC-8330-105260F980EB}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="delete sales01"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{5DF20CDE-C1BF-4035-B76B-AFB5EBF5E203}"
-          SQLTask:SqlStatementSource="delete from stg.sales_01" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -6569,7 +6668,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_currency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6586,7 +6685,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_Customer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6603,7 +6702,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_SalesOrderDetail"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="12">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6620,7 +6719,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_SalesOrderHeader"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="11">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6637,7 +6736,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete Sales_Store"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6654,7 +6753,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -8412,8 +8511,8 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{29ACD75C-2F66-4AF9-AB77-3C3F02B070C6}"
-      DTS:From="Package\delete sales01"
+      DTS:DTSID="{9CDF1E77-F9DA-4560-A253-659BA9C07EBE}"
+      DTS:From="Package\delete from salestxt delta"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
       DTS:To="Package\Data Flow Task 12" />
@@ -8449,7 +8548,7 @@
         <NodeLayout
           Size="168,42.6666666666667"
           Id="Package\Data Flow Task 12"
-          TopLeft="786.249988283962,230.578951708498" />
+          TopLeft="783.124988330528,264.438601217662" />
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
           Id="Package\Data Flow Task 2"
@@ -8482,6 +8581,10 @@
           Size="153.333333333334,42.6666666666667"
           Id="Package\Data Flow Task 9"
           TopLeft="23.7499996460974,1161.3157997379" />
+        <NodeLayout
+          Size="177.333333333334,42.6666666666667"
+          Id="Package\delete from salestxt delta"
+          TopLeft="704.87499136664,144.657895097442" />
         <NodeLayout
           Size="234.666666666667,42.6666666666667"
           Id="Package\delete person_address"
@@ -8533,11 +8636,7 @@
         <NodeLayout
           Size="234.666666666667,42.6666666666667"
           Id="Package\delete Sales_Store"
-          TopLeft="318.749995250255,719.964916170028" />
-        <NodeLayout
-          Size="177.333333333334,42.6666666666667"
-          Id="Package\delete sales01"
-          TopLeft="816.874987827615,121.438598526042" />
+          TopLeft="466.874993043021,724.070179405194" />
         <NodeLayout
           Size="168,42.6666666666667"
           Id="Package\Execute SQL Task"
@@ -8578,26 +8677,26 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-12.6666665176551,41.4912296542391"
+              EndConnector="-12.6666665176546,41.4912296542391"
               Start="0,0"
-              End="-12.6666665176551,33.9912296542391">
+              End="-12.6666665176546,33.9912296542391">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.7456148271195" />
+                    End="0,16.7456148271196" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.7456148271195"
-                    Point2="0,20.7456148271195"
-                    Point3="-4,20.7456148271195" />
+                    Point1="0,16.7456148271196"
+                    Point2="0,20.7456148271196"
+                    Point3="-4,20.7456148271196" />
                   <mssgle:LineSegment
-                    End="-8.66666651765507,20.7456148271195" />
+                    End="-8.66666651765462,20.7456148271196" />
                   <mssgle:CubicBezierSegment
-                    Point1="-8.66666651765507,20.7456148271195"
-                    Point2="-12.6666665176551,20.7456148271195"
-                    Point3="-12.6666665176551,24.7456148271195" />
+                    Point1="-8.66666651765462,20.7456148271196"
+                    Point2="-12.6666665176546,20.7456148271196"
+                    Point3="-12.6666665176546,24.7456148271196" />
                   <mssgle:LineSegment
-                    End="-12.6666665176551,33.9912296542391" />
+                    End="-12.6666665176546,33.9912296542391" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8914,30 +9013,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2 7]"
-          TopLeft="436.083328583588,762.631582836695">
+          TopLeft="584.208326376354,766.736846071861">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-16.9166670205693,33.2807031839066"
+              EndConnector="-165.041664813335,29.1754399487402"
               Start="0,0"
-              End="-16.9166670205693,25.7807031839066">
+              End="-165.041664813335,21.6754399487402">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.6403515919533" />
+                    End="0,10.5877199743701" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.6403515919533"
-                    Point2="0,16.6403515919533"
-                    Point3="-4,16.6403515919533" />
+                    Point1="0,10.5877199743701"
+                    Point2="0,14.5877199743701"
+                    Point3="-4,14.5877199743701" />
                   <mssgle:LineSegment
-                    End="-12.9166670205693,16.6403515919533" />
+                    End="-161.041664813335,14.5877199743701" />
                   <mssgle:CubicBezierSegment
-                    Point1="-12.9166670205693,16.6403515919533"
-                    Point2="-16.9166670205693,16.6403515919533"
-                    Point3="-16.9166670205693,20.6403515919533" />
+                    Point1="-161.041664813335,14.5877199743701"
+                    Point2="-165.041664813335,14.5877199743701"
+                    Point3="-165.041664813335,18.5877199743701" />
                   <mssgle:LineSegment
-                    End="-16.9166670205693,25.7807031839066" />
+                    End="-165.041664813335,21.6754399487402" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9016,30 +9115,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="905.541654494281,164.105265192709">
+          TopLeft="793.541658033306,187.324561764109">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-35.2916662103188,66.4736865157889"
+              EndConnector="73.5833302972218,77.1140394535534"
               Start="0,0"
-              End="-35.2916662103188,58.9736865157889">
+              End="73.5833302972218,69.6140394535534">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.2368432578945" />
+                    End="0,34.5570197267767" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,29.2368432578945"
-                    Point2="0,33.2368432578945"
-                    Point3="-4,33.2368432578945" />
+                    Point1="0,34.5570197267767"
+                    Point2="0,38.5570197267767"
+                    Point3="4,38.5570197267767" />
                   <mssgle:LineSegment
-                    End="-31.2916662103188,33.2368432578945" />
+                    End="69.5833302972218,38.5570197267767" />
                   <mssgle:CubicBezierSegment
-                    Point1="-31.2916662103188,33.2368432578945"
-                    Point2="-35.2916662103188,33.2368432578945"
-                    Point3="-35.2916662103188,37.2368432578945" />
+                    Point1="69.5833302972218,38.5570197267767"
+                    Point2="73.5833302972218,38.5570197267767"
+                    Point3="73.5833302972218,42.5570197267767" />
                   <mssgle:LineSegment
-                    End="-35.2916662103188,58.9736865157889" />
+                    End="73.5833302972218,69.6140394535534" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9361,39 +9460,39 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="162.666666666667,42.6666666666667"
-          Id="Package\Data Flow Task 12\Flat File Source 1"
-          TopLeft="858,111" />
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task 12\Flat File Source"
+          TopLeft="566,225" />
         <NodeLayout
-          Size="184,42.6666666666667"
-          Id="Package\Data Flow Task 12\OLE DB Destination 1"
-          TopLeft="956,271" />
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task 12\OLE DB Destination"
+          TopLeft="653,370" />
         <EdgeLayout
           Id="Package\Data Flow Task 12.Paths[Flat File Source Output]"
-          TopLeft="939.333333333333,153.666666666667">
+          TopLeft="643.333333333333,267.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="108.666666666667,117.333333333333"
+              EndConnector="97,102.333333333333"
               Start="0,0"
-              End="108.666666666667,109.833333333333">
+              End="97,94.8333333333333">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,54.6666666666666" />
+                    End="0,47.1666666666667" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,54.6666666666666"
-                    Point2="0,58.6666666666666"
-                    Point3="4,58.6666666666666" />
+                    Point1="0,47.1666666666667"
+                    Point2="0,51.1666666666667"
+                    Point3="4,51.1666666666667" />
                   <mssgle:LineSegment
-                    End="104.666666666667,58.6666666666666" />
+                    End="93,51.1666666666667" />
                   <mssgle:CubicBezierSegment
-                    Point1="104.666666666667,58.6666666666666"
-                    Point2="108.666666666667,58.6666666666666"
-                    Point3="108.666666666667,62.6666666666666" />
+                    Point1="93,51.1666666666667"
+                    Point2="97,51.1666666666667"
+                    Point3="97,55.1666666666667" />
                   <mssgle:LineSegment
-                    End="108.666666666667,109.833333333333" />
+                    End="97,94.8333333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9406,7 +9505,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task 12\OLE DB Destination 1">
+    design-time-name="Package\Data Flow Task 12\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
