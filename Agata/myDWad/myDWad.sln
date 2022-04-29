@@ -5,18 +5,30 @@ VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "myDW", "myDW.sqlproj", "{391F669F-CFB0-4394-8E3A-BD27D579B5B3}"
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SSIS", "..\..\..\..\myDW\SSIS.dtproj", "{76CE6E93-387F-47F9-B4A6-16B8DE6FE261}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Development|Any CPU.Deploy.0 = Debug|Any CPU
 		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{391F669F-CFB0-4394-8E3A-BD27D579B5B3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{76CE6E93-387F-47F9-B4A6-16B8DE6FE261}.Debug|Any CPU.ActiveCfg = Development
+		{76CE6E93-387F-47F9-B4A6-16B8DE6FE261}.Debug|Any CPU.Build.0 = Development
+		{76CE6E93-387F-47F9-B4A6-16B8DE6FE261}.Development|Any CPU.ActiveCfg = Development
+		{76CE6E93-387F-47F9-B4A6-16B8DE6FE261}.Development|Any CPU.Build.0 = Development
+		{76CE6E93-387F-47F9-B4A6-16B8DE6FE261}.Release|Any CPU.ActiveCfg = Development
+		{76CE6E93-387F-47F9-B4A6-16B8DE6FE261}.Release|Any CPU.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

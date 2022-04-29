@@ -12,7 +12,7 @@
     [MonthYear]   CHAR (10)   NULL,
     [MMYYYY]      CHAR (6)    NULL,
     [IsWeekday]   BIT         NULL,
-    [CreateDate]  DATETIME    NULL,
+    [Timeshtamp]  DATETIME    DEFAULT (getdate()) NULL,
     PRIMARY KEY CLUSTERED ([DateKey] ASC)
 );
 
