@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[dimDate] (
     [DateKey]     INT         NOT NULL,
-    [Date]        DATE        NULL,
+    [Date]        DATETIME    NULL,
     [DayOfMonth]  VARCHAR (2) NULL,
     [DayName]     VARCHAR (9) NULL,
     [Month]       VARCHAR (2) NULL,
@@ -15,4 +15,6 @@
     [CreatedDate] DATETIME    DEFAULT (getdate()) NULL,
     PRIMARY KEY CLUSTERED ([DateKey] ASC)
 );
+
+
 

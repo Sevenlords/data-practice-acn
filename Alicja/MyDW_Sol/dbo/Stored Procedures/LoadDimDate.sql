@@ -1,10 +1,11 @@
-﻿create procedure [dbo].[LoadDimDate] as
+﻿CREATE procedure [dbo].[LoadDimDate] as
 
 	truncate table [dbo].[dimDate]
 
-	declare @StartDate date = '05/31/2011'		--typ date zamiast datetime
-	declare @EndDate date = '06/30/2014'		--typ date zamiast datetime
-	declare @CurrentDate date = @StartDate		--typ date zamiast datetime
+	declare @StartDate datetime = '05/31/2011'	
+	--declare @EndDate datetime = '06/30/2014'
+	declare @EndDate datetime = '02/01/2021'	
+	declare @CurrentDate datetime = @StartDate		
 
 	while @CurrentDate <= @EndDate
 	begin
@@ -25,7 +26,7 @@
 		)
 		select 
 			convert(char(8), @CurrentDate, 112) [DateKey],
-			cast(@CurrentDate as date) [Date],
+			cast(@CurrentDate as datetime) [Date],
 			datepart(DD, @CurrentDate) [DayOfMonth],
 			datename(DW, @CurrentDate) [DayName],
 			datepart(MM, @CurrentDate) [Month],
