@@ -1,12 +1,12 @@
 create procedure stg.load_sales_txt
 as
 
---delete a
---from stg.sales_txt a join stg.sales_txt_delta b
---	on a.order_number = b.order_number
+delete a
+from stg.sales_txt a join stg.sales_txt_delta b
+	on a.order_number = b.order_number
 
-truncate table stg.sales_txt
--- czyszczenie danych?
+--truncate table stg.sales_txt
+-- czyszczenie danych
 
 insert into stg.sales_txt
 (
