@@ -61,6 +61,7 @@
     <Folder Include="stg\" />
     <Folder Include="stg\Tables\" />
     <Folder Include="Security\" />
+    <Folder Include="dbo" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="stg\Tables\Person_Person.sql" />
@@ -78,5 +79,9 @@
     <Build Include="stg\Tables\Sales_SalesOrderHeader.sql" />
     <Build Include="stg\Tables\Sales_SalesOrderDetail.sql" />
     <Build Include="Security\stg.sql" />
+    <Build Include="dbo\DimCurrency.sql" />
+    <Build Include="dbo\DimCustomer.sql" />
+    <Build Include="dbo\DimProduct.sql" />
+    <Build Include="dbo\DimReseller.sql" />
   </ItemGroup>
 </Project>
