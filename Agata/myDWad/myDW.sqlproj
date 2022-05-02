@@ -64,6 +64,7 @@
     <Folder Include="stg\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="stg\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DimReseller.sql" />
@@ -95,5 +96,8 @@
     <Build Include="dbo\Stored Procedures\loadDimReseller.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimCurrency.sql" />
     <Build Include="Security\stg.sql" />
+    <Build Include="stg\Tables\sales_txt_delta.sql" />
+    <Build Include="stg\Tables\sales_txt.sql" />
+    <Build Include="stg\Stored Procedures\load_sales_txt.sql" />
   </ItemGroup>
 </Project>
