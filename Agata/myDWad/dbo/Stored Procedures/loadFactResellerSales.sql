@@ -1,4 +1,5 @@
-﻿CREATE procedure [dbo].[loadFactResellerSales]
+﻿
+CREATE procedure [dbo].[loadFactResellerSales]
 as
 truncate table dbo.FactResellerSales
 
@@ -62,7 +63,7 @@ insert into dbo.FactResellerSales(
 select 
 	s.order_number,
 	0,
-	0,
+	s.line_number,
 	date.[DateKey],
 	ress.[ResellerKey],
 	prod.[ProductKey],
