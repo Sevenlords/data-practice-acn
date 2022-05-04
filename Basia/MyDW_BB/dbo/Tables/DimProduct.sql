@@ -22,7 +22,8 @@
     [ProductModelName]       NVARCHAR (50)  NULL,
     [SellStartDate]          DATETIME       NULL,
     [SellEndDate]            DATETIME       NULL,
-    [CreatedDate]            DATETIME       DEFAULT (getdate()) NULL,
-    [ModifiedDate]           DATETIME       NULL
+    [CreatedDate]            DATETIME       DEFAULT (getdate()) NULL
 );
+
+
 
