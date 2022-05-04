@@ -1,4 +1,5 @@
-﻿create procedure LoadDimDate
+﻿
+CREATE procedure [dbo].[LoadDimDate]
 
 
 as
@@ -6,7 +7,7 @@ as
 truncate table dbo.DimDate
 
 DECLARE @StartDate DATETIME = '20110101' --Starting value of Date Range
-DECLARE @EndDate DATETIME = '20141231' --End Value of Date Range
+DECLARE @EndDate DATETIME = '20211231' --End Value of Date Range
 
 DECLARE
 	

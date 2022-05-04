@@ -95,5 +95,8 @@
     <Build Include="dbo\Stored Procedures\LoadDimProduct.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimReseller.sql" />
     <Build Include="Security\STG.sql" />
+    <Build Include="STG\Tables\Sales_txt_delta.sql" />
+    <Build Include="STG\Tables\Sales_txt.sql" />
+    <Build Include="dbo\Stored Procedures\LoadSalesTxt.sql" />
   </ItemGroup>
 </Project>
