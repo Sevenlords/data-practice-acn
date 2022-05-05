@@ -1,3 +1,5 @@
 ﻿CREATE SCHEMA [STG]
     AUTHORIZATION [dbo];
 
+
+

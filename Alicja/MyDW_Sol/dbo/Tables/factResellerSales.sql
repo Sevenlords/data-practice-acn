@@ -9,10 +9,18 @@
     [UnitPrice]            MONEY         NOT NULL,
     [ExtendedAmount]       MONEY         NOT NULL,
     [UnitPriceDiscountPct] MONEY         NOT NULL,
-    [DiscountAmount]       MONEY         NOT NULL,
+    [DiscountAmount]       MONEY         NULL,
     [ProductStandardCost]  MONEY         NOT NULL,
     [TotalProductCost]     MONEY         NOT NULL,
-    [SalesAmount]          MONEY         NOT NULL,
-    [Timestamp]            DATETIME      DEFAULT (getdate()) NULL
+    [SalesAmount]          MONEY         NULL,
+    [CreatedDate]          DATETIME      DEFAULT (getdate()) NULL,
+    [ModifiedDate]         DATETIME      NULL,
+    [SourceID]             VARCHAR (10)  NULL
 );
+
+
+
+
+
+
 

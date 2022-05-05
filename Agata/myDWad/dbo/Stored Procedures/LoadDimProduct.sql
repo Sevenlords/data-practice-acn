@@ -1,77 +1,113 @@
-﻿
-CREATE procedure [dbo].[LoadDimProduct]
+﻿CREATE procedure [dbo].[LoadDimProduct]
 as
 
-truncate table dbo.DimProduct
+drop table if exists #product
+
+SELECT
+		P.ProductID AS [ProductID],
+		P.Name AS [ProductName],
+		P.ProductNumber AS [ProductAlternateKey],
+		P.StandardCost AS [StandardCost],
+		P.FinishedGoodsFlag AS [FinishedGoodsFlag],
+		ISNULL(P.Color, 'N/D') AS [Color],
+		P.ListPrice AS [ListPrice],
+		ISNULL(P.Size, 'N/D') AS [Size],
+		ISNULL(P.SizeUnitMeasureCode, 'N/D') AS [SizeUnitMeasureCode],
+		P.Weight AS [Weight],
+		ISNULL(P.WeightUnitMeasureCode, 'N/D') AS [WeightUnitMeasureCode],
+		P.DaysToManufacture AS [DaysToManufacture],
+		ISNULL(CONVERT(nchar(3),P.ProductLine), 'N/D') AS [ProductLine],
+		ISNULL(CONVERT(nchar(3),P.Class), 'N/D') AS [Class],
+		ISNULL(CONVERT(nchar(3),P.Style), 'N/D') AS [Style],
+		PS.ProductCategoryID AS [ProductCategoryID],
+		ISNULL(PC.Name, 'N/D') AS [ProductCategoryName],
+		P.ProductSubcategoryID AS [ProductSubcategoryID],
+		ISNULL(PS.Name, 'N/D')  AS [ProductSubcategoryName],
+		P.ProductModelID AS [ProductModelID],
+		ISNULL(PM.Name, 'N/D')  AS [ProductModelName],
+		P.SellStartDate AS [SellStartDate],
+		P.SellEndDate AS [SellEndDate],
+		P.ModifiedDate AS [SourceModifiedDate]
+into #product
+FROM [AdventureWorks2017].[Production].[Product] AS P
+		LEFT JOIN [AdventureWorks2017].[Production].[ProductSubcategory] AS PS
+		ON P.ProductSubcategoryID = PS.ProductSubcategoryID
+		LEFT JOIN [AdventureWorks2017].[Production].[ProductCategory] AS PC
+		ON PS.ProductCategoryID = PC.ProductCategoryID
+		LEFT JOIN [AdventureWorks2017].[Production].[ProductModel] AS PM
+		ON P.ProductModelID = PM.ProductModelID
+
+
+		
+update a
+set [ProductName] = b.[ProductName]
+      ,[ProductAlternateKey]=b.[ProductAlternateKey]
+      ,[StandardCost]=b.[StandardCost]
+      ,[FinishedGoodFlag]=b.[FinishedGoodsFlag]
+      ,[Color]=b.[Color]
+      ,[ListPrice]=b.[ListPrice]
+      ,[Size]=b.[Size]
+      ,[SizeUnitMeasureCode]=b.[SizeUnitMeasureCode]
+      ,[Weight]=b.[Weight]
+      ,[WeightUnitMeasureCode]=b.[WeightUnitMeasureCode]
+      ,[DaysToManufacture]=b.[DaysToManufacture]
+      ,[ProductLine]=b.[ProductLine]
+      ,[Class]=b.[Class]
+      ,[Style]=b.[Style]
+      ,[ProductCategoryID]=b.[ProductCategoryID]
+       ,[ProductCategoryName]=b.[ProductCategoryName]
+      ,[ProductSubcategoryID]=b.[ProductSubcategoryID]
+      ,[ProductSubcategoryName]=b.[ProductSubcategoryName]
+      ,[ProductModelID]=b.[ProductModelID]
+      ,[ProductModelName]=b.[ProductModelName]
+      ,[SellStartDate]=b.[SellStartDate]
+      ,[SellEndDate]=b.[SellEndDate]
+	  ,SourceModifiedDate=B.SourceModifiedDate
+	  ,ModifiedDate = getdate()
+from DimProduct a 
+	join #product b ON a.ProductID = b.ProductID
+
 
 insert into [dbo].[DimProduct]
-(
-[ProductID] ,
-[ProductName] , 
-[ProductAlternateKey], 
-[StandardCost] , 
-[FinishedGoodFlag] ,
-[Color], 
-[ListPrice], 
-[Size], 
-[SizeUnitMeasureCode] , 
-[Weight], 
-[WeightUnitMeasureCode],
-[DaysToManufacture],
-[ProductLine],
-[Class], 
-[Style], 
-[ProductCategoryID] ,
-[ProductCategoryName] ,
-[ProductSubcategoryID] ,
-[ProductSubcategoryName] ,
-[ProductModelID],
-[ProductModelName],
-[SellStartDate] ,
-[SellEndDate],
-[SoureceModifiedDate] 
-)
-select 
-p.ProductID as [ProductID], 
-p.Name as [ProductName], 
-p.ProductNumber as [ProductAlternateKey] , 
-p.StandardCost as [StandardCost], 
-p.FinishedGoodsFlag as [FinishedGoodFlag],
-isnull(p.Color, 'N/D') as[Color],
-p.ListPrice as [ListPrice], 
-isnull(p.size, 'N/D') as[Size],
-isnull(p.SizeUnitMeasureCode, 'N/D') as [SizeUnitMeasureCode],
-isnull(p.Weight, 0) as[Weight],
-isnull(p.WeightUnitMeasureCode, 'N/D') as [WeightUnitMeasureCode],
-p.DaysToManufacture as [DaysToManufacture], 
-p.ProductLine as [ProductLine],
-p.Class as Class,
-p.Style as [Style], 
-isnull (ps.ProductCategoryID,0 )as [ProductCategoryID],
-isnull(pc.Name, 'N/D') as [ProductCategoryName],
-isnull(p.ProductSubcategoryID, 0) as [ProductSubcategoryID],
-isnull (ps.Name, 'N/D') as [ProductSubcategoryName],
-isnull (p.ProductModelID, 0) as [ProductModelID],
-isnull (pm.Name, 'N/D') as [ProductModelName],
-p.SellStartDate as [SellStartDate],
-isnull(p.SellEndDate, '19001231') as [SellEndDate],
-p.ModifiedDate as [SoureceModifiedDate]
----audit column
+(   [ProductID]
+      ,[ProductName]
+      ,[ProductAlternateKey]
+      ,[StandardCost]
+      ,[FinishedGoodFlag]
+      ,[Color]
+      ,[ListPrice]
+      ,[Size]
+      ,[SizeUnitMeasureCode]
+      ,[Weight]
+      ,[WeightUnitMeasureCode]
+      ,[DaysToManufacture]
+      ,[ProductLine]
+      ,[Class]
+      ,[Style]
+      ,ProductCategoryID
+      ,[ProductCategoryName]
+      ,[ProductSubcategoryID]
+      ,[ProductSubcategoryName]
+      ,[ProductModelID]
+      ,[ProductModelName]
+      ,[SellStartDate]
+      ,[SellEndDate]
+      ,SourceModifiedDate
+	  ,Timeshtamp
+	  ,ModifiedDate)
 
-from 
-mydw.stg.Production_Product as p
-left join mydw.stg.Production_ProductSubcategory as ps
-on p.ProductSubcategoryID=ps.ProductSubcategoryID
-left join mydw.stg.production_productcategory as pc
-on ps.ProductCategoryID=pc.ProductCategoryID
-left join mydw.stg.Production_ProductModel as pm
-on p.ProductModelID=pm.ProductModelID
+SELECT a.*, getdate(), getdate()
+from #product a 
+	left join DimProduct b on a.ProductID = b.ProductID 
+where b.ProductID is null 
 
-update mydw.dbo.dimProduct 
-set 
-ProductLine=coalesce(ProductLine, 'N/D'),
-class=isnull(Class, 'N/D'),
-style=isnull(Style, 'N/D')
+
+
+--delete a
+---- select *
+--from DimProduct a 
+--	left join #product b on a.ProductID = b.ProductID
+--where b.ProductID is null
 GO
 
 

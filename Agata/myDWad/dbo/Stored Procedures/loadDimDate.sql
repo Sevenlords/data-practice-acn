@@ -1,10 +1,11 @@
 ﻿
 
 
+
 /********************************************************************************************/
 --Specify Start Date and End date here
 --Value of Start Date Must be Less than Your End Date 
-CREATE procedure loadDimDate @StartDate Datetime='01/01/2013',@EndDate DATETIME = '01/01/2015'
+CREATE procedure [dbo].[loadDimDate] @StartDate Datetime='01/01/2005',@EndDate DATETIME = '01/01/2025'
 as
 
 truncate table dbo.dimdate
