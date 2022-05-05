@@ -1,9 +1,26 @@
 ﻿
 
 
+
 CREATE procedure [dbo].[LoadFactInternetSales]
 as
-truncate table dbo.FactInternetSales
+
+drop table if exists #orders
+
+declare @startDate datetime 
+select @startDate= isnull(max(Timeshtamp), '1900-01-01') from  dbo.FactInternetSales
+
+select SalesOrderID
+into #orders
+from stg.Sales_SalesOrderHeader
+where OnlineOrderFlag=1
+	and timeshtamp>=@startDate
+
+
+	delete a
+	from FactInternetSales a 
+	join #orders b on a.SalesOrderID=b.SalesOrderID
+
 
 insert into dbo.FactInternetSales (
 	[SalesOrderID],
@@ -38,9 +55,10 @@ select
 from stg.Sales_SalesOrderHeader soh
 	join stg.Sales_SalesOrderDetail sod
 	on soh.SalesOrderID=sod.SalesOrderID
+	join #orders o on soh.SalesOrderID=o.SalesOrderID
 	left join dbo.dimDate date
 	on CONVERT(char(8),(soh.OrderDate),112)=date.datekey
-	join dbo.DimCustomer cust
+	left join dbo.DimCustomer cust
 	on cust.CustomerID=soh.CustomerID
 	left join dbo.DimProduct as prod
 	on sod.ProductID=prod.ProductID

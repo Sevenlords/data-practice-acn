@@ -15,17 +15,20 @@
     [ProductLine]            NVARCHAR (3)   NULL,
     [Class]                  NVARCHAR (3)   NULL,
     [Style]                  NVARCHAR (3)   NULL,
-    [ProductCategoryID]      INT            NOT NULL,
+    [ProductCategoryID]      INT            NULL,
     [ProductCategoryName]    NVARCHAR (50)  NOT NULL,
-    [ProductSubcategoryID]   INT            NOT NULL,
+    [ProductSubcategoryID]   INT            NULL,
     [ProductSubcategoryName] NVARCHAR (50)  NOT NULL,
-    [ProductModelID]         INT            NOT NULL,
+    [ProductModelID]         INT            NULL,
     [ProductModelName]       NVARCHAR (50)  NULL,
     [SellStartDate]          DATETIME       NOT NULL,
     [SellEndDate]            DATETIME       NULL,
-    [SoureceModifiedDate]    DATETIME       NOT NULL,
-    [Timeshtamp]             DATETIME       DEFAULT (getdate()) NULL
+    [SourceModifiedDate]     DATETIME       NOT NULL,
+    [Timeshtamp]             DATETIME       DEFAULT (getdate()) NULL,
+    [ModifiedDate]           DATETIME       NULL
 );
+
+
 
 
 

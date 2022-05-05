@@ -3,7 +3,7 @@
     [SalesOrderNumber]   NVARCHAR (25) NOT NULL,
     [SalesOrderDetailID] INT           NOT NULL,
     [DateKey]            INT           NULL,
-    [ResellerKey]        INT           NOT NULL,
+    [ResellerKey]        INT           NULL,
     [ProductKey]         INT           NOT NULL,
     [OrderQty]           SMALLINT      NOT NULL,
     [UnitPrice]          MONEY         NOT NULL,
@@ -13,6 +13,9 @@
     [StandardCost]       MONEY         NULL,
     [TotalProductCost]   MONEY         NOT NULL,
     [SalesAmount]        MONEY         NOT NULL,
-    [timesthamp]         DATETIME      DEFAULT (getdate()) NULL
+    [timesthamp]         DATETIME      DEFAULT (getdate()) NULL,
+    [SourceID]           CHAR (10)     NULL
 );
+
+
 

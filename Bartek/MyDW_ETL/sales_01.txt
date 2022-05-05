@@ -1,4 +1,4 @@
-﻿order_number;line_number;date;reseller;country;product;qty;unit_price
+﻿order_number;line_number;date;customer;country;product;qty;unit_price
 100407;1;01.01.2021;AW00029955;poland;BK-M82B-44;4;2024,994
 100407;2;01.01.2021;AW00029955;poland;BK-M82S-48;6;2039,994
 100407;3;01.01.2021;AW00029955;poland;BK-M82B-38;4;2024,994

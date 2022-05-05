@@ -1,7 +1,4 @@
-﻿
-
-
-  CREATE proc [stg].[load_sales_txt]
+﻿ CREATE proc [stg].[load_sales_txt]
   as
   begin
 
@@ -12,14 +9,14 @@
 
   insert into stg.sales_txt
   select 
-	cast([order_number] as int)
+	   cast([order_number] as int)
       ,cast([line_number] as int)
-      ,try_cast(date as datetime)
+      ,convert(datetime, date, 104)
       ,cast([reseller] as varchar(10))
       ,[country]
       ,cast([product] as varchar(25))
       ,cast([qty] as smallint)
-      ,cast([unit_price] as money)
+      ,REPLACE(unit_price, ',', '.')
       ,[timesthamp]
       ,[filename]
   from stg.sales_txt_delta
