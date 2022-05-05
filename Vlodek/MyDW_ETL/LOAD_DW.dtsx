@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{5E5EB029-F56B-4BEC-8CD2-4D92E21219CF}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{2F0D6D43-3F4F-41DA-8BAD-9D9B4B4E6532}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -20,6 +20,7 @@
     <DTS:Executable
       DTS:refId="Package\Load Dim"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{B8F02B09-BC54-4C5D-84F7-232631E4B6D1}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -31,6 +32,7 @@
           DTS:refId="Package\Load Dim\DimCustomer"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
           DTS:DTSID="{FD5E8347-FC7C-45D8-A2EB-F41A5AB378E6}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -45,6 +47,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Dim\DimDate"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{217DB0F2-7B80-431A-AF8A-42FE42F38141}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
@@ -75,6 +78,7 @@
           DTS:refId="Package\Load Fact\FactInternetSales"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
           DTS:DTSID="{89FC1462-78C7-48D1-8434-5D9926AB5CB8}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -112,13 +116,13 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="119.2,41.6"
-          Id="Package\Load Dim\DimDate"
-          TopLeft="53.371432463977,37.8352957478032" />
-        <NodeLayout
           Size="162.4,41.6"
           Id="Package\Load Dim\DimCustomer"
           TopLeft="202.442863480412,34.923530923949" />
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Load Dim\DimDate"
+          TopLeft="53.371432463977,37.8352957478032" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -143,14 +147,14 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,65.17311371437"
+              EndConnector="0,65.1731137143701"
               Start="0,0"
-              End="0,57.67311371437">
+              End="0,57.6731137143701">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.67311371437" />
+                    End="0,57.6731137143701" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
