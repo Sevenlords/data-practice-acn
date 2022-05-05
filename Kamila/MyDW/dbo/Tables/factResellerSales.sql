@@ -15,6 +15,9 @@
     [TotalProductCost]     MONEY           NULL,
     [SalesAmount]          MONEY           NULL,
     [CreatedDate]          DATETIME        NULL,
-    [ModifiedDate]         DATETIME        NULL
+    [ModifiedDate]         DATETIME        NULL,
+    [SourceID]             VARCHAR (20)    NULL
 );
+
+
 
