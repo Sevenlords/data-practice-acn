@@ -87,5 +87,6 @@
     <Build Include="dbo\Tables\DimReseller.sql" />
     <Build Include="dbo\Tables\DimDate.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimDate.sql" />
+    <Build Include="stg\Tables\sales_txt.sql" />
   </ItemGroup>
 </Project>
