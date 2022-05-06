@@ -64,6 +64,7 @@
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="stg\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="stg\Tables\Person_Person.sql" />
@@ -89,5 +90,6 @@
     <Build Include="dbo\Stored Procedures\LoadDimDate.sql" />
     <Build Include="stg\Tables\sales_txt.sql" />
     <Build Include="stg\Tables\sales_txt_delta.sql" />
+    <Build Include="stg\Stored Procedures\LoadSalesTxt.sql" />
   </ItemGroup>
 </Project>
