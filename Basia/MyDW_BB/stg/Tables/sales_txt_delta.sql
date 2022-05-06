@@ -1,4 +1,4 @@
-﻿CREATE TABLE [stg].[sales_txt] (
+﻿CREATE TABLE [stg].[sales_txt_delta] (
     [order_number] INT           NULL,
     [line_number]  INT           NULL,
     [date]         DATETIME      NULL,
@@ -10,6 +10,4 @@
     [timestamp]    DATETIME      DEFAULT (getdate()) NULL,
     [filename]     VARCHAR (50)  NULL
 );
-
-
 
