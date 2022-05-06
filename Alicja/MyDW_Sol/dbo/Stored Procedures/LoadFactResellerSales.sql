@@ -3,7 +3,7 @@
 	--truncate table [dbo].[factResellerSales]
 
 	declare @startDate datetime
-	select @startDate = ISNULL(max(ModifiedDate),'1900-01-01') from [dbo].[factResellerSales]
+	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factResellerSales]
 
 	--drop table if exists #salesR
 
@@ -11,7 +11,7 @@
 	into #salesR
 	from [stg].[Sales_SalesOrderHeader]
 	where
-	OnlineOrderFlag = 0 and Timestamp >= @startDate
+	OnlineOrderFlag = 0 and [Timestamp] >= @startDate
 
 	--select * from #salesR
 
@@ -35,7 +35,7 @@
 		[ProductStandardCost],
 		[TotalProductCost],
 		[SalesAmount],
-		[ModifiedDate],
+		[Timestamp],
 		[SourceID])
 	select 
 		SOH.SalesOrderID [SalesOrderID],
@@ -52,7 +52,7 @@
 		P.StandardCost [ProductStandardCost],
 		P.StandardCost*SOD.OrderQty [TotalProductCost],
 		SOD.OrderQty*SOD.UnitPrice - SOD.OrderQty*SOD.UnitPrice*SOD.UnitPriceDiscount [SalesAmount],
-		getdate() [ModifiedDate],
+		getdate() [Timestamp],
 		'AW' [SourceID]
 	from stg.Sales_SalesOrderHeader SOH
 	join stg.Sales_SalesOrderDetail SOD	on SOH.SalesOrderID = SOD.SalesOrderID

@@ -1,9 +1,10 @@
-﻿CREATE procedure [dbo].[LoadFactInternetSales] as
+﻿
+CREATE procedure [dbo].[LoadFactInternetSales] as
 
 	--truncate table [dbo].[factInternetSales]
 
 	declare @startDate datetime
-	select @startDate = ISNULL(max(ModifiedDate),'1900-01-01') from [dbo].[factInternetSales]
+	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factInternetSales]
 
 	--drop table if exists #salesI
 
@@ -11,7 +12,7 @@
 	into #salesI
 	from [stg].[Sales_SalesOrderHeader] SOH
 	where
-	OnlineOrderFlag = 1 and Timestamp>=@startDate
+	OnlineOrderFlag = 1 and [Timestamp]>=@startDate
 
 	--select * from #salesI
 
@@ -34,7 +35,7 @@
 		[ProductStandardCost],
 		[TotalProductCost],
 		[SalesAmount],
-		[ModifiedDate])
+		[Timestamp])
 	select 
 		SOH.SalesOrderID [SalesOrderID],
 		SOH.SalesOrderNumber [SalesOrderNumber],
@@ -50,7 +51,7 @@
 		P.StandardCost [ProductStandardCost],
 		P.StandardCost*SOD.OrderQty [TotalProductCost],
 		SOD.OrderQty*SOD.UnitPrice - SOD.OrderQty*SOD.UnitPrice*SOD.UnitPriceDiscount [SalesAmount],
-		getdate() [ModifedDate]
+		getdate() [Timestamp]
 	from stg.Sales_SalesOrderHeader SOH
 	join stg.Sales_SalesOrderDetail SOD	on SOH.SalesOrderID = SOD.SalesOrderID
 	join #salesI on SOH.SalesOrderID = #salesI.SalesOrderID
