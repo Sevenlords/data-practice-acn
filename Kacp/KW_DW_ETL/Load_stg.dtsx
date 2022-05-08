@@ -11,11 +11,22 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{7AADD032-E39B-4555-B986-48E7EEA72F04}">
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{06D852B7-9636-4DC4-B6D8-99187A81F4A0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[fail]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{E42E7EC5-84BC-40C5-9048-573F40D3B0D8}"
+      DTS:ObjectName="fail">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="C:\Users\kacper.wozniak\source\repos\files_data\fail" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 1]"
       DTS:CreationName="FLATFILE"
@@ -109,13 +120,158 @@
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[move_success]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{755DED90-FB9D-4159-8091-4245EFC293D2}"
+      DTS:ObjectName="move_success">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::Directory] + "\\success\\" +  @[User::FileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="C:\Users\kacper.wozniak\source\repos\files_data\success\check_01.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sales config 3]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{72A14546-85D5-476A-8BE3-82332B1FB454}"
+      DTS:ObjectName="sales config 3">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1045"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1250"
+          DTS:ConnectionString="check_01.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_number"
+              DTS:DTSID="{3CD248A5-3279-4AFC-97D7-B3426C352BDF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="line_number"
+              DTS:DTSID="{9536D535-529D-488F-995E-566309F42A0C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="date"
+              DTS:DTSID="{112859EB-28D0-47D8-97B5-28DFD7EB04D3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer"
+              DTS:DTSID="{51D1408C-98C2-4945-A306-6DD603A61CA2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="country"
+              DTS:DTSID="{B438D85E-8FED-4F19-A4D0-9C1426C63898}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product"
+              DTS:DTSID="{0FC1159E-64D9-4CE9-BF4E-FF726EE90939}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="qty"
+              DTS:DTSID="{DF8F4DCA-4C75-424F-B941-64F7240C3E3D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="unit_price"
+              DTS:DTSID="{698FBDEB-2CAC-4351-96E3-81BCC37E4D78}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BDC8F8D3-4EE7-4C8B-8E6F-31568B2742B1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentDate">
+      <DTS:VariableValue
+        DTS:DataType="7">5/8/2022 2:18:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E87B0DA-721A-4959-93D7-44AAFE8394BE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Directory">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\kacper.wozniak\source\repos\files_data</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{86330CDA-A506-4A5E-A152-698FAD959D76}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">check_01.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EE356648-E65E-4246-8C2A-EA16B8202C60}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">check_01.txt</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{59B8A398-3355-4EF3-B83A-2476C8A3BBCD}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -485,6 +641,7 @@
       DTS:refId="Package\Data Flow Task 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{4DB1E8D1-F7CB-4DEB-AF9E-ABDE321FC98F}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -850,6 +1007,7 @@
       DTS:refId="Package\Data Flow Task 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{217ef6ae-831e-4204-8a75-b1bb5741d410}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -1187,6 +1345,7 @@
       DTS:refId="Package\Data Flow Task 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{ce61efe9-3051-4eed-80b0-bdc8fc0419b1}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -1552,6 +1711,7 @@
       DTS:refId="Package\Data Flow Task 1 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{85e7636b-8e67-45d6-a24c-43033bbde94a}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2044,6 +2204,7 @@
       DTS:refId="Package\Data Flow Task 1 1 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{d601298c-39ce-426d-a5f7-1bf325b09631}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2381,6 +2542,7 @@
       DTS:refId="Package\Data Flow Task 1 1 1 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{39465bf1-7c23-4dc3-b083-e4c011d8128d}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2741,6 +2903,7 @@
       DTS:refId="Package\Data Flow Task 1 1 1 1 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{e43687aa-6cb8-429b-97c9-011bd729dc36}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -3179,12 +3342,13 @@
       DTS:refId="Package\delete from person_address"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{0fd44ccc-f4f2-41ef-a0b7-eecf08ea6c5b}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3196,12 +3360,13 @@
       DTS:refId="Package\delete from person_business_address 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{7346e6c9-6085-4b03-bab1-0f46c0094e60}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_business_address 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="12">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3213,12 +3378,13 @@
       DTS:refId="Package\delete from person_email"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{3dfd551a-0497-41b0-a851-c086bc31c243}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_email"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3230,12 +3396,13 @@
       DTS:refId="Package\delete from person_person"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{4E63F5DE-31BC-4378-AA19-96837E2131E9}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_person"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="13">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3247,12 +3414,13 @@
       DTS:refId="Package\delete from person_phone"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{4e96c029-cc5d-449d-bd20-31f8169ee3eb}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_phone"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="11">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3264,12 +3432,13 @@
       DTS:refId="Package\delete from production_model"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{b3f44515-0476-4fde-bb5b-88540ff7411b}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from production_model"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3281,12 +3450,13 @@
       DTS:refId="Package\delete from production_product"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{45ef6170-5a8b-4440-a89a-9acd73b05052}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from production_product"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3298,12 +3468,13 @@
       DTS:refId="Package\delete from prod_prod_category"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{b0f11e65-f04d-4c43-bfe1-b6d0ca7763f9}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from prod_prod_category"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3315,12 +3486,13 @@
       DTS:refId="Package\delete from prod_prod_subcategory 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{420f1c75-5cf2-48e4-a26e-8a73dd986f75}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from prod_prod_subcategory 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3332,12 +3504,13 @@
       DTS:refId="Package\delete from sales_currency"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{95c6bd91-496d-41ed-abfc-bfeba5abb0ba}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_currency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="15">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3349,12 +3522,13 @@
       DTS:refId="Package\delete from sales_currency_rate"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{45c81774-e424-4b9e-9e75-d0228a6132e7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_currency_rate"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="10">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3366,12 +3540,13 @@
       DTS:refId="Package\delete from sales_customer"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{04056860-cabc-461e-b58e-e9a5e0887118}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_customer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3383,12 +3558,13 @@
       DTS:refId="Package\delete from sales_sales_orderdetail"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{e05f2e6c-7d90-478f-a150-eb4f7de04e91}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_sales_orderdetail"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="14">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3400,12 +3576,13 @@
       DTS:refId="Package\delete from sales_sales_orderheader"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{421ad18f-b4ba-40ef-a908-8280a32d8dac}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_sales_orderheader"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="15">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3417,12 +3594,13 @@
       DTS:refId="Package\delete from sales_sales_person"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{c7b45b09-69ab-495d-be5e-c54d478876e7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_sales_person"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="16">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3434,6 +3612,7 @@
       DTS:refId="Package\delete from sales_store"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{eb1a5d04-ed41-480c-88b4-7871f41bc856}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -3451,12 +3630,13 @@
       DTS:refId="Package\delete from sales_txt_delta"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{e5ed91d7-3da7-441e-8cfc-9493965d7e5a}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_txt_delta"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="16">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3465,9 +3645,1266 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{49C371F5-FAAB-49B8-AE7E-4BEDB15D3DF6}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{7913AD61-49AD-4517-BD3D-C1D186D31C97}"
+        DTS:ObjectName="{7913AD61-49AD-4517-BD3D-C1D186D31C97}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::Directory]</DTS:PropertyExpression>
+        <DTS:PropertyExpression
+          DTS:Name="Name">@[User::FileName]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\kacper.wozniak\source\repos\files_data" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Expressionas Task"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{70c488f2-2ac4-4e80-8056-c759c4633222}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Expressionas Task"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::FileName] =  substring(RIGHT( @[User::FilePath] , 12 ),1,8) + &quot;_&quot; + SUBSTRING((DT_STR,30, 1252) GETDATE(), 1, 10) + &quot;.txt&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\move fail"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{f11ac351-213a-4648-90e6-894c0303eff8}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="move fail"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="18">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="{72A14546-85D5-476A-8BE3-82332B1FB454}"
+              TaskDestinationPath="{E42E7EC5-84BC-40C5-9048-573F40D3B0D8}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\move files succes"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{8BC7F7F8-0842-4710-B635-963DBC6D778D}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="move files succes"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="{72A14546-85D5-476A-8BE3-82332B1FB454}"
+              TaskDestinationPath="{755DED90-FB9D-4159-8091-4245EFC293D2}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\sales_01"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8E073458-82CF-4F13-841E-A6C17EA8A7CF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="sales_01"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\sales_01\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1045"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\sales_01\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[sales config 3]"
+                      connectionManagerRefId="Package.ConnectionManagers[sales config 3]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
+                          name="order_number"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
+                          name="line_number"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
+                          name="date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
+                          name="customer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
+                          name="country"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
+                          name="product"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
+                          name="qty"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
+                          name="unit_price"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="order_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="line_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="date" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="customer" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="country" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="product" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="qty" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="unit_price" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\sales_01\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[stg].[sales_txt_delta]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{9EC79CB3-0F35-48C8-9D8F-9C24CF9EFB97}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[LocalHost.KW_DW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_number]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_number"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[line_number]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="line_number"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="date"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[date]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="customer"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[customer]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[country]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="country"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[country]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[product]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[qty]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="qty"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[qty]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[unit_price]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="unit_price"
+                          externalMetadataColumnId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                          lineageId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="20"
+                          name="order_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="20"
+                          name="line_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                          dataType="dbDate"
+                          name="date" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                          codePage="1250"
+                          dataType="str"
+                          length="10"
+                          name="customer" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="country" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                          codePage="1250"
+                          dataType="str"
+                          length="25"
+                          name="product" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                          dataType="i2"
+                          name="qty" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                          dataType="cy"
+                          name="unit_price" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filename]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="Filename" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\sales_01.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container\sales_01\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3860BCBA-EA1A-4BAC-BA8D-BBBCF75BF9D6}"
+          DTS:From="Package\Foreach Loop Container\sales_01"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\move files succes" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{4300DEED-45C7-4EF9-B207-617BA76566F5}"
+          DTS:From="Package\Foreach Loop Container\Expressionas Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container\sales_01" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{01B23883-635B-48F3-8610-D0DC21960DEA}"
+          DTS:From="Package\Foreach Loop Container\sales_01"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach Loop Container\move fail"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{74946D1E-D477-41B6-983D-E1652A40357F}"
+          DTS:ObjectName="{74946D1E-D477-41B6-983D-E1652A40357F}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FilePath" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container 1"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{dc1b161d-28f6-4845-95c1-aed0ed12d1ed}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container 1">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{006c4991-3c64-49dc-bf74-f408dc7e0f17}"
+        DTS:ObjectName="{7913AD61-49AD-4517-BD3D-C1D186D31C97}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::Directory]</DTS:PropertyExpression>
+        <DTS:PropertyExpression
+          DTS:Name="Name">@[User::FileName]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\kacper.wozniak\source\repos\files_data" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container 1\move files succes"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{09756c23-19df-4a2f-9b99-38fc74565489}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="move files succes"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="19">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="{72A14546-85D5-476A-8BE3-82332B1FB454}"
+              TaskDestinationPath="{755DED90-FB9D-4159-8091-4245EFC293D2}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container 1\sales_01"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{55224c03-ed1f-4df5-8366-8fb93b2437fa}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="sales_01"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container 1\sales_01\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1045"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[sales config 3]"
+                      connectionManagerRefId="Package.ConnectionManagers[sales config 3]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
+                          name="order_number"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
+                          name="line_number"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
+                          name="date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
+                          name="customer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
+                          name="country"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
+                          name="product"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
+                          name="qty"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
+                          name="unit_price"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="order_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="line_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="date" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="customer" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="country" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="product" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="qty" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="unit_price" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[stg].[sales_txt_delta]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{9EC79CB3-0F35-48C8-9D8F-9C24CF9EFB97}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[LocalHost.KW_DW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_number]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_number"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[line_number]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="line_number"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="date"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[date]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="customer"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[customer]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[country]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="country"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[country]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[product]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[qty]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="qty"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[qty]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[unit_price]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="unit_price"
+                          externalMetadataColumnId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="20"
+                          name="order_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                          codePage="1250"
+                          dataType="str"
+                          length="20"
+                          name="line_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                          dataType="dbDate"
+                          name="date" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                          codePage="1250"
+                          dataType="str"
+                          length="10"
+                          name="customer" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="country" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                          codePage="1250"
+                          dataType="str"
+                          length="25"
+                          name="product" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                          dataType="i2"
+                          name="qty" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                          dataType="cy"
+                          name="unit_price" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filename]"
+                          codePage="1250"
+                          dataType="str"
+                          length="50"
+                          name="Filename" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container 1\sales_01.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container 1\sales_01\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container 1\sales_01\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container 1.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0a2c4bd1-2a86-4933-828b-589e17729be0}"
+          DTS:From="Package\Foreach Loop Container 1\sales_01"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container 1\move files succes" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{ffb853a0-6ace-4b75-96c8-3a362902cda8}"
+          DTS:ObjectName="{B80A6E30-C4B9-4670-A0D2-83F722C59C6E}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FilePath" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Load"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{8c170bf9-ef15-40dd-aa19-6f23a9cd8488}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -4419,6 +5856,7 @@
       DTS:refId="Package\load 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{cf825bcb-c4d2-4976-a330-caf85ca67112}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -4788,6 +6226,7 @@
       DTS:refId="Package\load 1 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{f959dd6b-f800-4c73-b4bb-5bc869deb13e}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -5321,6 +6760,7 @@
       DTS:refId="Package\Load 2"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{416be0a9-ac24-4664-a877-dd6e2575f0de}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -5723,6 +7163,7 @@
       DTS:refId="Package\Load 2 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{d2dc0b29-2841-4861-a3f3-a96cbf23aad9}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -6037,6 +7478,7 @@
       DTS:refId="Package\Load 2 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{7b14f545-008b-48e1-bbd1-3e500d493a6f}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -7003,6 +8445,7 @@
       DTS:refId="Package\Load 2 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{8e9cfa9d-3457-48a8-ac89-33481522b21a}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -7546,6 +8989,7 @@
       DTS:refId="Package\Load 2 1 1 1 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{b78cd628-43ee-4115-a090-0027f2c94831}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -8004,6 +9448,7 @@
       DTS:refId="Package\Load person_person"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{8BE5E54F-374F-44AF-810D-FD17EB2EB299}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -8740,146 +10185,146 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="155,42"
+          Size="154.666666666667,42"
           Id="Package\Data Flow Task"
-          TopLeft="101,587" />
+          TopLeft="101,593.666666666667" />
         <NodeLayout
           Size="164,42"
           Id="Package\Data Flow Task 1"
-          TopLeft="61,395" />
+          TopLeft="61,401.666666666667" />
         <NodeLayout
-          Size="173,42"
+          Size="173.333333333334,42"
           Id="Package\Data Flow Task 1 1"
-          TopLeft="66,726" />
+          TopLeft="66,732.666666666667" />
         <NodeLayout
-          Size="173,42"
+          Size="173.333333333334,42"
           Id="Package\Data Flow Task 1 1 1"
-          TopLeft="349,325" />
+          TopLeft="349,331.666666666667" />
         <NodeLayout
-          Size="173,42"
+          Size="173.333333333334,42"
           Id="Package\Data Flow Task 1 1 1 1"
-          TopLeft="342,518" />
+          TopLeft="342,524.666666666667" />
         <NodeLayout
           Size="200,42"
           Id="Package\Data Flow Task 1 1 1 1 1"
-          TopLeft="353,731" />
+          TopLeft="353,737.666666666667" />
         <NodeLayout
-          Size="209,42"
+          Size="209.333333333334,42"
           Id="Package\Data Flow Task 1 1 1 1 1 1"
-          TopLeft="363,909.5" />
+          TopLeft="363,916.166666666667" />
         <NodeLayout
           Size="200,42"
           Id="Package\Data Flow Task 1 1 1 1 1 1 1"
-          TopLeft="57,1006.33333333333" />
+          TopLeft="57,1013" />
         <NodeLayout
           Size="216,42"
           Id="Package\delete from person_address"
-          TopLeft="323,423" />
+          TopLeft="323,429.666666666667" />
         <NodeLayout
           Size="274,42"
           Id="Package\delete from person_business_address 1"
-          TopLeft="345,810.5" />
+          TopLeft="345,817.166666666667" />
         <NodeLayout
-          Size="203,42"
+          Size="202.666666666667,42"
           Id="Package\delete from person_email"
-          TopLeft="330,230" />
+          TopLeft="330,236.666666666667" />
         <NodeLayout
           Size="210,42"
           Id="Package\delete from person_person"
-          TopLeft="309,46" />
+          TopLeft="309,52.6666666666667" />
         <NodeLayout
-          Size="207,42"
+          Size="206.666666666667,42"
           Id="Package\delete from person_phone"
-          TopLeft="335,632" />
+          TopLeft="335,638.666666666667" />
         <NodeLayout
-          Size="235,42"
+          Size="234.666666666667,42"
           Id="Package\delete from prod_prod_category"
-          TopLeft="32,660" />
+          TopLeft="32,666.666666666667" />
         <NodeLayout
           Size="262,42"
           Id="Package\delete from prod_prod_subcategory 1"
-          TopLeft="16,317" />
+          TopLeft="16,323.666666666667" />
         <NodeLayout
           Size="224,42"
           Id="Package\delete from production_model"
-          TopLeft="63,517" />
+          TopLeft="63,523.666666666667" />
         <NodeLayout
-          Size="231,42"
+          Size="230.666666666667,42"
           Id="Package\delete from production_product"
-          TopLeft="15,139" />
+          TopLeft="15,145.666666666667" />
         <NodeLayout
-          Size="211,42"
+          Size="210.666666666667,42"
           Id="Package\delete from sales_currency"
-          TopLeft="625,434" />
+          TopLeft="625,440.666666666667" />
         <NodeLayout
           Size="236,42"
           Id="Package\delete from sales_currency_rate"
-          TopLeft="39,907.33333333333" />
+          TopLeft="39,913.999999999997" />
         <NodeLayout
           Size="214,42"
           Id="Package\delete from sales_customer"
-          TopLeft="630,247.75" />
+          TopLeft="630,254.416666666667" />
         <NodeLayout
-          Size="253,42"
+          Size="253.333333333334,42"
           Id="Package\delete from sales_sales_orderdetail"
-          TopLeft="721.25,809" />
+          TopLeft="721.25,815.666666666667" />
         <NodeLayout
           Size="260,42"
           Id="Package\delete from sales_sales_orderheader"
-          TopLeft="668.75,620.25" />
+          TopLeft="668.75,626.916666666667" />
         <NodeLayout
           Size="234,42"
           Id="Package\delete from sales_sales_person"
-          TopLeft="733.055555555556,964.833333333333" />
+          TopLeft="733.055555555556,971.5" />
         <NodeLayout
-          Size="193,42"
+          Size="193.333333333334,42"
           Id="Package\delete from sales_store"
-          TopLeft="590,44" />
+          TopLeft="590,50.6666666666667" />
         <NodeLayout
           Size="210,42"
           Id="Package\delete from sales_txt_delta"
-          TopLeft="931,62" />
+          TopLeft="931,68.6666666666667" />
         <NodeLayout
-          Size="103,42"
+          Size="102.666666666667,42"
           Id="Package\Load"
-          TopLeft="83,224" />
+          TopLeft="83,230.666666666667" />
         <NodeLayout
-          Size="127,42"
+          Size="126.666666666667,42"
           Id="Package\load 1 1 1"
-          TopLeft="612.5,148.25" />
+          TopLeft="612.5,154.916666666667" />
         <NodeLayout
-          Size="127,42"
+          Size="126.666666666667,42"
           Id="Package\load 1 1 1 1"
-          TopLeft="953.5,166.25" />
+          TopLeft="953.5,172.916666666667" />
         <NodeLayout
-          Size="113,42"
+          Size="113.333333333334,42"
           Id="Package\Load 2"
-          TopLeft="650,339.5" />
+          TopLeft="650,346.166666666667" />
         <NodeLayout
           Size="122,42"
           Id="Package\Load 2 1"
-          TopLeft="645,525.75" />
+          TopLeft="645,532.416666666667" />
         <NodeLayout
           Size="122,42"
           Id="Package\Load 2 1 1"
-          TopLeft="688.75,712" />
+          TopLeft="688.75,718.666666666667" />
         <NodeLayout
           Size="122,42"
           Id="Package\Load 2 1 1 1"
-          TopLeft="698.75,904.5" />
+          TopLeft="698.75,911.166666666667" />
         <NodeLayout
           Size="122,42"
           Id="Package\Load 2 1 1 1 1"
-          TopLeft="710.555555555556,1060.33333333333" />
+          TopLeft="710.555555555556,1067" />
         <NodeLayout
           Size="180,42"
           Id="Package\Load person_person"
-          TopLeft="324,144" />
+          TopLeft="324,150.666666666667" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="414,88">
+          TopLeft="414,94.6666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -8901,7 +10346,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="132.5,181">
+          TopLeft="132.5,187.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -8923,7 +10368,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="176.75,559">
+          TopLeft="176.75,565.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -8945,7 +10390,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="145,359">
+          TopLeft="145,365.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -8967,7 +10412,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="151,702">
+          TopLeft="151,708.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -8989,7 +10434,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4 1]"
-          TopLeft="433.5,272">
+          TopLeft="433.5,278.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9011,7 +10456,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4 1 1]"
-          TopLeft="429.75,465">
+          TopLeft="429.75,471.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9033,7 +10478,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4 1 1 1]"
-          TopLeft="438.5,674">
+          TopLeft="438.5,680.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9067,7 +10512,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4 1 1 1 1]"
-          TopLeft="482,852.5">
+          TopLeft="482,859.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9101,7 +10546,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4 1 1 1 1 1]"
-          TopLeft="157,949.33333333333">
+          TopLeft="157,955.999999999997">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9123,7 +10568,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="686.5,86">
+          TopLeft="686.5,92.6666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9157,7 +10602,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5 1]"
-          TopLeft="1036,104">
+          TopLeft="1036,110.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9191,7 +10636,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="737,289.75">
+          TopLeft="737,296.416666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9225,7 +10670,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6 1]"
-          TopLeft="730.5,476">
+          TopLeft="730.5,482.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9259,7 +10704,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6 1 1]"
-          TopLeft="798.75,662.25">
+          TopLeft="798.75,668.916666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9293,7 +10738,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="847.75,851">
+          TopLeft="847.75,857.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9327,7 +10772,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7 1]"
-          TopLeft="850.055555555556,1006.83333333333">
+          TopLeft="850.055555555556,1013.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9359,6 +10804,158 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\sales_01"
+          TopLeft="179.595220478163,142.644119184591" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Foreach Loop Container\move files succes"
+          TopLeft="51.2618890571459,266.040109298739" />
+        <NodeLayout
+          Size="169.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\Expressionas Task"
+          TopLeft="157.285704440305,35.0576522973646" />
+        <NodeLayout
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\move fail"
+          TopLeft="291.095225801781,265.40852730099" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="240.928553811496,185.310785851257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111.500005323619,80.097741449733"
+              Start="0,0"
+              End="111.500005323619,72.597741449733">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.0488707248665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.0488707248665"
+                    Point2="0,40.0488707248665"
+                    Point3="4,40.0488707248665" />
+                  <mssgle:LineSegment
+                    End="107.500005323619,40.0488707248665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="107.500005323619,40.0488707248665"
+                    Point2="111.500005323619,40.0488707248665"
+                    Point3="111.500005323619,44.0488707248665" />
+                  <mssgle:LineSegment
+                    End="111.500005323619,72.597741449733" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="40.5086550055593,45.0488707248665,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="221.817442700385,185.310785851257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-88.555553643239,80.7293234474817"
+              Start="0,0"
+              End="-88.555553643239,73.2293234474817">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.9153893884582" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.9153893884582"
+                    Point2="0,32.9153893884582"
+                    Point3="-4,32.9153893884582" />
+                  <mssgle:LineSegment
+                    End="-84.555553643239,32.9153893884582" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-84.555553643239,32.9153893884582"
+                    Point2="-88.555553643239,32.9153893884582"
+                    Point3="-88.555553643239,36.9153893884582" />
+                  <mssgle:LineSegment
+                    End="-88.555553643239,73.2293234474817" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="241.440462459234,77.7243189640313">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64.9198002205595"
+              Start="0,0"
+              End="0,57.4198002205595">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.4198002205595" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="480,382"
+          Size="480,425.333333333334"
+          Id="Package\Foreach Loop Container"
+          TopLeft="991.874985219911,408.605269719524" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Foreach Loop Container 1\move files succes"
+          TopLeft="48.5833176684879,171.22807743895" />
+        <NodeLayout
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container 1\sales_01"
+          TopLeft="64.4166507658859,18.508778502186" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container 1.PrecedenceConstraints[Constraint]"
+          TopLeft="128.166650883854,61.1754451688527">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,110.052632270097"
+              Start="0,0"
+              End="0,102.552632270097">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,102.552632270097" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="352.666666666667,262.666666666667"
+          Size="352.666666666667,305.333333333334"
+          Id="Package\Foreach Loop Container 1"
+          TopLeft="1215.26783903396,33.3596498762032" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -10136,6 +11733,19 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load 1 1 1 1\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load 2">
     <LayoutInfo>
@@ -10568,8 +12178,58 @@
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\sales_01">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\sales_01\Flat File Source"
+          TopLeft="459.374993154779,100.350879081839" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\sales_01\OLE DB Destination"
+          TopLeft="523.958325525746,244.035092312653" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\sales_01.Paths[Flat File Source Output]"
+          TopLeft="536.708326488112,143.017545748505">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74.5833323709668,101.017546564148"
+              Start="0,0"
+              End="74.5833323709668,93.517546564148">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.508773282074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.508773282074"
+                    Point2="0,50.508773282074"
+                    Point3="4,50.508773282074" />
+                  <mssgle:LineSegment
+                    End="70.5833323709668,50.508773282074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="70.5833323709668,50.508773282074"
+                    Point2="74.5833323709668,50.508773282074"
+                    Point3="74.5833323709668,54.508773282074" />
+                  <mssgle:LineSegment
+                    End="74.5833323709668,93.517546564148" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\load 1 1 1 1\OLE DB Destination">
+    design-time-name="Package\Foreach Loop Container\sales_01\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10581,5 +12241,57 @@
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container 1\sales_01">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container 1\sales_01\Flat File Source"
+          TopLeft="459.374993154779,100.350879081839" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container 1\sales_01\OLE DB Destination"
+          TopLeft="523.958325525746,244.035092312653" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container 1\sales_01.Paths[Flat File Source Output]"
+          TopLeft="536.708326488112,143.017545748505">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74.5833323709668,101.017546564148"
+              Start="0,0"
+              End="74.5833323709668,93.517546564148">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.508773282074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.508773282074"
+                    Point2="0,50.508773282074"
+                    Point3="4,50.508773282074" />
+                  <mssgle:LineSegment
+                    End="70.5833323709668,50.508773282074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="70.5833323709668,50.508773282074"
+                    Point2="74.5833323709668,50.508773282074"
+                    Point3="74.5833323709668,54.508773282074" />
+                  <mssgle:LineSegment
+                    End="74.5833323709668,93.517546564148" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
