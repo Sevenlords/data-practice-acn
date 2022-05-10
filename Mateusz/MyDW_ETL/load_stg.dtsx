@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="49"
-  DTS:VersionGUID="{1BD45AC9-EA4F-4E5A-B212-63B1A6624417}">
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{7ED2BB9B-AA54-4C28-A16C-D409D8B2F855}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -41,7 +41,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_number"
-              DTS:DTSID="{B1EF70EB-B85B-4013-AED1-45D1D5F8A462}"
+              DTS:DTSID="{CD9D7ECD-6B09-41B2-8E73-DB4052297A23}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -50,7 +50,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="line_number"
-              DTS:DTSID="{0C22DD30-214F-4EBE-AC01-94C424434F75}"
+              DTS:DTSID="{5FA632CB-0563-4815-975B-C3F74DCA4D3D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -59,7 +59,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="date"
-              DTS:DTSID="{4DE1BB0A-AE1D-4662-B624-FD9BBC43F56D}"
+              DTS:DTSID="{1D26ABE6-FCB3-4A48-A9B0-4F322005E116}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -68,7 +68,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="customer"
-              DTS:DTSID="{233BFBCE-C4D1-417F-A3B1-8339941A5739}"
+              DTS:DTSID="{6B80B168-E135-4318-BE10-B3974B03CDEA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -77,7 +77,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="country"
-              DTS:DTSID="{CD4C4EFD-317F-4E95-8430-407C5F613E9D}"
+              DTS:DTSID="{90348C8F-1BB3-446B-8249-69F04ECAAF1D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -86,7 +86,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="product"
-              DTS:DTSID="{A4E0DAAC-51DD-405A-ACE9-3005001171BE}"
+              DTS:DTSID="{1D7C39F0-2559-488C-B511-84337D1269B8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -95,7 +95,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="qty"
-              DTS:DTSID="{E8957E64-11A1-4F85-80DF-04C6C563DE4D}"
+              DTS:DTSID="{B69D3947-916A-401C-B90D-A9B306156D65}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -104,7 +104,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="unit_price"
-              DTS:DTSID="{0D36D2F3-D6B0-4FEF-BC8C-469F5B8557A8}"
+              DTS:DTSID="{5E77E4B5-CACE-423B-A710-82CA1DE2856F}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -250,6 +250,17 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{E0068BC1-1E2E-4DEC-9125-0F7F22AAEBD6}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="SUBSTRING( RIGHT( @[User::FilePath],12 ), 1, 8) + &quot;_&quot; + (DT_WSTR,4)DATEPART(&quot;yyyy&quot;,GetDate()) + &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;mm&quot;,GetDate()) ,2) + &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;dd&quot;,GetDate()),2) + &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;hh&quot;,GetDate()),2)+ &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;mi&quot;,GetDate()),2)+ RIGHT( @[User::FilePath],4)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNamePlusDate">
+      <DTS:VariableValue
+        DTS:DataType="8">sales_01_2022_05_10_13_02.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{22635DEA-FFC2-4B6C-AB85-6FAE1C1433A7}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -257,13 +268,21 @@
       <DTS:VariableValue
         DTS:DataType="8">C:\Szkolka 2\Pliki\sales_01.txt</DTS:VariableValue>
     </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E7F0745A-2BF1-48C7-B1B1-BCAF7446BA98}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Variable">
+      <DTS:VariableValue
+        DTS:DataType="8">SUBSTRING( RIGHT( @[User::FilePath],12 ), 1, 8) + "_" + (DT_WSTR,4)DATEPART("yyyy",GetDate()) + "_" + RIGHT("0" + (DT_WSTR,2)DATEPART("mm",GetDate()) ,2) + "_" + RIGHT("0" + (DT_WSTR,2)DATEPART("dd",GetDate()),2) + "_" + RIGHT("0" + (DT_WSTR,2)DATEPART("hh",GetDate()),2)+ "_" + RIGHT("0" + (DT_WSTR,2)DATEPART("mi",GetDate()),2)+ RIGHT( @[User::FilePath],4)</DTS:VariableValue>
+    </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Data Address"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{b94f5557-8a7b-4594-8da5-72353a561826}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -756,7 +775,6 @@
       DTS:refId="Package\Data BusinessEntityAddress"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{314e7a6a-9e41-4736-bc2f-ae35f8090d1a}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -1117,7 +1135,6 @@
       DTS:refId="Package\Data Currency"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{d6f762f7-62cd-4ac3-a033-189cbc2844a1}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -1432,7 +1449,6 @@
       DTS:refId="Package\Data EmailAdress"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{794985e8-dd07-4f2c-a3ba-fbac11020ce0}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -1798,7 +1814,6 @@
       DTS:refId="Package\Data Flow Task 10"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{8e32afba-d9d9-4d03-82f0-2d9ac87beb9e}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2225,7 +2240,6 @@
       DTS:refId="Package\Data Person"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{f0c2900e-7245-4124-be4b-3b37a808ced5}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2840,7 +2854,6 @@
       DTS:refId="Package\Data PersonPhone"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{c804f403-002a-40f4-ac8d-1f5ff986efce}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -3178,7 +3191,6 @@
       DTS:refId="Package\Data Product"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{8A22522B-1D94-4857-BB37-AF771A319DF8}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -4154,7 +4166,6 @@
       DTS:refId="Package\Data ProductCategory"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{9a05af11-dc92-4a17-9289-2cfa066575d6}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -4492,7 +4503,6 @@
       DTS:refId="Package\Data ProductModel"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{ff1d0f88-9cc9-41fd-9163-a5f5c1586f03}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -4886,7 +4896,6 @@
       DTS:refId="Package\Data ProductSubcategory"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{ffcd2ee6-672f-4d70-b381-633f5b457e5d}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -5252,7 +5261,6 @@
       DTS:refId="Package\Data SalesOrderDetail"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{b7e78214-ce15-4dff-89be-a8c4992fb157}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -5796,7 +5804,6 @@
       DTS:refId="Package\Data SalesOrderHeader"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{75a8baaf-0b1f-42f2-870a-8664107a950c}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -6775,7 +6782,6 @@
       DTS:refId="Package\Data Store"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{1a2d68f8-f3ee-4fb3-824f-f06fa0e35e07}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -7188,6 +7194,7 @@
       DTS:Description="Foreach Loop Container"
       DTS:DTSID="{5F37A437-9F80-40AD-8CCA-7891C29C15EB}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:ForceExecutionResult="0"
       DTS:LocaleID="-1"
       DTS:ObjectName="Foreach Loop Container">
       <DTS:ForEachEnumerator
@@ -7241,6 +7248,81 @@
             <pipeline
               version="1">
               <components>
+                <component
+                  refId="Package\Foreach Loop Container\Load flat files\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load flat files\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load flat files\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Output].Columns[filename]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Output].Columns[filename]"
+                          name="filename"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[User::FileNamePlusDate]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[User::FileNamePlusDate]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load flat files\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
                 <component
                   refId="Package\Foreach Loop Container\Load flat files\Flat File Source"
                   componentClassID="Microsoft.FlatFileSource"
@@ -7666,6 +7748,14 @@
                           cachedName="unit_price"
                           externalMetadataColumnId="Package\Foreach Loop Container\Load flat files\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
                           lineageId="Package\Foreach Loop Container\Load flat files\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load flat files\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[filename]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="filename"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load flat files\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[filename]"
+                          lineageId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Output].Columns[filename]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -7718,8 +7808,14 @@
                           length="50"
                           name="unit_price" />
                         <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load flat files\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[filename]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="filename" />
+                        <externalMetadataColumn
                           refId="Package\Foreach Loop Container\Load flat files\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[timeshtamp]"
-                          dataType="dbTimeStamp"
+                          dataType="dbDate"
                           name="timeshtamp" />
                       </externalMetadataColumns>
                     </input>
@@ -7752,8 +7848,13 @@
               </components>
               <paths>
                 <path
-                  refId="Package\Foreach Loop Container\Load flat files.Paths[Flat File Source Output]"
+                  refId="Package\Foreach Loop Container\Load flat files.Paths[Derived Column Output]"
                   endId="Package\Foreach Loop Container\Load flat files\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\Load flat files\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Load flat files.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\Load flat files\Derived Column.Inputs[Derived Column Input]"
                   name="Flat File Source Output"
                   startId="Package\Foreach Loop Container\Load flat files\Flat File Source.Outputs[Flat File Source Output]" />
               </paths>
@@ -7837,13 +7938,12 @@
       DTS:refId="Package\Truncate Address"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{5764f62a-849e-4ca6-8531-dcd390135304}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7855,13 +7955,12 @@
       DTS:refId="Package\Truncate BusinessEntityAddress"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{80da78e8-7dc0-44a3-8ffe-57390c3bebf2}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate BusinessEntityAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7873,13 +7972,12 @@
       DTS:refId="Package\Truncate Currency"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{e7b6fed8-b1d7-4268-b039-4e48d0f0ca18}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Currency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7891,13 +7989,12 @@
       DTS:refId="Package\Truncate Customer"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{2c34b6f1-3abd-49b1-950b-5f0cd810a87a}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Customer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7909,13 +8006,12 @@
       DTS:refId="Package\Truncate EmailAdress"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{4391bacd-ce3e-46ae-893d-6f3ef001c7ed}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate EmailAdress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7927,13 +8023,12 @@
       DTS:refId="Package\Truncate Person"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{5d59975f-98cc-4a05-bd4a-6a2a28e1cd77}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Person"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7945,13 +8040,12 @@
       DTS:refId="Package\Truncate PersonPhone"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{4cf8d43f-498e-48a7-81a0-8aea5a3d2ba0}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate PersonPhone"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7963,13 +8057,12 @@
       DTS:refId="Package\Truncate Product"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{B714EFEC-C3AF-424A-BEC7-4FD50F3D0FE1}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Product"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7981,13 +8074,12 @@
       DTS:refId="Package\Truncate ProductCategory"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{71a4a12b-45b4-4cea-bf1f-8fdf6a008d86}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate ProductCategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7999,13 +8091,12 @@
       DTS:refId="Package\Truncate ProductModel"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{b80986fb-1c82-4bc2-add4-7225019ebd23}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate ProductModel"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -8017,7 +8108,6 @@
       DTS:refId="Package\Truncate ProductSubcategory"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{23d4a569-5bbf-414e-bb3a-2fe43054b92a}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -8035,7 +8125,6 @@
       DTS:refId="Package\Truncate SalesOrderDetail"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{41283c12-3945-4015-875d-98f90fe51ff7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -8053,7 +8142,6 @@
       DTS:refId="Package\Truncate SalesOrderHeader"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{99854e21-d00e-460f-aafe-076d6f175d6a}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -8071,7 +8159,6 @@
       DTS:refId="Package\Truncate Store"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{35e65897-f6ed-405b-86fb-5fbb48d48763}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -8281,13 +8368,13 @@
           Id="Package\Execute SQL Task"
           TopLeft="1005.91665249194,56.0175443619132" />
         <NodeLayout
-          Size="158.666666666667,42.6666666666667"
+          Size="158,42.6666666666667"
           Id="Package\Foreach Loop Container\Expression Task"
-          TopLeft="10.7777776991328,29.4152068591333" />
+          TopLeft="11.4027776898193,29.4152068591333" />
         <NodeLayout
           Size="142.666666666667,42.6666666666667"
           Id="Package\Foreach Loop Container\Load flat files"
-          TopLeft="8.42657050658818,103.29906296566" />
+          TopLeft="22.8015702923841,101.930641887271" />
         <NodeLayout
           Size="141.333333333334,42.6666666666667"
           Id="Package\Foreach Loop Container\Move Fail"
@@ -8298,18 +8385,30 @@
           TopLeft="11.9603004735842,177.180457750469" />
         <EdgeLayout
           Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
-          TopLeft="81.1934354900862,145.965729632327">
+          TopLeft="71.690459181273,144.597308553938">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.214728118142"
+              EndConnector="10.9365079589779,32.583149196531"
               Start="0,0"
-              End="0,23.714728118142">
+              End="10.9365079589779,25.083149196531">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.714728118142" />
+                    End="0,9.25007915570577" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.25007915570577"
+                    Point2="0,13.2500791557058"
+                    Point3="4,13.2500791557058" />
+                  <mssgle:LineSegment
+                    End="6.93650795897788,13.2500791557058" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.93650795897788,13.2500791557058"
+                    Point2="10.9365079589779,13.2500791557058"
+                    Point3="10.9365079589779,17.2500791557058" />
+                  <mssgle:LineSegment
+                    End="10.9365079589779,25.083149196531" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8320,30 +8419,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
-          TopLeft="90.1111110324661,72.0818735257999">
+          TopLeft="92.2688406577684,72.0818735257999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-10.3512071925446,31.2171894398601"
+              EndConnector="0,29.8487683614714"
               Start="0,0"
-              End="-10.3512071925446,23.7171894398601">
+              End="0,22.3487683614714">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.60859471993" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.60859471993"
-                    Point2="0,15.60859471993"
-                    Point3="-4,15.60859471993" />
-                  <mssgle:LineSegment
-                    End="-6.35120719254462,15.60859471993" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-6.35120719254462,15.60859471993"
-                    Point2="-10.3512071925446,15.60859471993"
-                    Point3="-10.3512071925446,19.60859471993" />
-                  <mssgle:LineSegment
-                    End="-10.3512071925446,23.7171894398601" />
+                    End="0,22.3487683614714" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8354,37 +8441,37 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
-          TopLeft="102.204348284366,145.965729632327">
+          TopLeft="116.579348070162,144.597308553938">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="140.670642076446,31.0167316336934"
+              EndConnector="126.29564229065,32.385152712082"
               Start="0,0"
-              End="140.670642076446,23.5167316336934">
+              End="126.29564229065,24.885152712082">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8.61308864956107" />
+                    End="0,9.16956302524592" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,8.61308864956107"
-                    Point2="0,12.6130886495611"
-                    Point3="4,12.6130886495611" />
+                    Point1="0,9.16956302524592"
+                    Point2="0,13.1695630252459"
+                    Point3="4,13.1695630252459" />
                   <mssgle:LineSegment
-                    End="136.670642076446,12.6130886495611" />
+                    End="122.29564229065,13.1695630252459" />
                   <mssgle:CubicBezierSegment
-                    Point1="136.670642076446,12.6130886495611"
-                    Point2="140.670642076446,12.6130886495611"
-                    Point3="140.670642076446,16.6130886495611" />
+                    Point1="122.29564229065,13.1695630252459"
+                    Point2="126.29564229065,13.1695630252459"
+                    Point3="126.29564229065,17.1695630252459" />
                   <mssgle:LineSegment
-                    End="140.670642076446,23.5167316336934" />
+                    End="126.29564229065,24.885152712082" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="55.093973381973,17.6130886495611,30.4826953125,9.7490234375"
+              BoundingBox="47.9064734890749,18.1695630252459,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -8589,9 +8676,9 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="53.3293658046136,70.9782817221222"
+              EndConnector="53.3293658046116,70.9782817221221"
               Start="0,0"
-              End="53.3293658046136,63.4782817221222">
+              End="53.3293658046116,63.4782817221221">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -8602,13 +8689,13 @@
                     Point2="0,35.4891408610611"
                     Point3="4,35.4891408610611" />
                   <mssgle:LineSegment
-                    End="49.3293658046136,35.4891408610611" />
+                    End="49.3293658046116,35.4891408610611" />
                   <mssgle:CubicBezierSegment
-                    Point1="49.3293658046136,35.4891408610611"
-                    Point2="53.3293658046136,35.4891408610611"
-                    Point3="53.3293658046136,39.4891408610611" />
+                    Point1="49.3293658046116,35.4891408610611"
+                    Point2="53.3293658046116,35.4891408610611"
+                    Point3="53.3293658046116,39.4891408610611" />
                   <mssgle:LineSegment
-                    End="53.3293658046136,63.4782817221222" />
+                    End="53.3293658046116,63.4782817221221" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9909,29 +9996,79 @@
     design-time-name="Package\Foreach Loop Container\Load flat files">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="154.666666666667,42.6666666666667"
           Id="Package\Foreach Loop Container\Load flat files\Flat File Source"
-          TopLeft="858,346" />
+          TopLeft="524.250004973262,154.421049025581" />
         <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\Foreach Loop Container\Load flat files\OLE DB Destination"
-          TopLeft="853,480" />
+          Size="156,42.6666666666667"
+          Id="Package\Foreach Loop Container\Load flat files\Derived Column"
+          TopLeft="302.499995492399,230.578951708498" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\Load flat files.Paths[Flat File Source Output]"
-          TopLeft="937.833333333333,388.666666666667">
+          TopLeft="601.583338306596,197.087715692247">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,91.3333333333334"
+              EndConnector="-221.083342814197,33.4912360162506"
               Start="0,0"
-              End="0,83.8333333333334">
+              End="-221.083342814197,25.9912360162506">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,83.8333333333334" />
+                    End="0,12.7456180081253" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.7456180081253"
+                    Point2="0,16.7456180081253"
+                    Point3="-4,16.7456180081253" />
+                  <mssgle:LineSegment
+                    End="-217.083342814197,16.7456180081253" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-217.083342814197,16.7456180081253"
+                    Point2="-221.083342814197,16.7456180081253"
+                    Point3="-221.083342814197,20.7456180081253" />
+                  <mssgle:LineSegment
+                    End="-221.083342814197,25.9912360162506" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\Load flat files\OLE DB Destination"
+          TopLeft="336.874994980171,337.315795822817" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load flat files.Paths[Derived Column Output]"
+          TopLeft="380.499995492399,273.245618375164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.7083328211061,64.0701774476528"
+              Start="0,0"
+              End="43.7083328211061,56.5701774476528">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0350887238264" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.0350887238264"
+                    Point2="0,32.0350887238264"
+                    Point3="4,32.0350887238264" />
+                  <mssgle:LineSegment
+                    End="39.7083328211061,32.0350887238264" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.7083328211061,32.0350887238264"
+                    Point2="43.7083328211061,32.0350887238264"
+                    Point3="43.7083328211061,36.0350887238264" />
+                  <mssgle:LineSegment
+                    End="43.7083328211061,56.5701774476528" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9943,5 +10080,18 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Load flat files\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
