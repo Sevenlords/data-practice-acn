@@ -3,6 +3,9 @@
     [CustomerID]           INT           NOT NULL,
     [ResellerAlternateKey] VARCHAR (10)  NOT NULL,
     [ResellerName]         NVARCHAR (50) NOT NULL,
-    [Timestamp]            DATETIME      DEFAULT (getdate()) NULL
+    [CreatedDate]          DATETIME      DEFAULT (getdate()) NULL,
+    [ModifiedDate]         DATETIME      NULL
 );
+
+
 

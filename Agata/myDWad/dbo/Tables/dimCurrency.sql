@@ -3,6 +3,9 @@
     [CurrencyName]         NVARCHAR (50) NULL,
     [CurrencyALternateKey] NVARCHAR (3)  NULL,
     [SourceModifiedDate]   DATETIME      NULL,
-    [timeshtamp]           DATETIME      DEFAULT (getdate()) NULL
+    [timeshtamp]           DATETIME      DEFAULT (getdate()) NULL,
+    [ModifiedDate]         DATETIME      NULL
 );
+
+
 

@@ -64,6 +64,7 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="stg\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="stg\Tables\Person_Person.sql" />
@@ -77,5 +78,11 @@
     <Build Include="dbo\Stored Procedures\LoadDimProduct.sql" />
     <Build Include="dbo\Stored Procedures\LoadFactInternetSales.sql" />
     <Build Include="Security\stg.sql" />
+    <Build Include="stg\Tables\SalesOrderHeader.sql" />
+    <Build Include="stg\Tables\sales_txt_delta.sql" />
+    <Build Include="stg\Tables\sales_txt.sql" />
+    <Build Include="stg\Stored Procedures\load_sales_txt.sql" />
+    <Build Include="dbo\Stored Procedures\LoadFactInternetSales_incremental.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimProduct_insert_update.sql" />
   </ItemGroup>
 </Project>

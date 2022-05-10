@@ -24,6 +24,7 @@
     [SellStartDate]          DATETIME       NOT NULL,
     [SellEndDate]            DATETIME       NULL,
     [SourceModifiedDate]     DATETIME       NOT NULL,
-    [Timeshtamp]             DATETIME       DEFAULT (getdate()) NULL
+    [CreatedDate]             DATETIME       NULL,
+	[ModifiedDate]			 DATETIME		NULL
 );
 
