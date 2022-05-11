@@ -20,7 +20,7 @@ insert into dw.fact_internetsales
 	p.StandardCost,
 	TotalProductCost,
 	SalesAmount,
-	p.Timestamp
+	Timestamp
 )
 
 select 
@@ -39,7 +39,7 @@ select
 	p.StandardCost,
 	(p.StandardCost * od.OrderQty) as TotalProductCost,
 	((od.OrderQty * od.UnitPrice) - ((od.OrderQty * od.UnitPrice)* od.UnitPriceDiscount)) as SalesAmount,
-	p.Timestamp -- ok?
+	getdate() Timestamp
 
 from
 	stg.sales_sales_orderheader oh

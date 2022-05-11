@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{5EA8DAD1-3599-4D67-893B-FF3D5EDFBBC5}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{AB2C1779-0B3C-4BA0-8FDC-14A3401945A9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -188,9 +188,9 @@
           PanelSize="504,225"
           Size="504,268"
           Id="Package\Load dim"
-          TopLeft="193,151" />
+          TopLeft="461,73" />
         <NodeLayout
-          Size="222,42"
+          Size="195,42"
           Id="Package\Load fact\load_fact_InternetSales"
           TopLeft="65,44" />
         <NodeLayout
@@ -200,24 +200,24 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="579,131"
-          Size="579,174"
+          PanelSize="579,141"
+          Size="579,184"
           Id="Package\Load fact"
-          TopLeft="160,507" />
+          TopLeft="427,496" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="447.25,419">
+          TopLeft="714.75,341">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,88"
+              EndConnector="0,155"
               Start="0,0"
-              End="0,80.5">
+              End="0,147.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,80.5" />
+                    End="0,147.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

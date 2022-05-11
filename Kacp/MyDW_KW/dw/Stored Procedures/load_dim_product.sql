@@ -1,6 +1,6 @@
 ﻿create procedure dw.load_dim_product as
 
---truncate table dw.dim_product
+
 
 drop table if exists #product
 
@@ -102,10 +102,10 @@ from #product a
 where b.ProductID is null 
 
 
+----------------
 
 
-
-
+--truncate table dw.dim_product
 
 --insert into dw.dim_product(
 --	PP.ProductID, ProductName, 

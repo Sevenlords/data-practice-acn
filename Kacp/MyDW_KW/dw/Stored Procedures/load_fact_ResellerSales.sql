@@ -1,4 +1,4 @@
-alter procedure dw.load_fact_ResellerSales
+create procedure dw.load_fact_ResellerSales
 as
 
 truncate table dw.fact_ResellerSales
@@ -7,20 +7,22 @@ truncate table dw.fact_ResellerSales
 
 insert into dw.fact_ResellerSales
 (
-	oh.SalesOrderID, oh.SalesOrderNumber, od.SalesOrderDetailID,
-	d.datekey, -- distinct date as uid in dim_date
-	re.ResellerKey, 
-	p.ProductKey,
-	cn.currencyKey,
-	od.OrderQty,
-	od.UnitPrice,
+	SalesOrderID,
+	SalesOrderNumber,
+	SalesOrderDetailID,
+	datekey, -- distinct date as uid in dim_date
+	ResellerKey, 
+	ProductKey,
+	currencyKey,
+	OrderQty,
+	UnitPrice,
 	ExtendedAmount,
-	od.UnitPriceDiscount,
+	UnitPriceDiscount,
 	DiscountAmount,
-	p.StandardCost,
+	StandardCost,
 	TotalProductCost,
 	SalesAmount,
-	p.Timestamp
+	Timestamp
 --	CreatedDate
 --	CurrentDate
 )
@@ -40,7 +42,7 @@ select
 	p.StandardCost,
 	(p.StandardCost * od.OrderQty) as TotalProductCost,
 	((od.OrderQty * od.UnitPrice) - ((od.OrderQty * od.UnitPrice)* od.UnitPriceDiscount)) as SalesAmount,
-	p.Timestamp-- as CreatedDate-- p.ok?
+	getdate() Timestamp-- as CreatedDate-- p.ok?
 --	getdate() as CurrentDate
 --into dw.fact_ResellerSales
 
@@ -58,28 +60,29 @@ insert into dw.fact_ResellerSales
 	SalesOrderID, --> Orderheader lub sales_txt_delta
 	SalesOrderNumber, --> N/D
 	SalesOrderDetailID, --> N/D ?
-	DateKey, -- OK
+	DateKey,
+	ProductKey,
 	ResellerKey, -- OK
 	CurrencyKey, -- later
 	OrderQty, --> sales_txt
-	Unit_Price, --> sales_txt
+	UnitPrice, --> sales_txt
 	ExtendedAmount, --> sales_txt calculate
 	UnitPriceDiscount, --> 0
 	DiscountAmount, --> 0
-	 StandardCost, --> dp.product
+	StandardCost, --> dp.product
 	TotalProductCost, -- calculate or 0
 	SalesAmount, -- calculate
 	timestamp 
 )
 
 select 
-	'N/D' AS SalesOrderID,
-	'N/D' as SalesOrderNumber,
-	'N/D' as SalesOrderDetailID,
+	null AS SalesOrderID,
+	null as SalesOrderNumber,
+	null as SalesOrderDetailID,
 	dd.DateKey, 
 	dr.ResellerKey, 
 	dp.ProductKey,
-	'N/D' as CurrencyKey,
+	null as CurrencyKey,
 	st.qty as OrderQty,
 	st.unit_price as Unit_Price,
 	st.qty * st.unit_price as ExtendedAmount,
@@ -88,7 +91,7 @@ select
 	dp.StandardCost as StandardCost,
 	dp.StandardCost * st.qty as TotalProductCost,
 	((st.qty * st.unit_price) - (0*0)) as SalesAmount,
-	st.Timestamp
+	getdate() Timestamp
 from
 	stg.sales_txt st
 	join dw.dim_reseller dr on st.customer = dr.ResellerAlternateKey -- ResellerKey
