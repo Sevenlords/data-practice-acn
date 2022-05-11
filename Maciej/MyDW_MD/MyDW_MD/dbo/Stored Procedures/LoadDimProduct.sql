@@ -4,39 +4,35 @@ as
 drop table if exists #product
 
 SELECT
-		P.ProductID AS [ProductID],
-		P.Name AS [ProductName],
-		P.ProductNumber AS [ProductAlternateKey],
-		P.StandardCost AS [StandardCost],
-		P.FinishedGoodsFlag AS [FinishedGoodsFlag],
-		ISNULL(P.Color, 'N/D') AS [Color],
-		P.ListPrice AS [ListPrice],
-		ISNULL(P.Size, 'N/D') AS [Size],
-		ISNULL(P.SizeUnitMeasureCode, 'N/D') AS [SizeUnitMeasureCode],
-		ISNULL(P.Weight, 0) AS [Weight],
-		ISNULL(P.WeightUnitMeasureCode, 'N/D') AS [WeightUnitMeasureCode],
-		P.DaysToManufacture AS [DaysToManufacture],
-		ISNULL(CONVERT(nchar(3),P.ProductLine), 'N/D') AS [ProductLine],
-		ISNULL(CONVERT(nchar(3),P.Class), 'N/D') AS [Class],
-		ISNULL(CONVERT(nchar(3),P.Style), 'N/D') AS [Style],
-		isnull(PS.ProductCategoryID, 0) AS [ProductCategoryID],
-		ISNULL(PC.Name, 'N/D') AS [ProductCategoryName],
-		isnull(P.ProductSubcategoryID, 0) AS [ProductSubcategoryID],
-		ISNULL(PS.Name, 'N/D')  AS [ProductSubcategoryName],
-		isnull(P.ProductModelID, 0) AS [ProductModelID],
-		ISNULL(PM.Name, 'N/D')  AS [ProductModelName],
-		P.SellStartDate AS [SellStartDate],
-		isnull(P.SellEndDate, '20990101') AS [SellEndDate],
-		P.ModifiedDate AS [SourceModifiedDate]
+		 p.ProductID
+	,p.Name ProductName
+	,p.ProductNumber ProductAlternateKey
+	,p.StandardCost
+	,p.FinishedGoodsFlag
+	,ISNULL(p.Color, 'N/D') Color
+	,p.ListPrice
+	,ISNULL(p.Size, 'N/D') Size
+	,ISNULL(p.SizeUnitMeasureCode, 'N/D') SizeUnitMeasureCode
+	,ISNULL(p.Weight, 0) Weight
+	,ISNULL(p.WeightUnitMeasureCode, 'N/D') WeightUnitMeasureCode
+	,p.DaysToManufacture
+	,ISNULL(cast(p.ProductLine as nvarchar(3)), 'N/D') ProductLine
+	,ISNULL(cast(p.Class as nvarchar(3)),'N/D') Class
+	,ISNULL(cast(p.Style as nvarchar(3)),'N/D') Style
+	,ISNULL(c.ProductCategoryID, 0) ProductCategoryID
+	,ISNULL(c.Name, 'N/D') ProductCategoryName
+	,ISNULL(s.ProductSubcategoryID, 0) ProductSubcategoryID
+	,ISNULL(s.Name, 'N/D') ProductSubcategoryName
+	,ISNULL(m.ProductModelID, 0) ProductModelID
+	,ISNULL(m.Name, 'N/D') ProductModelName
+	,p.SellStartDate
+	,ISNULL(p.SellEndDate,'20990101') SellEndDate
+	,p.ModifiedDate SourceModifiedDate
 into #product
-FROM [AdventureWorks2017].[Production].[Product] AS P
-		LEFT JOIN [AdventureWorks2017].[Production].[ProductSubcategory] AS PS
-		ON P.ProductSubcategoryID = PS.ProductSubcategoryID
-		LEFT JOIN [AdventureWorks2017].[Production].[ProductCategory] AS PC
-		ON PS.ProductCategoryID = PC.ProductCategoryID
-		LEFT JOIN [AdventureWorks2017].[Production].[ProductModel] AS PM
-		ON P.ProductModelID = PM.ProductModelID
-
+FROM [stg].Production_Product p 
+	left join [stg].Production_ProductModel m on p.ProductModelID = m.ProductModelID
+	left join [stg].[Production_ProductSubcategory] s on p.ProductSubcategoryID = s.ProductSubcategoryID
+	left join [stg].Production_ProductCategory c on s.ProductCategoryID = c.ProductCategoryID
 
 
 insert into [dbo].[DimProduct]
