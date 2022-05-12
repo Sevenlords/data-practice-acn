@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="85"
-  DTS:VersionGUID="{7E5D1E10-6827-4A91-A3B9-44EE6DDBA007}">
+  DTS:VersionBuild="86"
+  DTS:VersionGUID="{1491C7A4-DC6E-4561-97E0-52A3D47E7551}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3339,7 +3339,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="11">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3356,7 +3356,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_business_address 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="12">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3373,7 +3373,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_email"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="10">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3390,7 +3390,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_person"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="17">
+      DTS:ThreadHint="14">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3407,7 +3407,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from person_phone"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3458,7 +3458,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from prod_prod_category"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3475,7 +3475,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from prod_prod_subcategory 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3492,7 +3492,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_currency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="15">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3509,7 +3509,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_currency_rate"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="13">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3526,7 +3526,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_customer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3543,7 +3543,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_sales_orderdetail"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="18">
+      DTS:ThreadHint="17">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3560,7 +3560,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_sales_orderheader"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="16">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3577,7 +3577,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_sales_person"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="18">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3594,7 +3594,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_store"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="15">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3612,7 +3612,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_txt_delta"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="16">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3629,7 +3629,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete from sales_txt_delta 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3646,12 +3646,12 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{9EC79CB3-0F35-48C8-9D8F-9C24CF9EFB97}"
-          SQLTask:SqlStatementSource="delete a&#xA;from stg.sales_txt a join stg.sales_txt_delta b&#xA;&#x9;on a.order_number = b.order_number&#xA;&#xA;insert into stg.sales_txt&#xA;(&#xA;&#x9;[order_number],&#xA;&#x9;[line_number] ,&#xA;&#x9;[date] ,&#xA;&#x9;[customer],&#xA;&#x9;[country] ,&#xA;&#x9;[product] ,&#xA;&#x9;[qty],&#xA;&#x9;[unit_price],&#xA;&#x9;[Timestamp],&#xA;&#x9;[Filename]&#xA;)&#xA;select &#xA;&#x9;[order_number],&#xA;&#x9;[line_number] ,&#xA;&#x9;[date] ,&#xA;&#x9;[customer],&#xA;&#x9;[country] ,&#xA;&#x9;[product] ,&#xA;&#x9;[qty],&#xA;&#x9;[unit_price],&#xA;&#x9;[Timestamp],&#xA;&#x9;[Filename]&#xA;from stg.sales_txt_delta" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="exec stg.load_sales_txt" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -3694,7 +3694,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Expressionas Task"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -4243,7 +4243,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="move fail"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <FileSystemData
@@ -4261,7 +4261,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="move files succes"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <FileSystemData
@@ -9702,6 +9702,14 @@
           Id="Package\delete from sales_txt_delta"
           TopLeft="1625.28571428571,31.5238095238096" />
         <NodeLayout
+          Size="210,42"
+          Id="Package\delete from sales_txt_delta 1"
+          TopLeft="1247.61904761905,126.825396825397" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="1281.11111111111,828.888888888889" />
+        <NodeLayout
           Size="169,43"
           Id="Package\Foreach Loop Container\Expressionas Task"
           TopLeft="157.285704440305,35.0576522973646" />
@@ -10334,10 +10342,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="210,42"
-          Id="Package\delete from sales_txt_delta 1"
-          TopLeft="1247.61904761905,126.825396825397" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
           TopLeft="1355.02479419726,168.825396825397">
@@ -10360,10 +10364,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="170,42"
-          Id="Package\Execute SQL Task"
-          TopLeft="1281.11111111111,828.888888888889" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
           TopLeft="1357.43054077547,699.16082527508">

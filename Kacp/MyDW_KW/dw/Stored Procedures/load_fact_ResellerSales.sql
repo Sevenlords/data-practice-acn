@@ -1,11 +1,8 @@
-create procedure dw.load_fact_ResellerSales
+alter procedure dw.load_fact_ResellerSales
 as
 
 declare @startDate datetime
 select @startDate = ISNULL(max([ModifiedDate]),'1900-01-01') from dw.fact_ResellerSales
-
---select ISNULL(max([ModifiedDate]),'1900-01-01'), @startDate from dw.fact_ResellerSales
---select max(Timestamp) from stg.sales_sales_orderheader
 
 drop table if exists #saless
 
@@ -37,14 +34,15 @@ insert into dw.fact_ResellerSales
 	StandardCost,
 	TotalProductCost,
 	SalesAmount,
-	--CreatedDate,
-	ModifiedDate
+	CreatedDate,
+	ModifiedDate,
+	SourceID
 )
 select
 	oh.SalesOrderID,
 	oh.SalesOrderNumber,
 	od.SalesOrderDetailID,
-	d.datekey, -- distinct date as uid in dim_date
+	d.datekey,
 	re.ResellerKey, 
 	p.ProductKey,
 	--cn.currencyKey,
@@ -56,8 +54,9 @@ select
 	p.StandardCost,
 	(p.StandardCost * od.OrderQty) as TotalProductCost,
 	((od.OrderQty * od.UnitPrice) - ((od.OrderQty * od.UnitPrice)* od.UnitPriceDiscount)) as SalesAmount,
-	--	getdate() as CreatedDate,
-	getdate()  as ModifiedDate
+	re.CreatedDate as CreatedDate,
+	getdate()  as ModifiedDate,
+	'DW' as SourceID
 from
 	[AdventureWorks2017].[Sales].[SalesOrderHeader] AS oh
 	join [AdventureWorks2017].[Sales].[SalesOrderDetail] AS od on  oh.SalesOrderID = od.SalesOrderID -- ADW?
@@ -69,12 +68,20 @@ from
 	left join dw.dim_reseller re on re.CustomerID = oh.CustomerID
 WHERE OH.OnlineOrderFlag = 0
 
-----LOAD FROM SALES_TXT
 
+----LOAD FROM SALES_TXT
+drop table if exists #salestxt
+
+select *
+into #salestxt
+from stg.sales_txt st
+where
+	st.[Timestamp] >= @startDate and 
+	st.filename = 'sales_txt'
 
 	delete a
 	from dw.fact_ResellerSales a
-	join stg.sales_txt st on a.SalesOrderID = st.order_number
+	join #salestxt st on a.SalesOrderID = st.order_number
 
 
 insert into dw.fact_ResellerSales
@@ -115,21 +122,28 @@ select
 	((st.qty * st.unit_price) - (0*0)) as SalesAmount,
 	st.Timestamp as CreatedDate,
 	getdate() ModifiedDate,
-	'sales_txt' as SourceID
+	st.Filename as SourceID
 
 from
-	stg.sales_txt st
-	join dw.dim_reseller dr on st.customer = dr.ResellerAlternateKey -- ResellerKey
-	left join dw.dim_date dd on dd.Date = st.date
+	#salestxt st
+	join dw.dim_reseller dr on st.customer = dr.ResellerAlternateKey
+	join dw.dim_date dd on dd.Date = st.date
 	join dw.dim_product dp on st.product = dp.ProductAlternateKey
 
 
 
+-- exec dw.load_fact_ResellerSales
+-- exec stg.load_sales_txt
+-- 
+-- select * from dw.fact_ResellerSales
+-- select * from stg.sales_txt_delta
+-- 
+-- delete from dw.fact_ResellerSales
+-- delete from stg.sales_txt
 
+-- OLD
 
 --truncate table dw.fact_ResellerSales
---
---
 --
 --insert into dw.fact_ResellerSales
 --(

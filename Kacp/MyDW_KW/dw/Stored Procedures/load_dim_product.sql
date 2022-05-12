@@ -1,4 +1,5 @@
-﻿create procedure dw.load_dim_product as
+﻿use kw_dw
+create procedure dw.load_dim_product as
 
 
 
@@ -96,6 +97,7 @@ insert into [dbo].[DimProduct]
 	  ,CreatedDate
 	  ,ModifiedDate)
 
+-- dla nowych produktów
 SELECT a.*, getdate(), getdate()
 from #product a 
 	left join DimProduct b on a.ProductID = b.ProductID 
