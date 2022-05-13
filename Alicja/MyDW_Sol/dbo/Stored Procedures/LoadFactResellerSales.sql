@@ -3,9 +3,9 @@
 	--truncate table [dbo].[factResellerSales]
 
 	declare @startDate datetime
-	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factResellerSales]
+	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factResellerSales] where [SourceID]='AW'
 
-	--drop table if exists #salesR
+	drop table if exists #salesR
 
 	select SalesOrderID
 	into #salesR
@@ -63,6 +63,22 @@
 	where SOH.OnlineOrderFlag = 0
 
 	-- z sales_txt
+	--declare @startDate datetime
+	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factResellerSales] where [SourceID]='SALES_TXT'
+
+	drop table if exists #salesRS
+
+	select distinct order_number
+	into #salesRS
+	from [stg].[Sales_txt]
+	where [Timestamp] >= @startDate
+
+	--select * from #salesRS
+
+	delete a
+	from [dbo].[factResellerSales] a
+	join #salesRS b on a.SalesOrderID = b.order_number
+
 	insert into [dbo].[factResellerSales](
 		[SalesOrderID],
 		[SalesOrderNumber],
@@ -97,6 +113,7 @@
 		cast(ST.qty as int)*parse(ST.unit_price as money using 'de-DE') [SalesAmount],
 		'SALES_TXT' [SourceID]
 	from [stg].[Sales_txt] ST
+	join #salesRS on ST.order_number = #salesRS.order_number
 	join [dbo].[dimReseller] R on ST.customer = R.ResellerAlternateKey
 	join [dbo].[dimProduct] P on ST.product = P.ProductAlternateKey
 	join [dbo].[dimDate] D on convert(datetime, ST.date, 104) = D.Date

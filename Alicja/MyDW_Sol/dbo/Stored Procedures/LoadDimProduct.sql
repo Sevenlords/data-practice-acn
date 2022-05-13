@@ -68,6 +68,31 @@
 		[ModifiedDate] = getdate()
 	from [dbo].[dimProduct] a
 	join #products b on a.ProductID = b.ProductID
+	where
+		a.[ProductID] != b.[ProductID]
+		or a.[ProductName] != b.[ProductName]	
+		or a.[ProductAlternateKey] != b.[ProductAlternateKey] 
+		or a.[StandardCost] != b.[StandardCost] 
+		or a.[FinishedGoodsFlag] != b.[FinishedGoodsFlag]
+		or a.[Color] != b.[Color] 
+		or a.[ListPrice] != b.[ListPrice]
+		or a.[Size] != b.[Size]
+		or a.[SizeUnitMeasureCode] != b.[SizeUnitMeasureCode]
+		or a.[Weight] != b.[Weight] 
+		or a.[WeightUnitMeasureCode] != b.[WeightUnitMeasureCode] 
+		or a.[DaysToManufacture] != b.[DaysToManufacture] 
+		or a.[ProductLine] != b.[ProductLine] 
+		or a.[Class] != b.[Class]
+		or a.[Style] != b.[Style]
+		or a.[ProductCategoryID] != b.[ProductCategoryID]
+		or a.[ProductCategoryName] != b.[ProductCategoryName] 
+		or a.[ProductSubcategoryID] != b.[ProductSubcategoryID]	
+		or a.[ProductSubcategoryName] != b.[ProductSubcategoryName]
+		or a.[ProductModelID] != b.[ProductModelID] 
+		or a.[ProductModelName] != b.[ProductModelName]
+		or a.[SellStartDate] != b.[SellStartDate] 
+		or a.[SellEndDate] != b.[SellEndDate]	
+		or a.[SourceModifiedDate] != b.[SourceModifiedDate]
 
 	insert into [dbo].[dimProduct](
 		[ProductID], [ProductName],	[ProductAlternateKey], [StandardCost], [FinishedGoodsFlag],	[Color], [ListPrice], [Size], 
@@ -80,7 +105,7 @@
 	select b.*, getdate(), getdate()
 	from [dbo].[dimProduct] a
 	right join #products b on a.ProductID = b.ProductID
-	where a.ProductID is null
+	where a.ProductID is null 
 
 	/*
 	delete a
