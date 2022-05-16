@@ -7,7 +7,9 @@
     [product]      VARCHAR (50) NULL,
     [qty]          VARCHAR (50) NULL,
     [unit_price]   VARCHAR (50) NULL,
-    [timestamp]    DATETIME     DEFAULT (getdate()) NULL,
+    [timestamp]    DATETIME     NULL,
     [filename]     VARCHAR (50) NULL
 );
+
+
 

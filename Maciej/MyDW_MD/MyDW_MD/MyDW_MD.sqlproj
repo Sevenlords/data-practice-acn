@@ -75,8 +75,6 @@
     <Build Include="stg\Tables\Production_ProductSubcategory.sql" />
     <Build Include="stg\Tables\Production_ProductCategory.sql" />
     <Build Include="stg\Tables\Person_EmailAddress.sql" />
-    <Build Include="stg\Tables\Person.Address.sql" />
-    <Build Include="stg\Tables\Person.PersonPhone.sql" />
     <Build Include="stg\Tables\Person_BusinessEntityAddress.sql" />
     <Build Include="stg\Tables\Sales_Store.sql" />
     <Build Include="stg\Tables\Sales_Customer.sql" />
@@ -101,5 +99,7 @@
     <Build Include="stg\Tables\sales_txt.sql" />
     <Build Include="stg\Stored Procedures\Load_sales_txt.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimDate.sql" />
+    <Build Include="stg\Tables\Person_PersonPhone.sql" />
+    <Build Include="stg\Tables\Person_Address.sql" />
   </ItemGroup>
 </Project>

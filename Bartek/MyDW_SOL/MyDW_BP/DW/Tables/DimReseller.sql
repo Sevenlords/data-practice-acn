@@ -4,8 +4,11 @@
     [ResellerAlternateKey] VARCHAR (10)  NULL,
     [ResellerName]         NVARCHAR (50) NULL,
     [CreatedDate]          DATETIME      CONSTRAINT [DF_Reseller_CD] DEFAULT (getdate()) NOT NULL,
-    [ModifiedDate]         DATETIME      CONSTRAINT [DF_Reseller_MD] DEFAULT (getdate()) NULL
+    [ModifiedDate]         DATETIME      CONSTRAINT [DF_Reseller_MD] DEFAULT (getdate()) NULL,
+    [Created]              DATETIME      NULL
 );
+
+
 
 
 GO

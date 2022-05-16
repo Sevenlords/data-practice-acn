@@ -11,12 +11,29 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{5F43AEEA-6904-4571-A755-D4AA941406A2}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{DC8C8C3C-E0D2-46C6-BDA7-95811166452D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXECUTE LoadSalesTxt"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{db0e2220-b023-440b-9cd6-4a7189f74294}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXECUTE LoadSalesTxt"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5B27DA79-F4E9-4D31-A111-60923AFC7A1E}"
+          SQLTask:SqlStatementSource="EXECUTE dbo.LoadSalesTxt&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Sequence Container"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -36,7 +53,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="EXECUTE LoadDimCurrency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -53,7 +70,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="EXECUTE LoadDimCustomer"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -70,7 +87,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="EXECUTE LoadDimDate"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -87,7 +104,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="EXECUTE LoadDimProduct"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -104,7 +121,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="EXECUTE LoadDimReseller"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -206,10 +223,10 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="777.333333333334,363.333333333334"
+          PanelSize="777.333333333334,364"
           Size="777.333333333334,406.666666666667"
           Id="Package\Sequence Container"
-          TopLeft="214.444441248973,36.2088561535553" />
+          TopLeft="214.444441248973,40.3141193887214" />
         <NodeLayout
           Size="218.666666666667,42.6666666666667"
           Id="Package\Sequence Container 1\EXECUTE LoadFactInternetSales"
@@ -221,36 +238,36 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="666.666666666667,268"
+          PanelSize="666.666666666667,268.666666666667"
           Size="666.666666666667,311.333333333334"
           Id="Package\Sequence Container 1"
           TopLeft="285.753963995902,589.517972666806" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="603.11110791564,442.875522820222">
+          TopLeft="603.11110791564,446.980786055388">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="15.9761894135959,146.642449846585"
+              EndConnector="15.9761894135956,142.537186611418"
               Start="0,0"
-              End="15.9761894135959,139.142449846585">
+              End="15.9761894135956,135.037186611418">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,69.3212249232923" />
+                    End="0,67.268593305709" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,69.3212249232923"
-                    Point2="0,73.3212249232923"
-                    Point3="4,73.3212249232923" />
+                    Point1="0,67.268593305709"
+                    Point2="0,71.268593305709"
+                    Point3="4,71.268593305709" />
                   <mssgle:LineSegment
-                    End="11.9761894135959,73.3212249232923" />
+                    End="11.9761894135956,71.268593305709" />
                   <mssgle:CubicBezierSegment
-                    Point1="11.9761894135959,73.3212249232923"
-                    Point2="15.9761894135959,73.3212249232923"
-                    Point3="15.9761894135959,77.3212249232923" />
+                    Point1="11.9761894135956,71.268593305709"
+                    Point2="15.9761894135956,71.268593305709"
+                    Point3="15.9761894135956,75.268593305709" />
                   <mssgle:LineSegment
-                    End="15.9761894135959,139.142449846585" />
+                    End="15.9761894135956,135.037186611418" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -259,6 +276,10 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\EXECUTE LoadSalesTxt"
+          TopLeft="644.999990388751,309.263163715849" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
