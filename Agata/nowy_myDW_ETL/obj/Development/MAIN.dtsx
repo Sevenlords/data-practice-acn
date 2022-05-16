@@ -11,10 +11,54 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{A9AEB463-3947-425F-973F-991F5E7E1276}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{D03977CC-8C8F-4AD5-89C1-F6721EDB0A92}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LOAD_Dim.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{CE70435E-16A3-42FD-96D5-42088B4B7F2B}"
+      DTS:ObjectName="LOAD_Dim.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\agata.dyrda\source\repos\Sevenlords\data-practice-acn\Agata\nowy_myDW_ETL\LOAD_Dim.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LOAD_FACT.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{A923E1A1-511B-4151-B87E-5CF2CF166E34}"
+      DTS:ObjectName="LOAD_FACT.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\agata.dyrda\source\repos\Sevenlords\data-practice-acn\Agata\nowy_myDW_ETL\LOAD_FACT.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LOAD_STG.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{1FDA2586-75A1-4BF6-A421-7D94870B367B}"
+      DTS:ObjectName="LOAD_STG.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\agata.dyrda\source\repos\Sevenlords\data-practice-acn\Agata\nowy_myDW_ETL\LOAD_STG.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.mydw]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{61698B76-D417-4264-B6C5-A0A15A607539}"
+      DTS:ObjectName="localhost.mydw">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=mydw;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -64,6 +108,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
+          <ExecuteOutOfProcess>True</ExecuteOutOfProcess>
           <PackageName>LOAD_STG.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
