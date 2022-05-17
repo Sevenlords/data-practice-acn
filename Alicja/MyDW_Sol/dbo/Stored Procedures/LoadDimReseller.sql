@@ -21,6 +21,10 @@
 		[ModifiedDate] = getdate()
 	from [dbo].[dimReseller] a
 	join #resellers b on a.CustomerID = b.CustomerID
+	where
+		a.[CustomerID] != b.[CustomerID]
+		or a.[ResellerAlternateKey] != b.[ResellerAlternateKey]
+		or a.[ResellerName] != b.[ResellerName]
 
 	insert into [dbo].[dimReseller](
 		[CustomerID],

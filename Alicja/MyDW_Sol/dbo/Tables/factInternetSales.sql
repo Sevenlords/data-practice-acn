@@ -13,9 +13,10 @@
     [ProductStandardCost]  MONEY         NOT NULL,
     [TotalProductCost]     MONEY         NOT NULL,
     [SalesAmount]          MONEY         NOT NULL,
-    [CreatedDate]          DATETIME      DEFAULT (getdate()) NULL,
-    [ModifiedDate]         DATETIME      NULL
+    [Timestamp]            DATETIME      DEFAULT (getdate()) NULL
 );
+
+
 
 
 

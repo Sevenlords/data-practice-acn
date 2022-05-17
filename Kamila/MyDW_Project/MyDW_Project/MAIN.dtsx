@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{2F5DD6D7-FCBB-4330-B256-3DFD8B226976}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{7A4FB679-7838-43B6-9581-0C9738E5EAD5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -82,7 +82,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{D4E84278-A0EB-4ABD-A422-FCB0808B990A}"
+      DTS:DTSID="{F986402C-22AB-4C73-8C0C-F6FD917501A0}"
       DTS:From="Package\Load STG"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -101,27 +101,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="188,66"
+          Id="Package\Load DW"
+          TopLeft="182.624997308478,256.5263205803" />
+        <NodeLayout
           Size="128,42.6666666666667"
           Id="Package\Load STG"
           TopLeft="212.499996833503,148.473687005175" />
-        <NodeLayout
-          Size="188,42.6666666666667"
-          Id="Package\Load DW"
-          TopLeft="180.624997308478,254.5263205803" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="275.562497070991,191.140353671842">
+          TopLeft="276.562497070991,191.140353671842">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,63.3859669084584"
+              EndConnector="0,65.3859669084584"
               Start="0,0"
-              End="0,55.8859669084584">
+              End="0,57.8859669084584">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.8859669084584" />
+                    End="0,57.8859669084584" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

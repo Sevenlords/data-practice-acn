@@ -11,8 +11,11 @@
     [Suffix]               NVARCHAR (10) NOT NULL,
     [EmailAddress]         NVARCHAR (50) NOT NULL,
     [PhoneNumber]          NVARCHAR (25) NOT NULL,
-    [TimeStamp]            DATETIME      DEFAULT (getdate()) NOT NULL
+    [ModifiedDate]         DATETIME      NULL,
+    [CreatedDate]          DATETIME      NULL
 );
+
+
 
 
 GO

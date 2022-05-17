@@ -97,5 +97,8 @@
     <Build Include="dbo\Stored Procedures\LoadFactInternetSales.sql" />
     <Build Include="Security\DW.sql" />
     <Build Include="Security\STG.sql" />
+    <Build Include="STG\Tables\Sales_Txt_Delta.sql" />
+    <Build Include="STG\Tables\Sales_txt.sql" />
+    <Build Include="dbo\Stored Procedures\LoadSales_txt.sql" />
   </ItemGroup>
 </Project>

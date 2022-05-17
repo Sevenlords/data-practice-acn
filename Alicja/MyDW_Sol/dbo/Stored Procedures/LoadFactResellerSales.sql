@@ -3,15 +3,15 @@
 	--truncate table [dbo].[factResellerSales]
 
 	declare @startDate datetime
-	select @startDate = ISNULL(max(ModifiedDate),'1900-01-01') from [dbo].[factResellerSales]
+	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factResellerSales] where [SourceID]='AW'
 
-	--drop table if exists #salesR
+	drop table if exists #salesR
 
 	select SalesOrderID
 	into #salesR
 	from [stg].[Sales_SalesOrderHeader]
 	where
-	OnlineOrderFlag = 0 and Timestamp >= @startDate
+	OnlineOrderFlag = 0 and [Timestamp] >= @startDate
 
 	--select * from #salesR
 
@@ -35,7 +35,7 @@
 		[ProductStandardCost],
 		[TotalProductCost],
 		[SalesAmount],
-		[ModifiedDate],
+		[Timestamp],
 		[SourceID])
 	select 
 		SOH.SalesOrderID [SalesOrderID],
@@ -52,7 +52,7 @@
 		P.StandardCost [ProductStandardCost],
 		P.StandardCost*SOD.OrderQty [TotalProductCost],
 		SOD.OrderQty*SOD.UnitPrice - SOD.OrderQty*SOD.UnitPrice*SOD.UnitPriceDiscount [SalesAmount],
-		getdate() [ModifiedDate],
+		getdate() [Timestamp],
 		'AW' [SourceID]
 	from stg.Sales_SalesOrderHeader SOH
 	join stg.Sales_SalesOrderDetail SOD	on SOH.SalesOrderID = SOD.SalesOrderID
@@ -63,6 +63,22 @@
 	where SOH.OnlineOrderFlag = 0
 
 	-- z sales_txt
+	--declare @startDate datetime
+	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factResellerSales] where [SourceID]='SALES_TXT'
+
+	drop table if exists #salesRS
+
+	select distinct order_number
+	into #salesRS
+	from [stg].[Sales_txt]
+	where [Timestamp] >= @startDate
+
+	--select * from #salesRS
+
+	delete a
+	from [dbo].[factResellerSales] a
+	join #salesRS b on a.SalesOrderID = b.order_number
+
 	insert into [dbo].[factResellerSales](
 		[SalesOrderID],
 		[SalesOrderNumber],
@@ -97,6 +113,7 @@
 		cast(ST.qty as int)*parse(ST.unit_price as money using 'de-DE') [SalesAmount],
 		'SALES_TXT' [SourceID]
 	from [stg].[Sales_txt] ST
+	join #salesRS on ST.order_number = #salesRS.order_number
 	join [dbo].[dimReseller] R on ST.customer = R.ResellerAlternateKey
 	join [dbo].[dimProduct] P on ST.product = P.ProductAlternateKey
 	join [dbo].[dimDate] D on convert(datetime, ST.date, 104) = D.Date

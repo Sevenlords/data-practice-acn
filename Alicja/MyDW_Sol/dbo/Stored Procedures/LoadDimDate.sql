@@ -4,7 +4,7 @@
 
 	declare @StartDate datetime = '05/31/2011'	
 	--declare @EndDate datetime = '06/30/2014'
-	declare @EndDate datetime = '02/01/2021'	
+	declare @EndDate datetime = '04/01/2021'	
 	declare @CurrentDate datetime = @StartDate		
 
 	while @CurrentDate <= @EndDate
