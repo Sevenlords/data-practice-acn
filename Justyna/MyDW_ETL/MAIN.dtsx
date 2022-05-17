@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{A05657C2-28BD-457D-8E54-B01B742FEE36}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{53C19A9E-073D-4056-A7E1-3F694BB9A7AB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -75,27 +75,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="124,42.6666666666667"
+          Id="Package\Load DW"
+          TopLeft="273.12499593012,240.842109796413" />
+        <NodeLayout
           Size="128,42.6666666666667"
           Id="Package\Load STG"
-          TopLeft="273.749995920807,152.578950240341" />
-        <NodeLayout
-          Size="155.333333333334,42.6666666666667"
-          Id="Package\Load DW"
-          TopLeft="263.124996079132,236.736846561247" />
+          TopLeft="273.749995920807,153.94737131873" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="339.270829333303,195.245616907008">
+          TopLeft="336.437495925464,196.614037985396">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41.491229654239"
+              EndConnector="0,44.2280718110167"
               Start="0,0"
-              End="0,33.991229654239">
+              End="0,36.7280718110167">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.991229654239" />
+                    End="0,36.7280718110167" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

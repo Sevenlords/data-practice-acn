@@ -1,20 +1,20 @@
-﻿
-ALTER PROCEDURE [dbo].[LoadFactResellerSales]
+﻿ALTER PROCEDURE [dbo].[LoadFactResellerSales]
 AS
 
 --TRUNCATE TABLE dbo.FactResellerSales
-
+--last modified date in FactResellerSales AW
 DECLARE @startDate datetime
-SELECT @startDate = ISNULL(MAX(ModifiedDate),'1900-01-01') 
+SELECT @startDate = ISNULL(MAX(Timestamp),'1900-01-01') 
 FROM [dbo].[FactResellerSales] 
+WHERE SourceID = 'AW'
 
-
+--updated and new rows
 SELECT SalesOrderID
 INTO #resellersales
 FROM [stg].[Sales_SalesOrderHeader]
 WHERE Timestamp >= @startDate
 
-
+--delete rows before update
 DELETE a
 FROM [dbo].[FactResellerSales] a
 JOIN #resellersales b 
@@ -34,9 +34,7 @@ INSERT INTO  dbo.FactResellerSales([SalesOrderID],
 	[ProductStandartCost],
 	[TotalProductCost],
 	[SalesAmount],
-	[ModifiedDate],
 	[SourceID])
-
 SELECT
 	SOH.SalesOrderID,
 	SOH.SalesOrderNumber,
@@ -52,18 +50,52 @@ SELECT
 	P.StandartCost AS [ProductStandartCost],
 	P.StandartCost*SOD.OrderQty AS [TotalProductCost],
 	SOD.OrderQty*SOD.UnitPrice-SOD.OrderQty*SOD.UnitPrice*SOD.UnitPriceDiscount AS [SalesAmount],
-	GETDATE() AS [ModifiedDate],
 	'AW' AS [SourceID]
 FROM stg.Sales_SalesOrderHeader SOH
 JOIN stg.Sales_SalesOrderDetail SOD
 ON SOH.SalesOrderID = SOD.SalesOrderID
+JOIN #resellersales RS
+ON SOH.SalesOrderID = RS.SalesOrderID
 LEFT JOIN dbo.DimDate D
 ON SOH.OrderDate = D.Date
 JOIN dbo.DimReseller R
 ON SOH.CustomerID = R.CustomerID
 JOIN dbo.DimProduct P
 ON SOD.ProductID = P.ProductID
-UNION
+
+--last modified date in FactResellerSales SALES_TXT
+DECLARE @startDate2 datetime
+SELECT @startDate2 = ISNULL(MAX(Timestamp),'1900-01-01') 
+FROM [dbo].[FactResellerSales] 
+WHERE SourceID = 'SALES_TXT'
+
+--updated and new rows
+SELECT Order_number, Line_number
+INTO #resellersales2
+FROM [stg].[SalesTXT]
+WHERE Timestamp >= @startDate2
+
+--delete rows before update
+DELETE a
+FROM [dbo].[FactResellerSales] a
+JOIN #resellersales2 b 
+ON a.SalesOrderID = b.Order_number
+
+INSERT INTO  dbo.FactResellerSales([SalesOrderID],
+	[SalesOrderNumber],
+	[SalesOrderDetailID],
+	[DateKey],
+	[ResellerKey],
+	[ProductKey],
+	[OrderQty],
+	[UnitPrice],
+	[ExtendedAmount],
+	[UnitPriceDiscountPct],
+	[DiscountAmount],
+	[ProductStandartCost],
+	[TotalProductCost],
+	[SalesAmount],
+	[SourceID])
 SELECT STXT.order_number,
 		'0',
 		STXT.line_number,
@@ -71,25 +103,21 @@ SELECT STXT.order_number,
 		R.ResellerKey,
 		P.ProductKey,
 		STXT.qty,
-		STXT.unit_price,
-		CAST(STXT.qty AS INT)*CAST(STXT.unit_price AS money) AS [ExtendedAmount],
+		CAST(REPLACE(STXT.unit_price, ',','.') AS money),
+		CAST(STXT.qty AS INT)*CAST(REPLACE(STXT.unit_price, ',','.') AS money) AS [ExtendedAmount],
 		0 AS [UnitPriceDiscountPct],
 		0 AS [DiscountAmount],
 		P.StandartCost AS [ProductStandartCost],
 		P.StandartCost*CAST(STXT.qty AS INT) AS [TotalProductCost],
 		0 AS [SalesAmount],
-		GETDATE() AS [ModifiedDate],
 		'SALES_TXT' AS [SourceID]
 FROM stg.SalesTXT STXT
 JOIN dbo.DimReseller R
 ON STXT.reseller = R.ResellerAlternateKey
-JOIN stg.Sales_SalesOrderDetail SOD
-ON STXT.line_number = SOD.SalesOrderDetailID
-LEFT JOIN stg.Sales_SalesOrderHeader SOH
-ON STXT.order_number = SOH.SalesOrderID
-JOIN dbo.DimDate D
+JOIN #resellersales2 RS2
+ON STXT.Order_number = RS2.Order_number AND STXT.Line_number = RS2.Line_number
+LEFT JOIN dbo.DimDate D
 ON CONVERT(datetime, STXT.date, 104) = D.Date
 JOIN DimProduct P
 ON STXT.product = P.ProductAlternateKey
-
 

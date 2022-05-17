@@ -17,4 +17,3 @@
 	[ModifiedDate]		   DATETIME		 NULL,
 	[SourceID]			   VARCHAR (9)   NULL
 );
-
