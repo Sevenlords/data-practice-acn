@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE procedure [dbo].[loadFactResellerSales]
 as
 
@@ -65,7 +66,7 @@ from
 	left join DimReseller ress
 	on soh.CustomerID=ress.CustomerID
 	left join DimProduct prod
-	on prod.ProductID=sod.ProductID
+	on prod.ProductID=sod.ProductID and soh.OrderDate between prod.datefrom and prod.dateto
 
 
 
@@ -73,8 +74,8 @@ from
 
 
 drop table if exists #sales
-
---select @startDate = ISNULL(max(timesthamp),'1900-01-01') from [dbo].[FactResellerSales] 
+declare @startDate2 datetime
+select @startDate2 = ISNULL(max(timesthamp),'1900-01-01') from [dbo].[FactResellerSales] 
 
 
 select 
@@ -101,32 +102,10 @@ from
 	join DimReseller ress
 	on s.reseller=ress.ResellerAlternateKey
 	join DimProduct prod
-	on prod.ProductAlternateKey=s.product
+	on prod.ProductAlternateKey=s.product and s.date between prod.datefrom and prod.dateto
+where	s.[timesthamp] >= @startDate2 
 
 
---	delete a
---	from [FactInternetSales] a
---	join #Sales b on a.SalesOrderID = b.order_number
-
-update a 
-set [SalesOrderID]=B.order_number,
-	[SalesOrderNumber]=0,
-	[SalesOrderDetailID]=line_number,
-	[DateKey]=CONVERT(char(8),(B.DateKey),112),
-	[ResellerKey]=b.ResellerKey,
-	[ProductKey]=b.ProductKey,
-	[OrderQty]=b.qty,
-	[UnitPrice]=b.unit_pricE,
-	[ExtendedAmount]=b.unit_price*b.qty,
-	[UnitPriceDiscount]=0,
-	[DiscountAmount]=b.qty*b.unit_price,
-	[StandardCost]=b.standardCost,
-	[TotalProductCost]=b.standardCost*b.qty,
-	[SalesAmount]=b.qty*b.unit_price-b.qty*b.unit_price*0,
-	timesthamp=getdate(),
-	SourceID='SALES_TXT'
-from FactResellerSales a 
-	join #sales b on a.SalesOrderID=b.order_number
 
 insert into dbo.FactResellerSales(
 	[SalesOrderID],
@@ -145,8 +124,8 @@ insert into dbo.FactResellerSales(
 	[SalesAmount],
 	timesthamp,
 	SourceID)
-select 
-	a.*, GETDATE(), 'SALES_TXT'
+select *,  GETDATE(), 'SALES_TXT'
 from #sales a
-	left join FactResellerSales b on a.order_number=b.SalesOrderID
-	where b.SalesOrderID is null
+	--join DimReseller dr on a.reseller = dr.ResellerAlternateKey
+	--join DimDate dd on dd.Date = a.date
+	--join DimProduct dp on a.product = dp.ProductAlternateKey

@@ -25,8 +25,15 @@
     [SellEndDate]            DATETIME       NULL,
     [SourceModifiedDate]     DATETIME       NOT NULL,
     [Timeshtamp]             DATETIME       DEFAULT (getdate()) NULL,
-    [ModifiedDate]           DATETIME       NULL
+    [ModifiedDate]           DATETIME       NULL,
+    [ManufactoryId]          INT            NULL,
+    [ManufactoryName]        NVARCHAR (255) NULL,
+    [DateFrom]               DATETIME       NULL,
+    [DateTo]                 DATETIME       NULL,
+    [CurrentRowIndicator]    NVARCHAR (20)  NULL
 );
+
+
 
 
 
