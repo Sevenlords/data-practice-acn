@@ -43,6 +43,19 @@
 		[ModifiedDate] = getdate()
 	from [dbo].[dimCustomer] a
 	join #customers b on a.CustomerID = b.CustomerID
+	where
+		a.[CustomerID] != b.[CustomerID]
+		or a.[CustomerAlternateKey] != b.[CustomerAlternateKey]
+		or a.[PersonType] != b.[PersonType]
+		or a.[Title] != b.[Title]
+		or a.[FirstName] != b.[FirstName]
+		or a.[MiddleName] != b.[MiddleName]
+		or a.[LastName] != b.[LastName]
+		or a.[NameStyle] != b.[NameStyle]
+		or a.[EmailPromotion] != b.[EmailPromotion]
+		or a.[Suffix] != b.[Suffix]
+		or a.[EmailAddress] != b.[EmailAddress]
+		or a.[Phone] != b.[Phone]
 
 	insert into dbo.dimCustomer(
 		   [CustomerID]

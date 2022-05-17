@@ -1,35 +1,9 @@
 ﻿
-Create Procedure [LoadDimProduct]
+CREATE Procedure [dbo].[LoadDimProduct]
 
 AS
-
-Truncate table DW.DimProduct
-
-Insert into DW.DimProduct(
-[ProductID],
-[ProductName],
-[ProductAlternateKey],
-[StandardCost],
-[FinishedGoodFlag] ,
-[Color],
-[ListPrice],
-[Size],
-[SizeUnitMeasureCode],
-[Weight],
-[WeightUnitMeasureCode],
-[DaysToManufacture],
-[ProductLine],
-[Class],
-[Style],
-[ProductCategoryID],
-[ProductCategoryName],
-[ProductSubcategoryID],
-[ProductSubcategoryName],
-[ProductModelID],
-[ProductModelName],
-[SellStartDate],
-[SellEndDate],
-[SourceModifiedDate])
+drop table if exists #Product
+--Truncate table DW.DimProduct
 
 SELECT P.ProductID AS [ProductID],
 P.Name AS [ProductName],
@@ -55,11 +29,76 @@ ISNULL(M.Name,'N\D') AS [ProductModelName],
 P.SellStartDate AS [SellStartDate],
 ISNULL(P.SellEndDate,2100-01-01) AS [SellEndDate],
 P.ModifiedDate AS [SourceModifiedDate]
-
+INTO #Product
 FROM stg.Production_Product p LEFT JOIN stg.Production_ProductSubcategory S
 ON P.ProductSubcategoryID = S.ProductSubcategoryID
 LEFT JOIN STG.Production_ProductCategory C
 ON S.ProductCategoryID = C.ProductCategoryID
 LEFT JOIN STG.Production_ProductModel M
 ON P.ProductModelID = M.ProductModelID
+
+Update a
+SET
+[ProductID] = b.ProductID,
+[ProductName] = b.ProductName,
+[ProductAlternateKey] = b.ProductAlternateKey,
+[StandardCost] = b.StandardCost,
+[FinishedGoodFlag] = b.StandardCost,
+[Color] = b.Color,
+[ListPrice] = b.ListPrice,
+[Size] = b.Size,
+[SizeUnitMeasureCode] = b.SizeUnitMeasureCode,
+[Weight] = b.Weight,
+[WeightUnitMeasureCode] = b.WeightUnitMeasureCode,
+[DaysToManufacture] = b.DaysToManufacture,
+[ProductLine] = b.ProductLine,
+[Class] = b.Class,
+[Style] = b.Style,
+[ProductCategoryID] = b.ProductCategoryID,
+[ProductCategoryName] = b.ProductCategoryName,
+[ProductSubcategoryID] = b.ProductSubcategoryID,
+[ProductSubcategoryName] = b.ProductSubcategoryName,
+[ProductModelID] = b.ProductModelID,
+[ProductModelName] = b.ProductModelName,
+[SellStartDate] = b.SellStartDate,
+[SellEndDate] = b.SellEndDate,
+[SourceModifiedDate] = b.SourceModifiedDate,
+ModifiedDate = GETDATE()
+FROM DW.DimProduct a 
+JOIN #Product b ON a.ProductID= b.ProductID
+
+Insert into DW.DimProduct(
+[ProductID],
+[ProductName],
+[ProductAlternateKey],
+[StandardCost],
+[FinishedGoodFlag] ,
+[Color],
+[ListPrice],
+[Size],
+[SizeUnitMeasureCode],
+[Weight],
+[WeightUnitMeasureCode],
+[DaysToManufacture],
+[ProductLine],
+[Class],
+[Style],
+[ProductCategoryID],
+[ProductCategoryName],
+[ProductSubcategoryID],
+[ProductSubcategoryName],
+[ProductModelID],
+[ProductModelName],
+[SellStartDate],
+[SellEndDate],
+[SourceModifiedDate],
+ModifiedDate,
+CreatedDate)
+
+SELECT b.*,GETDATE(),GETDATE()
+from DW.DimProduct a 
+	Right join #Product b on a.ProductID = b.ProductID
+where a.ProductID is null 
+
+--EXEC LoadDimProduct
 

@@ -1,6 +1,8 @@
-create procedure stg.load_sales_txt
+use KW_DW
+go
+alter procedure stg.load_sales_txt
 as
-
+--delete from stg.sales_txt
 delete a
 from stg.sales_txt a join stg.sales_txt_delta b
 	on a.order_number = b.order_number
@@ -30,7 +32,7 @@ select
 	[product] ,
 	[qty],
 	[unit_price],
-	[Timestamp],
-	[Filename]
+	getdate() as [Timestamp],
+	'sales_txt' as [Filename]
 from stg.sales_txt_delta
 

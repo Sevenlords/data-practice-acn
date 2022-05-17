@@ -5,7 +5,7 @@ AS
 --TRUNCATE TABLE dbo.FactInternetSales
 DECLARE @startDate datetime
 
-SELECT  @startDate = ISNULL(max(ModifiedDate),'1900-01-01') 
+SELECT  @startDate = ISNULL(max(Timestamp),'1900-01-01') 
 FROM[dbo].[FactInternetSales] 
 
 SELECT SalesOrderID
@@ -32,8 +32,7 @@ INSERT INTO  dbo.FactInternetSales([SalesOrderID]
 	,[DiscountAmount]
 	,[ProductStandartCost]
 	,[TotalProductCost]
-	,[SalesAmount]
-	,[ModifiedDate])
+	,[SalesAmount])
 
 SELECT
 	SOH.SalesOrderID,
@@ -49,15 +48,16 @@ SELECT
 	SOD.OrderQty*SOD.UnitPrice*SOD.UnitPriceDiscount AS [DiscountAmount],
 	P.StandartCost AS [ProductStandartCost],
 	P.StandartCost*SOD.OrderQty AS [TotalProductCost],
-	SOD.OrderQty*SOD.UnitPrice-SOD.OrderQty*SOD.UnitPrice*SOD.UnitPriceDiscount AS [SalesAmount],
-	GETDATE() AS [ModifiedDate]
+	SOD.OrderQty*SOD.UnitPrice-SOD.OrderQty*SOD.UnitPrice*SOD.UnitPriceDiscount AS [SalesAmount]
 FROM stg.Sales_SalesOrderHeader SOH
 JOIN stg.Sales_SalesOrderDetail SOD
 ON SOH.SalesOrderID = SOD.SalesOrderID
+JOIN #internet I
+ON SOH.SalesOrderID = I.SalesOrderID
 LEFT JOIN dbo.DimDate D
 ON SOH.OrderDate = D.Date
 JOIN dbo.DimCustomer C
 ON SOH.CustomerID = C.CustomerID
 JOIN dbo.DimProduct P
-ON SOD.ProductID = P.ProductID
+ON SOD.ProductID = P.ProductID AND SOH.OrderDate BETWEEN P.DateFrom AND P.DateTo
 WHERE SOH.OnlineOrderFlag = 1

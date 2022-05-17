@@ -19,6 +19,10 @@
 		[ModifiedDate] = getdate()
 	from [dbo].[dimCurrency] a
 	join #currencies b on a.CurrencyAlternateKey = b.CurrencyAlternateKey
+	where 
+		a.[CurrencyAlternateKey] != b.[CurrencyAlternateKey] 
+		or a.[CurrencyName] != b.[CurrencyName] 
+		or a.[SourceModifiedDate] != b.[SourceModifiedDate]
 
 	insert into [dbo].[dimCurrency] (
 		[CurrencyAlternateKey], 

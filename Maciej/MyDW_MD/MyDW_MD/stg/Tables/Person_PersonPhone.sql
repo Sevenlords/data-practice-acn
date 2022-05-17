@@ -1,4 +1,4 @@
-﻿CREATE TABLE [stg].[Person.PersonPhone] (
+﻿CREATE TABLE [stg].[Person_PersonPhone] (
     [ModifiedDate]      DATETIME      NULL,
     [BusinessEntityID]  INT           NULL,
     [PhoneNumber]       NVARCHAR (25) NULL,

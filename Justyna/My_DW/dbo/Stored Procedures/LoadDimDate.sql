@@ -1,11 +1,11 @@
 ﻿
-CREATE PROCEDURE [dbo].[LoadDimDate]
+ALTER PROCEDURE [dbo].[LoadDimDate]
 AS
 
 TRUNCATE TABLE dbo.DimDate
 
 DECLARE @StartDate DATETIME = '04/30/2008' --Starting value of Date Range
-DECLARE @EndDate DATETIME = '12/30/2021' --End Value of Date Range
+DECLARE @EndDate DATETIME = '12/30/2022' --End Value of Date Range
 DECLARE @CurrentDate AS DATETIME = @StartDate
 
 /********************************************************************************************/

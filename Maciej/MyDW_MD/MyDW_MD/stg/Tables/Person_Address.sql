@@ -1,4 +1,4 @@
-﻿CREATE TABLE [stg].[Person.Address] (
+﻿CREATE TABLE [stg].[Person_Address] (
     [ModifiedDate]    DATETIME        NULL,
     [AddressID]       INT             NULL,
     [AddressLine1]    NVARCHAR (60)   NULL,
