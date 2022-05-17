@@ -1,4 +1,4 @@
-﻿CREATE procedure dw.load_fact_InternetSales
+﻿CREATE procedure [dw].[load_fact_InternetSales]
 as
 
 declare @startDate datetime
@@ -13,7 +13,7 @@ into #orders
 from stg.sales_sales_orderheader SOH
 
 where
-	OnlineOrderFlag = 1 and [Timestamp] >= @startDate
+	OnlineOrderFlag = 1 and soh.[Timestamp] >= @startDate
 --
 
 	delete a
@@ -37,7 +37,7 @@ insert into dw.fact_internetsales
 	SalesAmount,
 	Timestamp
 )
-select 
+select-- p.datefrom, p.dateto, p.manufactoryname, p.manufactoryid, oh.OrderDate,
 	oh.SalesOrderID,
 	oh.SalesOrderNumber,
 	od.SalesOrderDetailID,
@@ -59,8 +59,9 @@ from
 	join [AdventureWorks2017].[Sales].[SalesOrderDetail] AS od on  oh.SalesOrderID = od.SalesOrderID -- ADW?
 	join #orders o on oh.SalesOrderID = o.SalesOrderID
 
-	left join dw.dim_product p on p.ProductID = od.ProductID
+	left join dw.dim_product p on p.ProductID = od.ProductID and oh.OrderDate between p.DateFrom and p.DateTo
 	left join dw.dim_date d on d.Date = oh.OrderDate
 	left join dw.dim_customer cu on cu.CustomerID = oh.CustomerID
-WHERE OH.OnlineOrderFlag = 1
-select distinct * from dw.fact_internetsales
+WHERE  OH.OnlineOrderFlag = 1
+
+--select * from dw.fact_internetsales
