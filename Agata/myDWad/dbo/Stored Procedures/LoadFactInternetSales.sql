@@ -2,6 +2,7 @@
 
 
 
+
 CREATE procedure [dbo].[LoadFactInternetSales]
 as
 
@@ -61,5 +62,5 @@ from stg.Sales_SalesOrderHeader soh
 	left join dbo.DimCustomer cust
 	on cust.CustomerID=soh.CustomerID
 	left join dbo.DimProduct as prod
-	on sod.ProductID=prod.ProductID
+	on sod.ProductID=prod.ProductID and soh.OrderDate between prod.datefrom and prod.dateto
 where soh.OnlineOrderFlag=1

@@ -1,15 +1,14 @@
-﻿
-CREATE procedure [dbo].[LoadDimProduct]
-as
+﻿CREATE procedure [dw].[load_dim_product] as
 
-
+--truncate table dw.dim_product
 update a
-set CurrentRowIndicator='Expired'
-	,DateTo=cast(DATEADD(DD, -1, c.Date) as date)
-from DimProduct a
-	join stg.Product_manufactory b on a.ProductID=b.ProductID and a.ManufactoryId<>b.ManufactoryId
-	join DimDate c on b.DateFrom=c.DateKey
+set CurrentFlag = 'Expired',
+	DateTo = cast(dateadd(dd,-1,c.date) as date)
 
+--select a.ProductID, a.ManufactoryID, b.manufactoryid, a.CurrentFlag, b.datefrom--cast(dateadd(dd,-1,b.datefrom) as date)
+from dw.dim_product a 
+	join stg.prod_manu_v1 b on a.ProductID = b.productID and a.ManufactoryID <> b.ManufactoryID
+	join dw.dim_date c on c.DateKey = b.DateFrom
 
 drop table if exists #product
 
@@ -38,29 +37,29 @@ SELECT
 		P.SellStartDate AS [SellStartDate],
 		P.SellEndDate AS [SellEndDate],
 		P.ModifiedDate AS [SourceModifiedDate],
-		a.ManufactoryId,
-		b.ManufactoryName,
-		a.DateFrom,
-		a.DateTo,
-		'Current' as CurrentRowIndicator
+		v1.ManufactoryID as ManufactoryID,
+		m1.ManufactoryName as ManufactoryName,
+		v1.DateFrom,
+		v1.DateTo,
+		'Current' as CurrentFlag
 into #product
-FROM stg.Production_Product AS P
-		LEFT JOIN stg.Production_ProductSubcategory AS PS
+FROM [AdventureWorks2017].[Production].[Product] AS P
+		LEFT JOIN [AdventureWorks2017].[Production].[ProductSubcategory] AS PS
 		ON P.ProductSubcategoryID = PS.ProductSubcategoryID
-		LEFT JOIN stg.Production_ProductCategory PC
+		LEFT JOIN [AdventureWorks2017].[Production].[ProductCategory] AS PC
 		ON PS.ProductCategoryID = PC.ProductCategoryID
-		LEFT JOIN stg.Production_ProductModel AS PM
+		LEFT JOIN [AdventureWorks2017].[Production].[ProductModel] AS PM
 		ON P.ProductModelID = PM.ProductModelID
-		left join [stg].[Product_manufactory] a on a.ProductID=p.ProductID
-		left join [stg].[manufactories] b on b.ManufactoryId=a.ManufactoryId
+		left join stg.prod_manu_v1 v1 on v1.productid = p.ProductID
+		left join stg.manu_manu_v1 m1 on m1.manufactoryID = v1.manufactoryID
 
+--select * from #product
 
-		
 update a
 set [ProductName] = b.[ProductName]
       ,[ProductAlternateKey]=b.[ProductAlternateKey]
       ,[StandardCost]=b.[StandardCost]
-      ,[FinishedGoodFlag]=b.[FinishedGoodsFlag]
+      ,[FinishedGoodsFlag]=b.[FinishedGoodsFlag]
       ,[Color]=b.[Color]
       ,[ListPrice]=b.[ListPrice]
       ,[Size]=b.[Size]
@@ -72,31 +71,29 @@ set [ProductName] = b.[ProductName]
       ,[Class]=b.[Class]
       ,[Style]=b.[Style]
       ,[ProductCategoryID]=b.[ProductCategoryID]
-       ,[ProductCategoryName]=b.[ProductCategoryName]
-      ,[ProductSubcategoryID]=b.[ProductSubcategoryID]
-      ,[ProductSubcategoryName]=b.[ProductSubcategoryName]
+      ,[ProductCategoryName] = b.[ProductCategoryName]
+      ,[ProductSubcategoryID] = b.[ProductSubcategoryID]
+      ,[ProductSubcategoryName] = b.[ProductSubcategoryName]
       ,[ProductModelID]=b.[ProductModelID]
       ,[ProductModelName]=b.[ProductModelName]
       ,[SellStartDate]=b.[SellStartDate]
-      ,[SellEndDate]=b.[SellEndDate]
-	  ,ManufactoryId=b.ManufactoryId
-	  ,ManufactoryName=b.ManufactoryName
-	  ,DateFrom=b.DateFrom
-	  ,DateTo=b.DateTo
-	  ,CurrentRowIndicator=b.CurrentRowIndicator
-	  ,SourceModifiedDate=B.SourceModifiedDate
-	  ,ModifiedDate = getdate()
-	  
-from DimProduct a 
-	join #product b ON a.ProductID = b.ProductID and a.ManufactoryId=b.ManufactoryId
+      ,[SellEndDate] = b.[SellEndDate]
+	  ,[ModifiedDate] = getdate()
+	  ,ManufactoryID = b.ManufactoryID
+	  ,ManufactoryName = b.ManufactoryName
+	  ,DateFrom = b.DateFrom
+	  ,DateTo = b.DateTo
+	  ,CurrentFlag = b.CurrentFlag
+from dw.dim_product a 
+	join #product b ON a.ProductID = b.ProductID and a.ManufactoryID = b.ManufactoryID
 
 
-insert into [dbo].[DimProduct]
+insert into dw.dim_product
 (   [ProductID]
       ,[ProductName]
       ,[ProductAlternateKey]
       ,[StandardCost]
-      ,[FinishedGoodFlag]
+      ,[FinishedGoodsFlag]
       ,[Color]
       ,[ListPrice]
       ,[Size]
@@ -107,7 +104,7 @@ insert into [dbo].[DimProduct]
       ,[ProductLine]
       ,[Class]
       ,[Style]
-      ,ProductCategoryID
+      ,[ProductCategoryID]
       ,[ProductCategoryName]
       ,[ProductSubcategoryID]
       ,[ProductSubcategoryName]
@@ -115,29 +112,17 @@ insert into [dbo].[DimProduct]
       ,[ProductModelName]
       ,[SellStartDate]
       ,[SellEndDate]
-      ,SourceModifiedDate
-	  ,ManufactoryId
+      ,[SourceModifiedDate]
+	  ,ManufactoryID
 	  ,ManufactoryName
-	  ,DateFrom
-	  ,DateTo
-	  ,CurrentRowIndicator
-	  ,Timeshtamp
+	  ,DateFrom 
+	  ,DateTo 
+	  ,CurrentFlag
+	  ,CreatedDate
 	  ,ModifiedDate
-	  )
+	   )
 
 SELECT a.*, getdate(), getdate()
 from #product a 
-	left join DimProduct b on a.ProductID = b.ProductID 
-where b.ProductID is null or a.ManufactoryId<>b.ManufactoryId
-
-
-
---delete a
----- select *
---from DimProduct a 
---	left join #product b on a.ProductID = b.ProductID
---where b.ProductID is null
-GO
-
-
-
+	left join dw.dim_product b on a.ProductID = b.ProductID 
+where b.ProductID is null or a.ManufactoryID <> b.ManufactoryID

@@ -16,6 +16,6 @@ BEGIN
 		,[qty]
 		,[unit_price]
 		,[timestamp]
-		,[filename] = 'sales_01'
+		,[filename]
 	FROM [stg].[SalesTXT_Delta]
 END
