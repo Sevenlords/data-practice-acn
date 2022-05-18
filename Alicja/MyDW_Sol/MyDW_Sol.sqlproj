@@ -99,5 +99,7 @@
     <Build Include="stg\Tables\Sales_txt_delta.sql" />
     <Build Include="stg\Tables\Sales_txt.sql" />
     <Build Include="stg\Stored Procedures\LoadSales_txt.sql" />
+    <Build Include="stg\Tables\Product_Manufactory.sql" />
+    <Build Include="stg\Tables\Manufactories.sql" />
   </ItemGroup>
 </Project>
