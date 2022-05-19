@@ -67,6 +67,9 @@
     <Folder Include="dw\Stored Procedures\" />
     <Folder Include="stg\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="log\" />
+    <Folder Include="log\Tables\" />
+    <Folder Include="log\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dw\Tables\dim_currency.sql" />
@@ -119,5 +122,8 @@
     <Build Include="dw\Stored Procedures\load_fact_InternetSales_1.sql" />
     <Build Include="dw\Stored Procedures\load_dim_product_1.sql" />
     <Build Include="dw\Stored Procedures\load_dim_product_2.sql" />
+    <Build Include="log\Tables\procedures.sql" />
+    <Build Include="log\Stored Procedures\write_proc_call.sql" />
+    <Build Include="Security\log.sql" />
   </ItemGroup>
 </Project>

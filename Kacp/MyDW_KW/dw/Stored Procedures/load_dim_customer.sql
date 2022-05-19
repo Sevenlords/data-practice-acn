@@ -1,6 +1,16 @@
 ﻿
-CREATE procedure dw.load_dim_customer
+CREATE procedure [dw].[load_dim_customer]
 as
+
+insert into log.procedures (
+--	procedureID,
+	procedureName,
+	Step,
+	Comment
+)
+select
+	object_name(@@PROCID), 1, 'Start Proc'
+
 
 drop table if exists #customers
 
@@ -68,3 +78,13 @@ insert into dw.dim_customer
 select b.*, getdate(), getdate()
 from dw.dim_customer a right join #customers b on a.CustomerID = b.CustomerID
 where a.CustomerID is null
+
+
+insert into log.procedures (
+--	procedureID,
+	procedureName,
+	Step,
+	Comment
+)
+select
+	object_name(@@PROCID), 999, 'End Proc'

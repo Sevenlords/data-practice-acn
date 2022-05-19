@@ -1,5 +1,10 @@
 ﻿CREATE procedure [dw].[load_dim_product] as
 
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
+
+
+
+
 --truncate table dw.dim_product
 update a
 set CurrentFlag = 'Expired',
@@ -9,7 +14,7 @@ set CurrentFlag = 'Expired',
 from dw.dim_product a 
 	join stg.prod_manu_v1 b on a.ProductID = b.productID --and a.ManufactoryID <> b.ManufactoryID
 	join dw.dim_date c on c.DateKey = b.DateFrom
-	where a.ManufactoryID <> b.ManufactoryID
+	where a.ManufactoryID <> b.ManufactoryID and a.currentflag = 'current'
 
 drop table if exists #product
 
@@ -133,6 +138,8 @@ where b.ProductID is null
 	or (a.ManufactoryID != b.ManufactoryID 
 			 and b.ProductID not in (select ProductID from dw.dim_product where CurrentFlag='Current'))
 
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
 --
 --
 --insert into dw.dim_product

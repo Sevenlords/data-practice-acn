@@ -1,6 +1,8 @@
 ﻿CREATE procedure [dw].[load_fact_InternetSales]
 as
 
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
+
 declare @startDate datetime
 select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from dw.fact_InternetSales
 
@@ -64,4 +66,16 @@ from
 	left join dw.dim_customer cu on cu.CustomerID = oh.CustomerID
 WHERE  OH.OnlineOrderFlag = 1
 
+update a
+set a.productKey = b.productKey
+from dw.fact_InternetSales a 
+	join ( select soh.SalesOrderID ,sod.SalesOrderDetailID, dp.ProductKey
+			from stg.sales_sales_orderheader soh 
+				left join stg.sales_sales_orderdetail sod on soh.SalesOrderID = sod.SalesOrderID
+				left join dim_product dp on sod.ProductID = dp.ProductID and soh.OrderDate between dp.datefrom and dp.dateto
+			where soh.OnlineOrderFlag = 1) b
+				on a.SalesOrderID = b.SalesOrderID and a.SalesOrderDetailID = b.salesorderdetailid
+where a.ProductKey <> b.ProductKey
 --select * from dw.fact_internetsales
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

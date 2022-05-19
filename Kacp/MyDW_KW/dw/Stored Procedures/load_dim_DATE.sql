@@ -1,4 +1,6 @@
-﻿CREATE procedure dw.[load_dim_DATE] as
+﻿CREATE procedure [dw].[load_dim_DATE] as
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 truncate table dw.dim_date
 
@@ -51,3 +53,5 @@ begin
 	set @CurrentDate = dateadd(DD, 1, @CurrentDate)
 	
 end
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
