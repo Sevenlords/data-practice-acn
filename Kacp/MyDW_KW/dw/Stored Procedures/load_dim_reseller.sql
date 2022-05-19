@@ -1,5 +1,7 @@
-﻿CREATE procedure dw.load_dim_reseller
+﻿CREATE procedure [dw].[load_dim_reseller]
 as
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 select	C.CustomerID [CustomerID], 
 		C.AccountNumber [ResellerAlternateKey], 
@@ -29,3 +31,5 @@ select b.*, getdate(), getdate()
 from dw.dim_reseller a
 	right join #resellers b on a.CustomerID = b.CustomerID
 where a.CustomerID is null
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

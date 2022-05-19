@@ -24,6 +24,17 @@
 		or a.[CurrencyName] != b.[CurrencyName] 
 		or a.[SourceModifiedDate] != b.[SourceModifiedDate]
 
+	/*update a
+	set
+		[CurrencyAlternateKey] = b.[CurrencyAlternateKey], 
+		[CurrencyName] = b.[CurrencyName], 
+		[SourceModifiedDate] = b.[SourceModifiedDate],
+		[ModifiedDate] = getdate()
+	from [dbo].[dimCurrency] a
+	join #currencies b on a.CurrencyAlternateKey = b.CurrencyAlternateKey
+	where hashbytes('sha2_256', concat_ws(' ',a.[CurrencyAlternateKey], a.[CurrencyName], cast(a.[SourceModifiedDate] as char(23)))) != 
+	hashbytes('sha2_256', concat_ws(' ',b.[CurrencyAlternateKey], b.[CurrencyName], cast(b.[SourceModifiedDate] as char(23))))*/
+
 	insert into [dbo].[dimCurrency] (
 		[CurrencyAlternateKey], 
 		[CurrencyName], 

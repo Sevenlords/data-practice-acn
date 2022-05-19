@@ -59,7 +59,7 @@
 	join #salesR on SOH.SalesOrderID = #salesR.SalesOrderID
 	join dbo.dimDate D	on cast(SOH.OrderDate as date) = D.Date
 	left join dbo.dimReseller R	on SOH.CustomerID = R.CustomerID
-	join dbo.dimProduct P	on SOD.ProductID = P.ProductID
+	join dbo.dimProduct P on SOD.ProductID = P.ProductID and SOH.OrderDate between P.DateFrom and P.DateTo
 	where SOH.OnlineOrderFlag = 0
 
 	-- z sales_txt
@@ -115,5 +115,18 @@
 	from [stg].[Sales_txt] ST
 	join #salesRS on ST.order_number = #salesRS.order_number
 	join [dbo].[dimReseller] R on ST.customer = R.ResellerAlternateKey
-	join [dbo].[dimProduct] P on ST.product = P.ProductAlternateKey
-	join [dbo].[dimDate] D on convert(datetime, ST.date, 104) = D.Date
+	left join [dbo].[dimProduct] P on ST.product = P.ProductAlternateKey
+	left join [dbo].[dimDate] D on convert(datetime, ST.date, 104) = D.Date
+
+	-- update ProductKey
+	update FRS
+	set FRS.ProductKey = b.ProductKey
+	from [dbo].[factResellerSales] FRS
+	join (
+		select SOH.SalesOrderID, SOD.SalesOrderDetailID, P.ProductKey
+		from [stg].[Sales_SalesOrderHeader] SOH
+		left join stg.Sales_SalesOrderDetail SOD on SOH.SalesOrderID = SOD.SalesOrderID
+		left join dbo.dimProduct P on SOD.ProductID = P.ProductID and SOH.OrderDate between P.DateFrom and P.DateTo
+		where SOH.OnlineOrderFlag = 0
+	) b on FRS.SalesOrderID = b.SalesOrderID and FRS.SalesOrderDetailID = b.SalesOrderDetailID
+	where FRS.ProductKey != b.ProductKey
