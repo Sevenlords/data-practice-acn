@@ -1,6 +1,9 @@
 ﻿
-ALTER PROCEDURE [dbo].[LoadFactInternetSales]
+CREATE PROCEDURE [dbo].[LoadFactInternetSales]
 AS
+BEGIN
+
+EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start Proc'
 
 --TRUNCATE TABLE dbo.FactInternetSales
 DECLARE @startDate datetime
@@ -61,3 +64,19 @@ ON SOH.CustomerID = C.CustomerID
 JOIN dbo.DimProduct P
 ON SOD.ProductID = P.ProductID AND SOH.OrderDate BETWEEN P.DateFrom AND P.DateTo
 WHERE SOH.OnlineOrderFlag = 1
+
+UPDATE FIS
+SET FIS.ProductKey = B.ProductKey
+FROM [dbo].[FactInternetSales] FIS
+	JOIN (SELECT SOH.SalesOrderID, SalesOrderDetailID, dP.ProductKey
+		  FROM [stg].[Sales_SalesOrderHeader] AS SOH
+			  LEFT JOIN [stg].[Sales_SalesOrderDetail] AS SOD
+			  ON SOH.SalesOrderID = SOD.SalesOrderID
+			  LEFT JOIN [dbo].[DimProduct] AS dP
+			  ON dP.ProductID = SOD.ProductID AND SOH.OrderDate BETWEEN dP.DateFrom AND dP.DateTo
+		  WHERE SOH.OnlineOrderFlag = 1) B
+	ON FIS.SalesOrderID  = B.SalesOrderID AND FIS.SalesOrderDetailID = B.SalesOrderDetailID
+WHERE FIS.PRoductKey <> B.ProductKey
+
+EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
+END
