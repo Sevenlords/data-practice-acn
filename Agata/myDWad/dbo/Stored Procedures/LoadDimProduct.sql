@@ -1,5 +1,15 @@
-﻿CREATE procedure [dbo].[LoadDimProduct]
+﻿
+CREATE procedure [dbo].[LoadDimProduct]
 as
+
+
+update a
+set CurrentRowIndicator='Expired'
+	,DateTo=cast(DATEADD(DD, -1, c.Date) as date)
+from DimProduct a
+	join stg.Product_manufactory b on a.ProductID=b.ProductID and a.ManufactoryId<>b.ManufactoryId
+	join DimDate c on b.DateFrom=c.DateKey
+
 
 drop table if exists #product
 
@@ -27,15 +37,22 @@ SELECT
 		ISNULL(PM.Name, 'N/D')  AS [ProductModelName],
 		P.SellStartDate AS [SellStartDate],
 		P.SellEndDate AS [SellEndDate],
-		P.ModifiedDate AS [SourceModifiedDate]
+		P.ModifiedDate AS [SourceModifiedDate],
+		a.ManufactoryId,
+		b.ManufactoryName,
+		a.DateFrom,
+		a.DateTo,
+		'Current' as CurrentRowIndicator
 into #product
-FROM [AdventureWorks2017].[Production].[Product] AS P
-		LEFT JOIN [AdventureWorks2017].[Production].[ProductSubcategory] AS PS
+FROM stg.Production_Product AS P
+		LEFT JOIN stg.Production_ProductSubcategory AS PS
 		ON P.ProductSubcategoryID = PS.ProductSubcategoryID
-		LEFT JOIN [AdventureWorks2017].[Production].[ProductCategory] AS PC
+		LEFT JOIN stg.Production_ProductCategory PC
 		ON PS.ProductCategoryID = PC.ProductCategoryID
-		LEFT JOIN [AdventureWorks2017].[Production].[ProductModel] AS PM
+		LEFT JOIN stg.Production_ProductModel AS PM
 		ON P.ProductModelID = PM.ProductModelID
+		left join [stg].[Product_manufactory] a on a.ProductID=p.ProductID
+		left join [stg].[manufactories] b on b.ManufactoryId=a.ManufactoryId
 
 
 		
@@ -62,10 +79,16 @@ set [ProductName] = b.[ProductName]
       ,[ProductModelName]=b.[ProductModelName]
       ,[SellStartDate]=b.[SellStartDate]
       ,[SellEndDate]=b.[SellEndDate]
+	  ,ManufactoryId=b.ManufactoryId
+	  ,ManufactoryName=b.ManufactoryName
+	  ,DateFrom=b.DateFrom
+	  ,DateTo=b.DateTo
+	  ,CurrentRowIndicator=b.CurrentRowIndicator
 	  ,SourceModifiedDate=B.SourceModifiedDate
 	  ,ModifiedDate = getdate()
+	  
 from DimProduct a 
-	join #product b ON a.ProductID = b.ProductID
+	join #product b ON a.ProductID = b.ProductID and a.ManufactoryId=b.ManufactoryId
 
 
 insert into [dbo].[DimProduct]
@@ -93,13 +116,19 @@ insert into [dbo].[DimProduct]
       ,[SellStartDate]
       ,[SellEndDate]
       ,SourceModifiedDate
+	  ,ManufactoryId
+	  ,ManufactoryName
+	  ,DateFrom
+	  ,DateTo
+	  ,CurrentRowIndicator
 	  ,Timeshtamp
-	  ,ModifiedDate)
+	  ,ModifiedDate
+	  )
 
 SELECT a.*, getdate(), getdate()
 from #product a 
 	left join DimProduct b on a.ProductID = b.ProductID 
-where b.ProductID is null 
+where b.ProductID is null or a.ManufactoryId<>b.ManufactoryId
 
 
 

@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{AC80C320-BF14-4130-9BD8-789929456C7B}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{4CCAB3F3-4913-43BF-8217-B302995C8F47}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,6 +35,7 @@
       DTS:refId="Package\Load Dim"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{2234847B-C317-417B-8231-F776C09539FD}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -115,6 +116,7 @@
       DTS:refId="Package\Load Facts"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{AA562D1D-4630-4342-A673-3B2481A5A80E}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"

@@ -10,6 +10,7 @@
         <WinAuthDomain />
         <ServerName>CPX-BC60RQBTR6G</ServerName>
         <PathOnServer>/SSISDB/MyDW_ETL/MyDW_ETL1</PathOnServer>
+        <Run64BitRuntime>false</Run64BitRuntime>
         <UserIDs />
         <UserPasswords />
         <OfflineMode>false</OfflineMode>

@@ -2,6 +2,14 @@
 
 	--truncate table [dbo].[dimProduct]
 
+	update P
+	set CurrentRowIndicator = 'Expired',
+		DateTo = cast(dateadd(DD, -1, D.Date) as date)
+	--select P.ProductID, P.ManufactoryId, PM.ManufactoryId, P.CurrentRowIndicator, P.DateTo, PM.DateFrom, cast(dateadd(DD, -1, D.Date) as date)
+	from dbo.dimProduct P
+	join stg.Product_Manufactory PM on P.ProductID = PM.ProductID and P.ManufactoryId != PM.ManufactoryId
+	join dbo.dimDate D on PM.DateFrom = D.DateKey
+
 	drop table if exists #products
 	select
 		P.ProductID as [ProductID],
@@ -27,15 +35,19 @@
 		isnull(PM.Name, 'N/D') as [ProductModelName],
 		P.SellStartDate as [SellStartDate],
 		isnull(P.SellEndDate, cast('21001231' as datetime)) as [SellEndDate],	--NULL zamieniany na dużą datę
-		P.ModifiedDate as [SourceModifiedDate]
+		P.ModifiedDate as [SourceModifiedDate],
+		MD_M.ManufactoryId [ManufactoryId],
+		MD_M.ManufactoryName [ManufactoryName],
+		MD_PM.DateFrom [DateFrom],
+		MD_PM.DateTo [DateTo],
+		'Current' [CurrentRowIndicator]
 	into #products
 	from stg.Production_Product P
-	left join stg.Production_ProductModel PM
-	on P.ProductModelID = PM.ProductModelID
-	left join stg.Production_ProductSubcategory PS
-	on P.ProductSubcategoryID = PS.ProductSubcategoryID
-	left join stg.Production_ProductCategory PC
-	on PS.ProductCategoryID = PC.ProductCategoryID
+	left join stg.Production_ProductModel PM on P.ProductModelID = PM.ProductModelID
+	left join stg.Production_ProductSubcategory PS on P.ProductSubcategoryID = PS.ProductSubcategoryID
+	left join stg.Production_ProductCategory PC	on PS.ProductCategoryID = PC.ProductCategoryID
+	left join [stg].[Product_Manufactory] MD_PM on P.ProductID = MD_PM.ProductID
+	left join [stg].[Manufactories] MD_M on MD_PM.ManufactoryId = MD_M.ManufactoryId
 
 	--select * from #products
 
@@ -65,9 +77,14 @@
 		[SellStartDate] = b.[SellStartDate], 
 		[SellEndDate] = b.[SellEndDate],	
 		[SourceModifiedDate] = b.[SourceModifiedDate],
-		[ModifiedDate] = getdate()
+		[ModifiedDate] = getdate(),
+		[ManufactoryId] = b.ManufactoryId,
+		[ManufactoryName] = b.ManufactoryName,
+		[DateFrom] = b.DateFrom,							
+		[DateTo] = b.DateTo,								
+		[CurrentRowIndicator] = b.CurrentRowIndicator	
 	from [dbo].[dimProduct] a
-	join #products b on a.ProductID = b.ProductID
+	join #products b on a.ProductID = b.ProductID and a.ManufactoryId = b.ManufactoryId
 	where
 		a.[ProductID] != b.[ProductID]
 		or a.[ProductName] != b.[ProductName]	
@@ -93,6 +110,11 @@
 		or a.[SellStartDate] != b.[SellStartDate] 
 		or a.[SellEndDate] != b.[SellEndDate]	
 		or a.[SourceModifiedDate] != b.[SourceModifiedDate]
+		or a.[ManufactoryId] != b.[ManufactoryId] or a.[ManufactoryId] is null 
+		or a.[ManufactoryName] != b.[ManufactoryName] or a.[ManufactoryName] is null 
+		or a.[DateFrom] != b.[DateFrom] or a.[DateFrom] is null 
+		or a.[DateTo] != b.[DateTo] or a.[DateTo] is null 
+		or a.[CurrentRowIndicator] is null 
 
 	insert into [dbo].[dimProduct](
 		[ProductID], [ProductName],	[ProductAlternateKey], [StandardCost], [FinishedGoodsFlag],	[Color], [ListPrice], [Size], 
@@ -101,10 +123,11 @@
 		[ProductSubcategoryID],	[ProductSubcategoryName], 
 		[ProductModelID], [ProductModelName],
 		[SellStartDate], [SellEndDate],	[SourceModifiedDate],
+		[ManufactoryId], [ManufactoryName], [DateFrom], [DateTo], [CurrentRowIndicator],
 		[CreatedDate], [ModifiedDate])
 	select b.*, getdate(), getdate()
 	from [dbo].[dimProduct] a
-	right join #products b on a.ProductID = b.ProductID
+	right join #products b on a.ProductID = b.ProductID and a.ManufactoryId = b.ManufactoryId
 	where a.ProductID is null 
 
 	/*

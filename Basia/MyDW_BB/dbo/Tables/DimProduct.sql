@@ -1,8 +1,9 @@
 ﻿CREATE TABLE [dbo].[DimProduct] (
     [ProductKey]             INT            IDENTITY (1, 1) NOT NULL,
     [ProductID]              INT            NULL,
-    [Name]                   NVARCHAR (50)  NULL,
-    [ProductNumber]          NVARCHAR (25)  NULL,
+    [ProductName]            NVARCHAR (50)  NULL,
+    [ProductAlternateKey]    NVARCHAR (25)  NULL,
+    [StandardCost]           MONEY          NULL,
     [FinishedGoodsFlag]      BIT            NULL,
     [Color]                  NVARCHAR (15)  NULL,
     [ListPrice]              MONEY          NULL,
@@ -26,6 +27,8 @@
     [CreatedDate]            DATETIME       DEFAULT (getdate()) NULL,
     [ModifiedDate]           DATETIME       NULL
 );
+
+
 
 
 
