@@ -117,3 +117,16 @@
 	join [dbo].[dimReseller] R on ST.customer = R.ResellerAlternateKey
 	left join [dbo].[dimProduct] P on ST.product = P.ProductAlternateKey
 	left join [dbo].[dimDate] D on convert(datetime, ST.date, 104) = D.Date
+
+	-- update ProductKey
+	update FRS
+	set FRS.ProductKey = b.ProductKey
+	from [dbo].[factResellerSales] FRS
+	join (
+		select SOH.SalesOrderID, SOD.SalesOrderDetailID, P.ProductKey
+		from [stg].[Sales_SalesOrderHeader] SOH
+		left join stg.Sales_SalesOrderDetail SOD on SOH.SalesOrderID = SOD.SalesOrderID
+		left join dbo.dimProduct P on SOD.ProductID = P.ProductID and SOH.OrderDate between P.DateFrom and P.DateTo
+		where SOH.OnlineOrderFlag = 0
+	) b on FRS.SalesOrderID = b.SalesOrderID and FRS.SalesOrderDetailID = b.SalesOrderDetailID
+	where FRS.ProductKey != b.ProductKey
