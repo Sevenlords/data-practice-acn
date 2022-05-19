@@ -1,5 +1,8 @@
-﻿CREATE procedure stg.load_sales_txt
+﻿CREATE procedure [stg].[load_sales_txt]
 as
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
+
 --delete from stg.sales_txt
 delete a
 from stg.sales_txt a join stg.sales_txt_delta b
@@ -33,3 +36,6 @@ select
 	getdate() as [Timestamp],
 	'sales_txt' as [Filename]
 from stg.sales_txt_delta
+
+
+exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

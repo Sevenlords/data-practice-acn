@@ -1,7 +1,5 @@
-﻿CREATE SCHEMA [stg]
+﻿CREATE SCHEMA [log]
     AUTHORIZATION [dbo];
-
-
 
 
 

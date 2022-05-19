@@ -63,6 +63,9 @@
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="stg\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="log\" />
+    <Folder Include="log\Tables\" />
+    <Folder Include="log\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\FactResellerSales_1.sql" />
@@ -93,7 +96,47 @@
     <Build Include="dbo\Stored Procedures\LoadDimProduct_1.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimDate_1.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimCustomer_1.sql" />
+    <Build Include="Security\stg_1.sql" />
+    <Build Include="dbo\Tables\FactResellerSales_1.sql" />
+    <Build Include="dbo\Tables\FactInternetSales_1.sql" />
+    <Build Include="dbo\Tables\DimReseller_1.sql" />
+    <Build Include="dbo\Tables\DimProduct_1.sql" />
+    <Build Include="dbo\Tables\DimDate_1.sql" />
+    <Build Include="dbo\Tables\DimCustomer_1.sql" />
+    <Build Include="stg\Tables\Sales_SalesOrderDetail_1.sql" />
+    <Build Include="stg\Tables\SalesTXT_Delta_1.sql" />
+    <Build Include="stg\Tables\Sales_SalesOrderHeader_1.sql" />
+    <Build Include="stg\Tables\Sales_Currency_1.sql" />
+    <Build Include="stg\Tables\Sales_Customer_1.sql" />
+    <Build Include="stg\Tables\Sales_Store_1.sql" />
+    <Build Include="stg\Tables\Person_BusinessEntityAddress_1.sql" />
+    <Build Include="stg\Tables\Person_PersonPhone_1.sql" />
+    <Build Include="stg\Tables\Person_Address_1.sql" />
+    <Build Include="stg\Tables\Person_EmailAddress_1.sql" />
+    <Build Include="stg\Tables\Production_ProductCategory_1.sql" />
+    <Build Include="stg\Tables\Production_ProductSubcategory_1.sql" />
+    <Build Include="stg\Tables\Production_ProductModel_1.sql" />
+    <Build Include="stg\Tables\Production_Product_1.sql" />
+    <Build Include="stg\Tables\Manufactories_1.sql" />
+    <Build Include="stg\Tables\Person_Person_1.sql" />
+    <Build Include="stg\Tables\Product_manufactory_1.sql" />
+    <Build Include="stg\Tables\SalesTXT_1.sql" />
+    <Build Include="log\Tables\Procedure.sql" />
+    <Build Include="dbo\Stored Procedures\LoadFactResellerSales_1.sql" />
+    <Build Include="dbo\Stored Procedures\LoadFactInternetSales_1.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimReseller_1.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimProduct_1.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimDate_1.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimCustomer_1.sql" />
     <Build Include="stg\Stored Procedures\LoadSalesTXT.sql" />
     <Build Include="Security\stg_1.sql" />
+    <Build Include="Security\log.sql" />
+    <Build Include="log\Stored Procedures\ProcedureCall.sql" />
+    <Build Include="dbo\Stored Procedures\LoadFactResellerSales.sql" />
+    <Build Include="dbo\Stored Procedures\LoadFactInternetSales.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimReseller.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimProduct.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimDate.sql" />
+    <Build Include="dbo\Stored Procedures\LoadDimCustomer.sql" />
   </ItemGroup>
 </Project>

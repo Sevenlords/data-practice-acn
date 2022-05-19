@@ -1,5 +1,7 @@
-﻿ALTER PROCEDURE [dbo].[LoadFactResellerSales]
+﻿CREATE PROCEDURE [dbo].[LoadFactResellerSales]
 AS
+
+EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start Proc'
 
 --TRUNCATE TABLE dbo.FactResellerSales
 --last modified date in FactResellerSales AW
@@ -121,3 +123,5 @@ ON CONVERT(datetime, STXT.date, 104) = D.Date
 JOIN DimProduct P
 ON STXT.product = P.ProductAlternateKey
 
+
+EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
