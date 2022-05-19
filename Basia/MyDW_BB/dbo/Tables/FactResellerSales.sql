@@ -15,6 +15,9 @@
     [TotalProductCost]     MONEY         NULL,
     [SalesAmount]          MONEY         NULL,
     [CreatedDate]          DATETIME      DEFAULT (getdate()) NULL,
-    [ModifiedDate]         DATETIME      NULL
+    [ModifiedDate]         DATETIME      NULL,
+    [SourceID]             VARCHAR (9)   NULL
 );
+
+
 
