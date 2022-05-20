@@ -2,7 +2,7 @@
 CREATE procedure [dbo].[LoadFactResellerSales]
 as
 
-
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 drop table if exists #RSales
 
@@ -138,5 +138,6 @@ THEN INSERT
 	SOURCE.[SourceID],
 	GETDATE(),
 	GETDATE()
-	)
-	;
+	);
+
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

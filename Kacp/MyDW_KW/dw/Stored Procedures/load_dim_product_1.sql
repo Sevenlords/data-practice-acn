@@ -1,4 +1,7 @@
-﻿CREATE procedure [dw].[load_dim_product] as
+﻿use kw_dw
+exec [dw].[load_dim_product] 
+
+CREATE procedure [dw].[load_dim_product] as
 
 --truncate table dw.dim_product
 update a

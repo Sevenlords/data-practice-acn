@@ -1,6 +1,7 @@
 ﻿CREATE procedure [stg].[Load_sales_txt]
 as
 begin
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 drop table if exists #sales
 
@@ -53,5 +54,6 @@ from [stg].[sales_txt] a
 join #sales b on a.order_number = b.order_number
 where b.order_number is null
 
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
 
 end

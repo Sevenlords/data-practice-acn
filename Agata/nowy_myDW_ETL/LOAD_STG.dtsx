@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="76"
-  DTS:VersionGUID="{3671B5AB-F79E-4ABD-A575-7A37FC3DD892}">
+  DTS:VersionBuild="83"
+  DTS:VersionGUID="{DB8C2CBF-C9FF-4EEE-A821-C34E1D40DE5B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -102,7 +102,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\agata.dyrda\OneDrive - Accenture\!Sync\Desktop\szkółka\Product Master Data v2.xls;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\agata.dyrda\OneDrive - Accenture\!Sync\Desktop\szkółka\Product Master Data v2.xls;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -329,7 +329,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="date">
       <DTS:VariableValue
-        DTS:DataType="7">5/17/2022 4:45:34 PM</DTS:VariableValue>
+        DTS:DataType="7">5/19/2022 8:51:48 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -595,8 +595,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -979,8 +979,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 1\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1565,8 +1565,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 10\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2388,8 +2388,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 11\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2858,8 +2858,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 2\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3618,8 +3618,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 4\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4055,8 +4055,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 5\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4401,8 +4401,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 6\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4774,8 +4774,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 7\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5180,8 +5180,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 8\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5567,8 +5567,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 9\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5679,13 +5679,12 @@
       DTS:refId="Package\delete delta"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{9BAAE323-1C57-48BC-8330-105260F980EB}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="delete delta"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="13">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5703,7 +5702,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5721,7 +5720,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_businessEntityAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5739,7 +5738,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_EmailAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="11">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5757,7 +5756,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete person_Personphone"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="12">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5775,7 +5774,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete production_product"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="15">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5793,7 +5792,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete production_product model"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5811,7 +5810,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete production_ProductCategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="10">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5847,7 +5846,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_currency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5865,7 +5864,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_Customer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5883,7 +5882,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_SalesOrderDetail"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5901,7 +5900,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete sales_SalesOrderHeader"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5919,7 +5918,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="delete Sales_Store"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5937,7 +5936,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5949,12 +5948,13 @@
       DTS:refId="Package\Execute SQL Task 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{F9D4EBF1-98DD-4663-9EDC-038432E7AA74}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="15">
+      DTS:ThreadHint="14">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5966,7 +5966,6 @@
       DTS:refId="Package\Foreach Loop Container"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:Disabled="True"
       DTS:DTSID="{B68DCB1B-0590-4234-AB04-EB1D15089303}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:ForceExecutionResult="0"
@@ -6002,7 +6001,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="change file name"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="12">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -6018,7 +6017,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="File System Task"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="12">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:ObjectData>
             <FileSystemData
@@ -7814,8 +7813,8 @@
               <connections>
                 <connection
                   refId="Package\Load production_product\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
-                  connectionManagerRefId="{7604F9DA-3FCD-4183-A10A-10DF2DC9EDBD}:invalid"
+                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -8350,6 +8349,7 @@
       DTS:CreationName="Microsoft.Pipeline"
       DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{CC82A822-131D-4CF3-B5EF-741A723BEFF2}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -10349,13 +10349,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="154.666666666667,42.6666666666667"
-          Id="Package\Data Flow Task 11\OLE DB Source"
-          TopLeft="233,77" />
-        <NodeLayout
           Size="174.666666666667,42.6666666666667"
           Id="Package\Data Flow Task 11\OLE DB Destination"
           TopLeft="321,235" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task 11\OLE DB Source"
+          TopLeft="233,77" />
         <EdgeLayout
           Id="Package\Data Flow Task 11.Paths[OLE DB Source Output]"
           TopLeft="310.333333333333,119.666666666667">
@@ -10653,13 +10653,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="154.666666666667,42.6666666666667"
-          Id="Package\Data Flow Task 5\OLE DB Source"
-          TopLeft="233,77" />
-        <NodeLayout
           Size="174.666666666667,42.6666666666667"
           Id="Package\Data Flow Task 5\OLE DB Destination"
           TopLeft="343,255" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task 5\OLE DB Source"
+          TopLeft="233,77" />
         <EdgeLayout
           Id="Package\Data Flow Task 5.Paths[OLE DB Source Output]"
           TopLeft="310.333333333333,119.666666666667">
@@ -11282,6 +11282,40 @@
           Id="Package\product MD\Data Conversion"
           TopLeft="674.999989941716,140.947371074037" />
         <EdgeLayout
+          Id="Package\product MD.Paths[Data Conversion Output]"
+          TopLeft="754.33332327505,183.614037740704">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-124.208331293737,68.1754406828189"
+              Start="0,0"
+              End="-124.208331293737,60.6754406828189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.0877203414095" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.0877203414095"
+                    Point2="0,34.0877203414095"
+                    Point3="-4,34.0877203414095" />
+                  <mssgle:LineSegment
+                    End="-120.208331293737,34.0877203414095" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-120.208331293737,34.0877203414095"
+                    Point2="-124.208331293737,34.0877203414095"
+                    Point3="-124.208331293737,38.0877203414095" />
+                  <mssgle:LineSegment
+                    End="-124.208331293737,60.6754406828189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\product MD.Paths[Excel Source Output1]"
           TopLeft="195.583331601074,94.6666676454382">
           <EdgeLayout.Curve>
@@ -11337,58 +11371,11 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\product MD.Paths[Data Conversion Output]"
-          TopLeft="754.33332327505,183.614037740704">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-124.208331293737,68.1754406828189"
-              Start="0,0"
-              End="-124.208331293737,60.6754406828189">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.0877203414095" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.0877203414095"
-                    Point2="0,34.0877203414095"
-                    Point3="-4,34.0877203414095" />
-                  <mssgle:LineSegment
-                    End="-120.208331293737,34.0877203414095" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-120.208331293737,34.0877203414095"
-                    Point2="-124.208331293737,34.0877203414095"
-                    Point3="-124.208331293737,38.0877203414095" />
-                  <mssgle:LineSegment
-                    End="-124.208331293737,60.6754406828189" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\product MD\Excel Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\product MD\OLE DB Destination 1">
+    design-time-name="Package\product MD\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -11414,7 +11401,20 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\product MD\OLE DB Destination">
+    design-time-name="Package\product MD\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\product MD\Excel Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

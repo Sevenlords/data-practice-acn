@@ -1,12 +1,11 @@
-﻿
-CREATE procedure [dbo].[LoadFactInternetSales] as
+﻿CREATE procedure [dbo].[LoadFactInternetSales] as
 
 	--truncate table [dbo].[factInternetSales]
 
 	declare @startDate datetime
 	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factInternetSales]
 
-	--drop table if exists #salesI
+	drop table if exists #salesI
 
 	select SalesOrderID
 	into #salesI
@@ -55,7 +54,20 @@ CREATE procedure [dbo].[LoadFactInternetSales] as
 	from stg.Sales_SalesOrderHeader SOH
 	join stg.Sales_SalesOrderDetail SOD	on SOH.SalesOrderID = SOD.SalesOrderID
 	join #salesI on SOH.SalesOrderID = #salesI.SalesOrderID
-	join dbo.dimDate D	on cast(SOH.OrderDate as date) = D.Date
+	left join dbo.dimDate D	on cast(SOH.OrderDate as date) = D.Date
 	join dbo.dimCustomer C	on SOH.CustomerID = C.CustomerID
-	join dbo.dimProduct P	on SOD.ProductID = P.ProductID
+	left join dbo.dimProduct P on SOD.ProductID = P.ProductID and SOH.OrderDate between P.DateFrom and P.DateTo
 	where SOH.OnlineOrderFlag = 1
+
+	-- update ProductKey
+	update FIS
+	set FIS.ProductKey = b.ProductKey
+	from [dbo].[factInternetSales] FIS
+	join (
+		select SOH.SalesOrderID, SOD.SalesOrderDetailID, P.ProductKey
+		from [stg].[Sales_SalesOrderHeader] SOH
+		left join stg.Sales_SalesOrderDetail SOD on SOH.SalesOrderID = SOD.SalesOrderID
+		left join dbo.dimProduct P on SOD.ProductID = P.ProductID and SOH.OrderDate between P.DateFrom and P.DateTo
+		where SOH.OnlineOrderFlag = 1
+	) b on FIS.SalesOrderID = b.SalesOrderID and FIS.SalesOrderDetailID = b.SalesOrderDetailID
+	where FIS.ProductKey != b.ProductKey

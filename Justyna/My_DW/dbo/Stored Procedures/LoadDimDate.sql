@@ -1,6 +1,8 @@
 ﻿
-ALTER PROCEDURE [dbo].[LoadDimDate]
+CREATE PROCEDURE [dbo].[LoadDimDate]
 AS
+
+EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start Proc'
 
 TRUNCATE TABLE dbo.DimDate
 
@@ -61,3 +63,4 @@ BEGIN
 
 	SET @CurrentDate = DATEADD(DD, 1, @CurrentDate)
 END
+EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
