@@ -2,8 +2,13 @@
 
 
 
+
+
+
 CREATE PROCEDURE [dbo].[LoadDimDate]
 as
+
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
 
 DECLARE @StartDate DATETIME = '01/01/2011' --Starting value of Date Range
 DECLARE @EndDate DATETIME = '12/31/2022' --End Value of Date Range
@@ -151,3 +156,4 @@ BEGIN
 
 	SET @CurrentDate = DATEADD(DD, 1, @CurrentDate)
 END
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'
