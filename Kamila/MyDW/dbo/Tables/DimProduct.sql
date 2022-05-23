@@ -25,6 +25,13 @@
     [SellEndDate]            DATETIME       NULL,
     [SourceModifiedDate]     DATETIME       NULL,
     [CreatedDate]            DATETIME       NULL,
-    [ModifiedDate]           DATETIME       NULL
+    [ModifiedDate]           DATETIME       NULL,
+    [ManufactoryId]          INT            NULL,
+    [ManufactoryName]        NVARCHAR (255) NULL,
+    [DateFrom]               DATE           NULL,
+    [DateTo]                 DATE           NULL,
+    [CurrentRowIndicator]    NVARCHAR (20)  NULL
 );
+
+
 

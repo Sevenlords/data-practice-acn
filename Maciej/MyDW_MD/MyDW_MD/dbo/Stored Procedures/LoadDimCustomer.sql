@@ -2,6 +2,8 @@
 CREATE procedure [dbo].[LoadDimCustomer]
 as
 
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
+
 drop table if exists #customer
 SELECT   
 	C.CustomerID AS [CustomerID],
@@ -67,4 +69,6 @@ delete a
 from DimCustomer a 
 	left join #customer b on a.CustomerID = b.CustomerID
 where b.CustomerID is null
+
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
 		

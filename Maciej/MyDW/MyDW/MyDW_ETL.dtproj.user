@@ -8,6 +8,10 @@
         <UseWinAuth>false</UseWinAuth>
         <WinAuthUserName />
         <WinAuthDomain />
+        <ServerName>.</ServerName>
+        <PathOnServer>/SSISDB/MD_DW_ETL/MyDW_ETL</PathOnServer>
+        <InteractiveMode>false</InteractiveMode>
+        <Run64BitRuntime>false</Run64BitRuntime>
         <UserIDs />
         <UserPasswords />
         <OfflineMode>false</OfflineMode>

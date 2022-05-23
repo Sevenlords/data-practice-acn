@@ -64,6 +64,9 @@
     <Folder Include="stg\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="log\" />
+    <Folder Include="log\Tables\" />
+    <Folder Include="log\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DimProduct.sql" />
@@ -98,5 +101,11 @@
     <Build Include="dbo\Stored Procedures\LoadSalesTxt.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimDate.sql" />
     <Build Include="stg\Tables\sales_txt.sql" />
+    <Build Include="stg\Tables\sales_01.sql" />
+    <Build Include="stg\Tables\product_manufactory.sql" />
+    <Build Include="stg\Tables\manufactories.sql" />
+    <Build Include="log\Tables\Procedure.sql" />
+    <Build Include="log\Stored Procedures\ProcedureCall.sql" />
+    <Build Include="Security\log.sql" />
   </ItemGroup>
 </Project>

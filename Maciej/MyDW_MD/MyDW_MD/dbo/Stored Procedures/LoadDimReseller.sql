@@ -1,5 +1,7 @@
 ﻿CREATE procedure [dbo].[LoadDimReseller]
 as
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
+
 
 drop table if exists #reseller
 
@@ -37,3 +39,5 @@ delete a
 from DimReseller a 
 	left join #reseller b on a.CustomerID = b.CustomerID
 where b.CustomerID is null
+      
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

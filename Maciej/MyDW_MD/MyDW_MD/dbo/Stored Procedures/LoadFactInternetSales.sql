@@ -1,7 +1,13 @@
 ﻿CREATE procedure [dbo].[LoadFactInternetSales]
 as
+
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
+
 declare @startDate datetime
 select @startDate = ISNULL(max(ModifiedDate),'1900-01-01') from [dbo].[FactInternetSales] 
+
+
+drop table if exists #orders
 
 select SalesOrderID
 into #orders
@@ -54,3 +60,16 @@ SELECT
 	left join [MyDW].[dbo].DimCustomer c on c.CustomerID = h.CustomerID
 	left join[MyDW].[dbo].DimDate as d on h.OrderDate = d.Date
 	where h.OnlineOrderFlag=1
+
+	update a
+set a.productKey = b.productKey
+from dbo.FactInternetSales a 
+	join ( select h.SalesOrderID ,od.SalesOrderDetailID, p.ProductKey
+			from [stg].[Sales_SalesOrderHeader] h
+				left join [stg].[Sales_SalesOrderDetail] od on h.SalesOrderID = od.SalesOrderID
+				left join DimProduct p on od.ProductID = p.ProductID and h.OrderDate between p.datefrom and p.dateto
+			where h.OnlineOrderFlag = 1) b
+				on a.SalesOrderID = b.SalesOrderID and a.SalesOrderDetailID = b.salesorderdetailid
+where a.ProductKey <> b.ProductKey
+
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

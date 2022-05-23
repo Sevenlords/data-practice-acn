@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>nowy_myDW_ETL</Name>
-    <LastWriteTime>2022-05-17T14:45:34.5290747Z</LastWriteTime>
+    <LastWriteTime>2022-05-18T11:01:43.7487186Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -13,7 +13,7 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>LOAD_STG.dtsx</Name>
-      <LastWriteTime>2022-05-17T14:45:34.4796937Z</LastWriteTime>
+      <LastWriteTime>2022-05-19T18:51:48.1738246Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>

@@ -16,8 +16,15 @@
     [SalesAmount]          MONEY           NULL,
     [CreatedDate]          DATETIME        NULL,
     [ModifiedDate]         DATETIME        NULL,
-    [SourceID]             VARCHAR (20)    NULL
+    [SourceID]             NVARCHAR (30)   NULL,
+    [ManufactoryID]        INT             NULL,
+    [ManufactoryName]      NVARCHAR (255)  NULL,
+    [DateFrom]             DATE            NULL,
+    [DateTo]               DATE            NULL,
+    [CurrentRowIndicator]  NVARCHAR (20)   NULL
 );
+
+
 
 
 

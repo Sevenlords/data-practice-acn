@@ -1,6 +1,8 @@
 ﻿CREATE procedure [dbo].[LoadDimDate]
 as
 
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
+
 truncate table [dbo].[DimDate]
 DECLARE @StartDate DATETIME = '01/01/2008' --Starting value of Date Range
 DECLARE @EndDate DATETIME = '01/01/2030' --End Value of Date Range
@@ -55,3 +57,5 @@ BEGIN
 			END AS [IsWeekday]
 			SET @CurrentDate = DATEADD(DD, 1, @CurrentDate)
 		end
+
+		exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

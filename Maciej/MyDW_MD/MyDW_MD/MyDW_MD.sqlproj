@@ -66,6 +66,9 @@
     <Folder Include="Security\" />
     <Folder Include="Scripts\" />
     <Folder Include="stg\Stored Procedures\" />
+    <Folder Include="log\" />
+    <Folder Include="log\Tables\" />
+    <Folder Include="log\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DimCurrency.sql" />
@@ -101,5 +104,10 @@
     <Build Include="dbo\Stored Procedures\LoadDimDate.sql" />
     <Build Include="stg\Tables\Person_PersonPhone.sql" />
     <Build Include="stg\Tables\Person_Address.sql" />
+    <Build Include="stg\Tables\product_manufactory.sql" />
+    <Build Include="stg\Tables\manufactories.sql" />
+    <Build Include="log\Tables\Procedure.sql" />
+    <Build Include="log\Stored Procedures\ProcedureCall.sql" />
+    <Build Include="Security\log.sql" />
   </ItemGroup>
 </Project>
