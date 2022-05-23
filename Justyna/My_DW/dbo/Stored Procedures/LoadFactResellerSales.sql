@@ -63,7 +63,8 @@ ON SOH.OrderDate = D.Date
 JOIN dbo.DimReseller R
 ON SOH.CustomerID = R.CustomerID
 JOIN dbo.DimProduct P
-ON SOD.ProductID = P.ProductID
+ON SOD.ProductID = P.ProductID AND SOH.OrderDate BETWEEN P.DateFrom AND P.DateTo
+
 
 --last modified date in FactResellerSales SALES_TXT
 DECLARE @startDate2 datetime
@@ -119,9 +120,23 @@ ON STXT.reseller = R.ResellerAlternateKey
 JOIN #resellersales2 RS2
 ON STXT.Order_number = RS2.Order_number AND STXT.Line_number = RS2.Line_number
 LEFT JOIN dbo.DimDate D
-ON CONVERT(datetime, STXT.date, 104) = D.Date
+ON TRY_CONVERT(datetime, STXT.Date, CASE WHEN STXT.Date LIKE '[0-9][0-9].[0-9][0-9].[0-9][0-9][0-9][0-9]' THEN 104
+							             WHEN STXT.Date LIKE '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' THEN 121
+								END) = D.Date
 JOIN DimProduct P
-ON STXT.product = P.ProductAlternateKey
+ON STXT.product = P.ProductAlternateKey AND D.Date BETWEEN P.DateFrom AND P.DateTo
+
+UPDATE FRS
+SET FRS.ProductKey = B.ProductKey
+FROM [dbo].[FactResellerSales] FRS
+	JOIN (SELECT SOH.SalesOrderID, SalesOrderDetailID, dP.ProductKey
+		  FROM [stg].[Sales_SalesOrderHeader] AS SOH
+			  LEFT JOIN [stg].[Sales_SalesOrderDetail] AS SOD
+			  ON SOH.SalesOrderID = SOD.SalesOrderID
+			  LEFT JOIN [dbo].[DimProduct] AS dP
+			  ON dP.ProductID = SOD.ProductID AND SOH.OrderDate BETWEEN dP.DateFrom AND dP.DateTo) B
+	ON FRS.SalesOrderID  = B.SalesOrderID AND FRS.SalesOrderDetailID = B.SalesOrderDetailID
+WHERE FRS.PRoductKey <> B.ProductKey
 
 
 EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
