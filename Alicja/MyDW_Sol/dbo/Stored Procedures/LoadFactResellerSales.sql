@@ -2,6 +2,10 @@
 
 	--truncate table [dbo].[factResellerSales]
 
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 1, @Comment = 'Start Proc'
+
+	begin try
+
 	declare @startDate datetime
 	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factResellerSales] where [SourceID]='AW'
 
@@ -102,7 +106,7 @@
 		cast(ST.line_number as int) [SalesOrderDetailID],
 		D.DateKey [DateKey],
 		R.ResellerKey [ResellerKey],
-		P.ProductKey [ProductKey],
+		isnull(P.ProductKey,-1) [ProductKey],
 		cast(ST.qty as int) [OrderQuantity],
 		parse(ST.unit_price as money using 'de-DE') [UnitPrice],
 		cast(ST.qty as int)*parse(ST.unit_price as money using 'de-DE') [ExtendedAmount],
@@ -116,8 +120,9 @@
 	join #salesRS on ST.order_number = #salesRS.order_number
 	join [dbo].[dimReseller] R on ST.customer = R.ResellerAlternateKey
 	left join [dbo].[dimProduct] P on ST.product = P.ProductAlternateKey
-	left join [dbo].[dimDate] D on convert(datetime, ST.date, 104) = D.Date
-
+	left join [dbo].[dimDate] D on IIF(charindex('-',ST.date)=0, convert(datetime, ST.date ,104), convert(datetime, ST.date)) = D.Date
+	--where p.ProductKey=-1
+	
 	-- update ProductKey
 	update FRS
 	set FRS.ProductKey = b.ProductKey
@@ -130,3 +135,18 @@
 		where SOH.OnlineOrderFlag = 0
 	) b on FRS.SalesOrderID = b.SalesOrderID and FRS.SalesOrderDetailID = b.SalesOrderDetailID
 	where FRS.ProductKey != b.ProductKey
+	
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
+
+	end try
+	begin catch
+		declare @ErrorNumber int = ERROR_NUMBER(), 
+				@ErrorState int = ERROR_STATE(), 
+				@ErrorSeverity int = ERROR_SEVERITY(), 
+				@ErrorLine int = ERROR_LINE(), 
+				@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
+				@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
+
+		exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
+								@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+	end catch

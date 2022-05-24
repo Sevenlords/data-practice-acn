@@ -3,6 +3,8 @@ as
 
 exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
+BEGIN TRY
+
 declare @startDate datetime
 select @startDate = ISNULL(max(ModifiedDate),'1900-01-01') from [dbo].[FactInternetSales] 
 
@@ -73,3 +75,12 @@ from dbo.FactInternetSales a
 where a.ProductKey <> b.ProductKey
 
 exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+END TRY
+
+BEGIN CATCH 
+declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
+
+exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+
+end catch

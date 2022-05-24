@@ -4,7 +4,7 @@ exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start 
 
 
 drop table if exists #reseller
-
+BEGIN TRY
 
 SELECT   
 	c.CustomerID AS [CustomerID],
@@ -41,3 +41,12 @@ from DimReseller a
 where b.CustomerID is null
       
 exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+END TRY
+
+BEGIN CATCH 
+declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
+
+exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+
+end catch

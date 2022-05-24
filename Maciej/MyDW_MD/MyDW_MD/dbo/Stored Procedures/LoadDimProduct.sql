@@ -4,13 +4,19 @@ as
 
 exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
+BEGIN TRY
+
 drop table if exists #product
+
 
 update a 
 set CurrentRowIndicator = 'Expired', Dateto =cast(dateadd(dd,-1,c.Date) as date)
 from DimProduct a 
 join [stg].[product_manufactory] b on a.ProductID = b.ProductID and a.ManufactoryID <> b.ManufactoryId
 join Dimdate c on b.DateFrom = c.DateKey
+where CurrentRowIndicator = 'Current'
+
+
 
 SELECT
 		 p.ProductID
@@ -216,3 +222,12 @@ Merge dbo.DimProduct as target
 	  ,source.[CurrentRowIndicator]);
 
 	exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+END TRY
+
+BEGIN CATCH 
+declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
+
+exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+
+end catch
