@@ -3,7 +3,7 @@
 	--truncate table dbo.dimCustomer
 
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 1, @Comment = 'Start Proc'
-
+	
 	begin try
 
 	--drop table if exists #customers
@@ -38,6 +38,8 @@
 	update [dbo].[dimCustomerTmp]
 	set [HashCode] = HASHBYTES('MD5', concat([CustomerID], [CustomerAlternateKey], [PersonType], [Title], [FirstName], [MiddleName], [LastName], 
 											[NameStyle], [EmailPromotion], [Suffix], [EmailAddress], [Phone]))
+
+	-- select * from INFORMATION_SCHEMA.COLUMNS
 
 	update a
 	set
@@ -107,13 +109,16 @@
 
 	end try
 	begin catch
-		declare @ErrorNumber int = ERROR_NUMBER(), 
-				@ErrorState int = ERROR_STATE(), 
-				@ErrorSeverity int = ERROR_SEVERITY(), 
-				@ErrorLine int = ERROR_LINE(), 
-				@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
-				@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
+		--declare @ErrorNumber int = ERROR_NUMBER(), 
+		--		@ErrorState int = ERROR_STATE(), 
+		--		@ErrorSeverity int = ERROR_SEVERITY(), 
+		--		@ErrorLine int = ERROR_LINE(), 
+		--		@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
+		--		@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
 
-		exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
-								@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+		--exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
+		--						@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+
+		exec [log].[ErrorCall]
+
 	end catch
