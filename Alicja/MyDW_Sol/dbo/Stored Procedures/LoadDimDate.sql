@@ -1,10 +1,14 @@
 ﻿CREATE procedure [dbo].[LoadDimDate] as
+	
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 1, @Comment = 'Start Proc'
+
+	begin try
 
 	truncate table [dbo].[dimDate]
 
 	declare @StartDate datetime = '05/31/2011'	
 	--declare @EndDate datetime = '06/30/2014'
-	declare @EndDate datetime = '04/01/2021'	
+	declare @EndDate datetime = '07/01/2021'	
 	declare @CurrentDate datetime = @StartDate		
 
 	while @CurrentDate <= @EndDate
@@ -54,3 +58,18 @@
 
 		set @CurrentDate = dateadd(DD, 1, @CurrentDate)
 	end
+
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
+	
+	end try
+	begin catch
+		declare @ErrorNumber int = ERROR_NUMBER(), 
+				@ErrorState int = ERROR_STATE(), 
+				@ErrorSeverity int = ERROR_SEVERITY(), 
+				@ErrorLine int = ERROR_LINE(), 
+				@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
+				@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
+
+		exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
+								@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+	end catch

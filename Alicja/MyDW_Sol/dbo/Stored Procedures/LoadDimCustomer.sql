@@ -2,7 +2,12 @@
 
 	--truncate table dbo.dimCustomer
 
-	drop table if exists #customers
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 1, @Comment = 'Start Proc'
+
+	begin try
+
+	--drop table if exists #customers
+	drop table if exists [dbo].[dimCustomerTmp]
 
 	select   
 		C.CustomerID AS [CustomerID],
@@ -16,8 +21,10 @@
 		P.EmailPromotion AS [EmailPromotion],
 		ISNULL(P.Suffix, 'N/D') AS [Suffix],
 		ISNULL(EA.EmailAddress, 'N/D') AS [EmailAddress],
-		ISNULL(PP.PhoneNumber, 'N/D') AS [Phone]
-	into #customers
+		ISNULL(PP.PhoneNumber, 'N/D') AS [Phone],
+		cast(null as varbinary(30)) AS [HashCode]
+	--into #customers
+	into [dbo].[dimCustomerTmp]
 		from [stg].[Sales_Customer] AS C
 		JOIN [stg].[Person_Person] AS P
 		ON C.PersonID = P.BusinessEntityID
@@ -25,6 +32,12 @@
 		ON P.BusinessEntityID = EA.BusinessEntityID
 		LEFT JOIN [stg].[Person_PersonPhone] AS PP
 		ON P.BusinessEntityID = PP.BusinessEntityID
+
+	--select * from dbo.dimCustomerTmp
+
+	update [dbo].[dimCustomerTmp]
+	set [HashCode] = HASHBYTES('MD5', concat([CustomerID], [CustomerAlternateKey], [PersonType], [Title], [FirstName], [MiddleName], [LastName], 
+											[NameStyle], [EmailPromotion], [Suffix], [EmailAddress], [Phone]))
 
 	update a
 	set
@@ -40,22 +53,25 @@
 		[Suffix] = b.[Suffix],
 		[EmailAddress] = b.[EmailAddress],
 		[Phone] = b.[Phone],
-		[ModifiedDate] = getdate()
+		[ModifiedDate] = getdate(),
+		[HashCode] = b.[HashCode]
 	from [dbo].[dimCustomer] a
-	join #customers b on a.CustomerID = b.CustomerID
-	where
-		a.[CustomerID] != b.[CustomerID]
-		or a.[CustomerAlternateKey] != b.[CustomerAlternateKey]
-		or a.[PersonType] != b.[PersonType]
-		or a.[Title] != b.[Title]
-		or a.[FirstName] != b.[FirstName]
-		or a.[MiddleName] != b.[MiddleName]
-		or a.[LastName] != b.[LastName]
-		or a.[NameStyle] != b.[NameStyle]
-		or a.[EmailPromotion] != b.[EmailPromotion]
-		or a.[Suffix] != b.[Suffix]
-		or a.[EmailAddress] != b.[EmailAddress]
-		or a.[Phone] != b.[Phone]
+	join [dbo].[dimCustomerTmp] b on a.CustomerID = b.CustomerID
+	where a.HashCode <> b.HashCode
+	--join #customers b on a.CustomerID = b.CustomerID
+	--where
+	--	a.[CustomerID] != b.[CustomerID]
+	--	or a.[CustomerAlternateKey] != b.[CustomerAlternateKey]
+	--	or a.[PersonType] != b.[PersonType]
+	--	or a.[Title] != b.[Title]
+	--	or a.[FirstName] != b.[FirstName]
+	--	or a.[MiddleName] != b.[MiddleName]
+	--	or a.[LastName] != b.[LastName]
+	--	or a.[NameStyle] != b.[NameStyle]
+	--	or a.[EmailPromotion] != b.[EmailPromotion]
+	--	or a.[Suffix] != b.[Suffix]
+	--	or a.[EmailAddress] != b.[EmailAddress]
+	--	or a.[Phone] != b.[Phone]
 
 	insert into dbo.dimCustomer(
 		   [CustomerID]
@@ -70,16 +86,34 @@
 		  ,[Suffix]
 		  ,[EmailAddress]
 		  ,[Phone]
+		  ,[HashCode]
 		  ,[CreatedDate]
 		  ,[ModifiedDate])
 	select b.*, getdate(), getdate()
 	from [dbo].[dimCustomer] a
-	right join #customers b on a.CustomerID = b.CustomerID
+	--right join #customers b on a.CustomerID = b.CustomerID
+	right join [dbo].[dimCustomerTmp] b on a.CustomerID = b.CustomerID
 	where a.CustomerID is null
 
 	/*
 	delete a
 	from [dbo].[dimCustomer] a
-	left join #customers b on a.CustomerID = b.CustomerID
+	--left join #customers b on a.CustomerID = b.CustomerID
+	right join [dbo].[dimCustomerTmp] b on a.CustomerID = b.CustomerID
 	where b.CustomerID is null
 	*/
+
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
+
+	end try
+	begin catch
+		declare @ErrorNumber int = ERROR_NUMBER(), 
+				@ErrorState int = ERROR_STATE(), 
+				@ErrorSeverity int = ERROR_SEVERITY(), 
+				@ErrorLine int = ERROR_LINE(), 
+				@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
+				@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
+
+		exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
+								@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+	end catch
