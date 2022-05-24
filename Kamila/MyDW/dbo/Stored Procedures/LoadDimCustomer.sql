@@ -1,9 +1,17 @@
 ﻿
 
+
+
+
+
+
 /*** dbo.LoadDimCustomer Date: 21.04.2022 ***/
 
 CREATE PROCEDURE [dbo].[LoadDimCustomer]
 as
+
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
+
 
 drop table if exists #customer
 
@@ -35,7 +43,18 @@ LEFT JOIN stg.Person_PersonPhone AS PP
 MERGE INTO dbo.DimCustomer as TARGET
 USING #customer as SOURCE
 ON SOURCE.CustomerID = TARGET.CustomerID
-WHEN MATCHED
+WHEN MATCHED AND TARGET.[CustomerID] <> SOURCE.[CustomerID]
+	OR TARGET.[CustomerAlternateKey] <> SOURCE.[CustomerAlternateKey]
+	OR TARGET.[PersonType] <> SOURCE.[PersonType]
+	OR TARGET.[Title] <> SOURCE.[Title]
+	OR TARGET.[FirstName] <> SOURCE.[FirstName]
+	OR TARGET.[MiddleName] <> SOURCE.[MiddleName]
+	OR TARGET.[LastName] <> SOURCE.[LastName]
+	OR TARGET.[NameStyle] <> SOURCE.[NameStyle]
+	OR TARGET.[EmailPromotion] <> SOURCE.[EmailPromotion]
+	OR TARGET.[Suffix] <> SOURCE.[Suffix]
+	OR TARGET.[EmailAddress] <> SOURCE.[EmailAddress]
+	OR TARGET.[PhoneNumber] <> SOURCE.[PhoneNumber]
 THEN UPDATE SET
 	[CustomerID] = SOURCE.[CustomerID],
 	[CustomerAlternateKey] = SOURCE.[CustomerAlternateKey],
@@ -84,4 +103,6 @@ THEN INSERT
 	GETDATE(),
 	GETDATE()
 	);
+
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'
 

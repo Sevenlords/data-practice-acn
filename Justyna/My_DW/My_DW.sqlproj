@@ -138,5 +138,8 @@
     <Build Include="dbo\Stored Procedures\LoadDimProduct.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimDate.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimCustomer.sql" />
+    <Build Include="log\Tables\Error.sql" />
+    <Build Include="dbo\Tables\DimCustomerTmp.sql" />
+    <Build Include="log\Stored Procedures\ErrorCall.sql" />
   </ItemGroup>
 </Project>

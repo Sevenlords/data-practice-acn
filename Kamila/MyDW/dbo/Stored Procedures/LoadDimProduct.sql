@@ -2,8 +2,23 @@
 
 
 
+
+
+
+
+
+
 CREATE PROCEDURE [dbo].[LoadDimProduct]
 as
+
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
+
+UPDATE a SET CurrentRowIndicator = 'Expired',
+	DateTo = cast(DATEADD(DD, -1, c.Date) as date)
+--SELECT a.ProductID, a.ManufactoryID, b.ManufactoryID, a.CurrentRowIndicator, a.DateTo, b.DateFrom, DATEADD(DD, -1, c.Date)
+FROM DimProduct a 
+	JOIN stg.product_manufactory b ON a.ProductID=b.ProductID AND a.ManufactoryId <> b.ManufactoryId
+	JOIN dimDate c ON b.DateFrom = c.DateKey
 
 drop table if exists #product
 
@@ -31,7 +46,12 @@ SELECT
 		ISNULL(PM.Name, 'N/D')  AS [ProductModelName],
 		ISNULL(P.SellStartDate, '1900-01-01 00:00:00.000') AS [SellStartDate],
 		ISNULL(P.SellEndDate, '2100-12-31 00:00:00.000') AS [SellEndDate],
-		P.ModifiedDate AS [SourceModifiedDate]
+		P.ModifiedDate AS [SourceModifiedDate],
+		PrMa.ManufactoryId AS [ManufactoryID],
+		Ma.ManufactoryName AS [ManufactoryName],
+		PrMa.DateFrom AS [DateFrom],
+		PrMa.DateTo AS [DateTo],
+		'Current' AS [CurrentRowIndicator]
 into #product
 FROM [stg].[Production_Product] AS P
 		LEFT JOIN [stg].[Production_ProductSubcategory] AS PS
@@ -40,12 +60,41 @@ FROM [stg].[Production_Product] AS P
 		ON PS.ProductCategoryID = PC.ProductCategoryID
 		LEFT JOIN [stg].[Production_ProductModel] AS PM
 		ON P.ProductModelID = PM.ProductModelID
-
+		LEFT JOIN [stg].[product_manufactory] PrMa
+		ON P.ProductID = PrMa.ProductID
+		LEFT JOIN [stg].[manufactories] Ma
+		ON PrMa.ManufactoryId = Ma.ManufactoryId
 
 MERGE INTO dbo.DimProduct as a
 USING #product as b
-ON a.ProductID = b.ProductID
-WHEN MATCHED
+ON a.ProductID = b.ProductID AND a.[ManufactoryId] = b.[ManufactoryId]
+WHEN MATCHED AND a.[ProductName] <> b.[ProductName]
+      OR a.[ProductAlternateKey] <> b.[ProductAlternateKey]
+      OR a.[StandardCost] <> b.[StandardCost]
+      OR a.[FinishedGoodFlag] <> b.[FinishedGoodsFlag] 
+      OR a.[Color] <> b.[Color]
+      OR a.[ListPrice] <> b.[ListPrice]
+      OR a.[Size] <> b.[Size]
+      OR a.[SizeUnitMeasureCode] <> b.[SizeUnitMeasureCode]
+      OR a.[Weight] <> b.[Weight]
+      OR a.[WeightUnitMeasureCode] <> b.[WeightUnitMeasureCode]
+      OR a.[DaysToManufacture] <> b.[DaysToManufacture]
+	  OR a.[ProductLine] <> b.[ProductLine] 
+	  OR a.[Class] <> b.[Class]
+	  OR a.[Style] <> b.[Style]
+	  OR a.[ProductCategoryID] <> b.[ProductCategoryID]
+	  OR a.[ProductCategoryName] <> b.[ProductCategoryName]
+	  OR a.[ProductSubcategoryID] <> b.[ProductSubcategoryID]
+	  OR a.[ProductSubcategoryName] <> b.[ProductSubcategoryName] 
+	  OR a.[ProductModelID] <> b.[ProductModelID]
+	  OR a.[ProductModelName] <> b.[ProductModelName]
+	  OR a.[SellStartDate] <>  b.[SellStartDate]
+	  OR a.[SellEndDate] <> b.[SellEndDate]
+	  OR a.[ManufactoryId] <> b.[ManufactoryId] OR b.[ManufactoryId] IS NULL
+	  OR a.[ManufactoryName] <> b.[ManufactoryName] OR b.[ManufactoryName] IS NULL
+	  OR a.[DateFrom] <> b.[DateFrom] OR b.[DateFrom] IS NULL
+	  OR a.[DateTo] <> b.[DateTo] OR b.[DateTo] IS NULL
+      OR a.[CurrentRowIndicator] <> a.[CurrentRowIndicator] OR b.[CurrentRowIndicator] IS NULL
 THEN UPDATE SET
 	a.[ProductID] = b.[ProductID],
 	a.[ProductName]= b.[ProductName],
@@ -72,7 +121,12 @@ THEN UPDATE SET
 	a.[SellEndDate]= b.[SellEndDate],
 	a.[SourceModifiedDate]= b.[SourceModifiedDate],
 	--a.[CreatedDate] = GETDATE(),
-	a.[ModifiedDate] = GETDATE()
+	a.[ModifiedDate] = GETDATE(),
+	a.[ManufactoryId] = b.[ManufactoryID],
+	a.[ManufactoryName] = b.[ManufactoryName],
+	a.[DateFrom] = b.[DateFrom],
+	a.[DateTo] = b.[DateTo],
+	a.[CurrentRowIndicator] = b.[CurrentRowIndicator]
 WHEN NOT MATCHED THEN
 INSERT (
 		[ProductID],
@@ -100,7 +154,12 @@ INSERT (
 		[SellEndDate],
 		[SourceModifiedDate],
 		[CreatedDate],
-		[ModifiedDate]
+		[ModifiedDate],
+		[ManufactoryId],
+		[ManufactoryName],
+		[DateFrom],
+		[DateTo],
+		[CurrentRowIndicator]
 		)
 	VALUES(
 		b.[ProductID],
@@ -128,5 +187,12 @@ INSERT (
 		b.[SellEndDate],
 		b.[SourceModifiedDate],
 		GETDATE(),
-		GETDATE()
+		GETDATE(),
+		b.[ManufactoryId],
+		b.[ManufactoryName],
+		b.[DateFrom],
+		b.[DateTo],
+		b.[CurrentRowIndicator]
 		);
+
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'

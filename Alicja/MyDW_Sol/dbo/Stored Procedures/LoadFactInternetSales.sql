@@ -2,6 +2,9 @@
 
 	--truncate table [dbo].[factInternetSales]
 
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 1, @Comment = 'Start Proc'
+
+	begin try
 	declare @startDate datetime
 	select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from [dbo].[factInternetSales]
 
@@ -71,3 +74,20 @@
 		where SOH.OnlineOrderFlag = 1
 	) b on FIS.SalesOrderID = b.SalesOrderID and FIS.SalesOrderDetailID = b.SalesOrderDetailID
 	where FIS.ProductKey != b.ProductKey
+
+	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
+
+	end try
+	begin catch
+		--declare @ErrorNumber int = ERROR_NUMBER(), 
+		--		@ErrorState int = ERROR_STATE(), 
+		--		@ErrorSeverity int = ERROR_SEVERITY(), 
+		--		@ErrorLine int = ERROR_LINE(), 
+		--		@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
+		--		@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
+
+		--exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
+		--						@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+
+		exec [log].[ErrorCall]
+	end catch

@@ -1,5 +1,7 @@
-﻿create procedure [dbo].[LoadDimCurrency]
+﻿CREATE procedure [dbo].[LoadDimCurrency]
 as
+
+exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 truncate table dbo.DimCurrency
 
@@ -13,3 +15,5 @@ SELECT
 	Name as [CurrencyName],
 	ModifiedDate as [SourceModifiedDate]
 	from [AdventureWorks2017].[Sales].[Currency]
+
+	exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'

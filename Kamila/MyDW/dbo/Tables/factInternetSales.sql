@@ -15,6 +15,13 @@
     [TotalProductCost]     MONEY           NULL,
     [SalesAmount]          MONEY           NULL,
     [CreatedDate]          DATETIME        NULL,
-    [ModifiedDate]         DATETIME        NULL
+    [ModifiedDate]         DATETIME        NULL,
+    [ManufactoryID]        INT             NULL,
+    [ManufactoryName]      VARCHAR (255)   NULL,
+    [DateFrom]             DATE            NULL,
+    [DateTo]               DATE            NULL,
+    [CurrentRowIndicator]  NVARCHAR (20)   NULL
 );
+
+
 

@@ -11,8 +11,8 @@
   DTS:LocaleID="8192"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{AF825C96-2747-4D05-8561-16E68BC7CE82}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{B4B61899-3B67-4D7B-9FFE-654FFAA87B9F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -36,7 +36,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimCurrency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -53,7 +53,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimCustomer"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -70,7 +70,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimDate"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -87,7 +87,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimProduct"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -104,7 +104,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimReseller"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -113,12 +113,21 @@
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Dim.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F6CBE1AD-66B6-476B-B5F4-8E9DC3D6BCB6}"
+          DTS:From="Package\Load Dim\DimDate"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load Dim\DimProduct" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load Fact"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{E67F1E4A-2D9F-4F52-BD2D-B698BB4FCF27}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -199,11 +208,45 @@
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Load Dim\DimProduct"
-          TopLeft="571.70300625045,20.3030309730106" />
+          TopLeft="38.3696941098785,97.4363649193446" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Load Dim\DimReseller"
-          TopLeft="271.703018171378,90.4242436514961" />
+          TopLeft="559.203006747155,19.3575764200423" />
+        <EdgeLayout
+          Id="Package\Load Dim.PrecedenceConstraints[Constraint]"
+          TopLeft="84.2666560702857,57.9515166229672">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29.7030380395928,39.4848482963774"
+              Start="0,0"
+              End="29.7030380395928,31.9848482963774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7424241481887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.7424241481887"
+                    Point2="0,19.7424241481887"
+                    Point3="4,19.7424241481887" />
+                  <mssgle:LineSegment
+                    End="25.7030380395928,19.7424241481887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.7030380395928,19.7424241481887"
+                    Point2="29.7030380395928,19.7424241481887"
+                    Point3="29.7030380395928,23.7424241481887" />
+                  <mssgle:LineSegment
+                    End="29.7030380395928,31.9848482963774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -232,14 +275,14 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,73.593941745132"
+              EndConnector="0,73.5939417451323"
               Start="0,0"
-              End="0,66.093941745132">
+              End="0,66.0939417451323">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,66.093941745132" />
+                    End="0,66.0939417451323" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -1,8 +1,14 @@
 ﻿
 
 
+
+
+
+
 CREATE PROCEDURE [dbo].[LoadDimReseller]
 as
+
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
 
 drop table if exists #reseller
 
@@ -20,7 +26,9 @@ FROM stg.Sales_Store AS SS
 MERGE INTO dbo.DimReseller AS TARGET
 USING #reseller as SOURCE
 ON TARGET.CustomerID = SOURCE.CustomerID
-WHEN MATCHED
+WHEN MATCHED AND TARGET.[ResellerAlternateKey] <> SOURCE.[ResellerAlternateKey]
+	OR TARGET.[CustomerID] <> SOURCE.[CustomerID]
+	OR TARGET.[ResellerName] <> SOURCE.[ResellerName]
 THEN UPDATE SET
 	[CustomerID] = SOURCE.[CustomerID],
 	[ResellerAlternateKey] = SOURCE.[ResellerAlternateKey],
@@ -42,3 +50,5 @@ THEN INSERT
 	GETDATE(),
 	GETDATE()
 	);
+
+EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'

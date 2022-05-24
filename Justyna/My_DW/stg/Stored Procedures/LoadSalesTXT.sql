@@ -4,6 +4,7 @@ BEGIN
 
 EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start Proc'
 
+BEGIN TRY
 	DELETE a
 	FROM [stg].[SalesTXT] a
 	JOIN [stg].[SalesTXT_Delta] b 
@@ -22,5 +23,10 @@ EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start
 		,[filename]
 	FROM [stg].[SalesTXT_Delta]
 	
-EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
+	EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
+END TRY
+
+BEGIN CATCH
+	EXEC [log].[ErrorCall]
+END CATCH
 END

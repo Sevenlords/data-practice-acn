@@ -9,12 +9,12 @@
     [ListPrice]              MONEY          NULL,
     [Size]                   NVARCHAR (5)   NULL,
     [SizeUnitMeasureCode]    NVARCHAR (3)   NULL,
-    [Weight]                 NUMERIC (8, 2) NULL,
+    [Weight]                 DECIMAL (8, 2) NULL,
     [WeightUnitMeasureCode]  NVARCHAR (3)   NULL,
     [DaysToManufacture]      INT            NULL,
-    [ProductLine]            NVARCHAR (2)   NULL,
-    [Class]                  NVARCHAR (2)   NULL,
-    [Style]                  NVARCHAR (2)   NULL,
+    [ProductLine]            NVARCHAR (3)   NULL,
+    [Class]                  NVARCHAR (3)   NULL,
+    [Style]                  NVARCHAR (3)   NULL,
     [ProductCategoryID]      INT            NULL,
     [ProductCategoryName]    NVARCHAR (50)  NULL,
     [ProductSubcategoryID]   INT            NULL,
@@ -27,6 +27,8 @@
     [CreatedDate]            DATETIME       DEFAULT (getdate()) NULL,
     [ModifiedDate]           DATETIME       NULL
 );
+
+
 
 
 
