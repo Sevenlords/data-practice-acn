@@ -4,6 +4,8 @@
 
 CREATE procedure [dbo].[loadFactResellerSales]
 as
+BEGIN TRY
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
 
 
 drop table if exists #resellerSales
@@ -14,7 +16,7 @@ select @startDate = ISNULL(max(timesthamp),'1900-01-01') from [dbo].[FactReselle
 select SalesOrderID
 into #resellerSales
 from [stg].Sales_SalesOrderHeader a
-WHERE OnlineOrderFlag = 1
+WHERE OnlineOrderFlag = 0
 	and timeshtamp >= @startDate
 
 
@@ -67,7 +69,7 @@ from
 	on soh.CustomerID=ress.CustomerID
 	left join DimProduct prod
 	on prod.ProductID=sod.ProductID and soh.OrderDate between prod.datefrom and prod.dateto
-
+	where SOH.OnlineOrderFlag = 0
 
 
 --z pliku
@@ -129,3 +131,32 @@ from #sales a
 	--join DimReseller dr on a.reseller = dr.ResellerAlternateKey
 	--join DimDate dd on dd.Date = a.date
 	--join DimProduct dp on a.product = dp.ProductAlternateKey
+
+	update FACT
+	set FACT.ProductKey = b.ProductKey
+	from [dbo].[factInternetSales] FACT
+	join (
+		select SOH.SalesOrderID, SOD.SalesOrderDetailID, P.ProductKey
+		from stg.Sales_SalesOrderHeader SOH
+		left join stg.Sales_SalesOrderDetail SOD on SOH.SalesOrderID = SOD.SalesOrderID
+		left join dbo.dimProduct P on SOD.ProductID = P.ProductID and SOH.OrderDate between P.DateFrom and P.DateTo
+		where SOH.OnlineOrderFlag = 0
+	) b on FACT.SalesOrderID = b.SalesOrderID and FACT.SalesOrderDetailID = b.SalesOrderDetailID
+	where FACT.ProductKey != b.ProductKey
+
+
+	exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=999, @Comment='End Proc'
+	END TRY
+BEGIN CATCH
+
+declare @ErrorNumber int = (select ERROR_NUMBER())
+declare @ErrorState int = (select ERROR_STATE())
+declare @ErrorSeverity int = (select ERROR_SEVERITY())
+declare @ErrorLine int = (select ERROR_LINE())
+declare @ErrorProcedure varchar(max) = (select ERROR_PROCEDURE())
+declare @ErrorMessage varchar(max) = (select ERROR_MESSAGE())
+
+exec log.ErrorCall @ErrorNumber,@ErrorState,@ErrorSeverity,@ErrorLine, @ErrorProcedure,@ErrorMessage
+
+
+END CATCH

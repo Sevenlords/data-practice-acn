@@ -1,6 +1,9 @@
 ﻿
+
 CREATE procedure [dbo].[LoadDimProduct]
 as
+BEGIN TRY
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
 
 
 update a
@@ -85,8 +88,7 @@ set [ProductName] = b.[ProductName]
 	  ,DateTo=b.DateTo
 	  ,CurrentRowIndicator=b.CurrentRowIndicator
 	  ,SourceModifiedDate=B.SourceModifiedDate
-	  ,ModifiedDate = getdate()
-	  
+	  ,ModifiedDate = getdate()  
 from DimProduct a 
 	join #product b ON a.ProductID = b.ProductID and a.ManufactoryId=b.ManufactoryId
 
@@ -124,11 +126,10 @@ insert into [dbo].[DimProduct]
 	  ,Timeshtamp
 	  ,ModifiedDate
 	  )
-
 SELECT a.*, getdate(), getdate()
 from #product a 
-	left join DimProduct b on a.ProductID = b.ProductID 
-where b.ProductID is null or a.ManufactoryId<>b.ManufactoryId
+	left join DimProduct b on a.ProductID = b.ProductID and a.ManufactoryId=b.ManufactoryId
+where b.ProductID is null 
 
 
 
@@ -136,7 +137,24 @@ where b.ProductID is null or a.ManufactoryId<>b.ManufactoryId
 ---- select *
 --from DimProduct a 
 --	left join #product b on a.ProductID = b.ProductID
---where b.ProductID is null
+
+
+
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=999, @Comment='End Proc'
+END TRY
+BEGIN CATCH
+
+declare @ErrorNumber int = (select ERROR_NUMBER())
+declare @ErrorState int = (select ERROR_STATE())
+declare @ErrorSeverity int = (select ERROR_SEVERITY())
+declare @ErrorLine int = (select ERROR_LINE())
+declare @ErrorProcedure varchar(max) = (select ERROR_PROCEDURE())
+declare @ErrorMessage varchar(max) = (select ERROR_MESSAGE())
+
+exec log.ErrorCall @ErrorNumber,@ErrorState,@ErrorSeverity,@ErrorLine, @ErrorProcedure,@ErrorMessage
+
+
+END CATCH
 GO
 
 
