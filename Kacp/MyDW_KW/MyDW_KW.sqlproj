@@ -125,5 +125,8 @@
     <Build Include="log\Tables\procedures.sql" />
     <Build Include="log\Stored Procedures\write_proc_call.sql" />
     <Build Include="Security\log.sql" />
+    <Build Include="log\Tables\errors.sql" />
+    <Build Include="dw\Tables\customers_temp.sql" />
+    <Build Include="log\Stored Procedures\handle_error.sql" />
   </ItemGroup>
 </Project>
