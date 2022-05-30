@@ -6,10 +6,58 @@
 
 	begin try
 
+	delete from [dbo].[dimProduct]
+	where ProductKey = -1
+
+	set identity_insert [dbo].[dimProduct] ON
+
+	insert into [dbo].[dimProduct](
+		[ProductKey], [ProductID], [ProductName], [ProductAlternateKey], [StandardCost], [FinishedGoodsFlag],
+		[Color], [ListPrice], [Size], [SizeUnitMeasureCode], [Weight], [WeightUnitMeasureCode],	[DaysToManufacture],
+		[ProductLine], [Class],	[Style], [ProductCategoryID], [ProductCategoryName], [ProductSubCategoryID],
+		[ProductSubCategoryName], [ProductModelID],	[ProductModelName],	[SellStartDate], [SellEndDate],
+		[SourceModifiedDate], [CreatedDate], [ModifiedDate], [ManufactoryId], [ManufactoryName], [DateFrom],
+		[DateTo], [CurrentRowIndicator]
+	)
+	select
+		-1 as [ProductKey],
+		-1 as [ProductID],
+		'-1' as [ProductName],
+		'-1' as [ProductAlternateKey],
+		0 as [StandardCost],
+		0 as [FinishedGoodsFlag],
+		'-1' as [Color],
+		-1 as [ListPrice],
+		'-1' as [Size],
+		'-1' as [SizeUnitMeasureCode],
+		-1 as [Weight],
+		'-1' as [WeightUnitMeasureCode],
+		-1 as [DaysToManufacture],
+		'-1' as [ProductLine],
+		'-1' as [Class],
+		'-1' as [Style],
+		-1 as [ProductCategoryID],
+		'-1' as [ProductCategoryName],
+		-1 as [ProductSubCategoryID],
+		'-1' as [ProductSubCategoryName],
+		-1 as [ProductModelID],
+		'-1' as [ProductModelName],
+		'1900-01-01' as [SellStartDate],
+		'2100-12-31' as [SellEndDate],
+		getdate() as [SourceModifiedDate],
+		getdate() as [CreatedDate],
+		getdate() as [ModifiedDate],
+		-1 as [ManufactoryId],
+		'-1' as [ManufactoryName],
+		'1900-01-01' as [DateFrom],
+		'2100-12-31' as [DateTo],
+		'-1' as [CurrentRowIndicator]
+
+	set identity_insert [dbo].[dimProduct] OFF
+
 	update P
 	set CurrentRowIndicator = 'Expired',
 		DateTo = cast(dateadd(DD, -1, D.Date) as date)
-	--select P.ProductID, P.ManufactoryId, PM.ManufactoryId, P.CurrentRowIndicator, P.DateTo, PM.DateFrom, cast(dateadd(DD, -1, D.Date) as date)
 	from dbo.dimProduct P
 	join stg.Product_Manufactory PM on P.ProductID = PM.ProductID and P.ManufactoryId != PM.ManufactoryId
 	join dbo.dimDate D on PM.DateFrom = D.DateKey
@@ -25,7 +73,7 @@
 		P.ListPrice as [ListPrice],
 		isnull(P.Size, 'N/D') as [Size],
 		isnull(P.SizeUnitMeasureCode, 'N/D') as [SizeUnitMeasureCode],
-		P.Weight as [Weight],													--NULL nie jest zamieniany
+		isnull(P.Weight, 0) as [Weight],													--NULL nie jest zamieniany
 		isnull(P.WeightUnitMeasureCode, 'N/D') as [WeightUnitMeasureCode],
 		P.DaysToManufacture as [DaysToManufacture],
 		isnull(cast(P.ProductLine as nchar(3)), 'N/D') as [ProductLine],
@@ -144,15 +192,7 @@
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
 	
 	end try
-	begin catch
-		--		declare @ErrorNumber int = ERROR_NUMBER(), 
-		--		@ErrorState int = ERROR_STATE(), 
-		--		@ErrorSeverity int = ERROR_SEVERITY(), 
-		--		@ErrorLine int = ERROR_LINE(), 
-		--		@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
-		--		@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
 
-		--exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
-		--						@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+	begin catch
 		exec [log].[ErrorCall]
 	end catch
