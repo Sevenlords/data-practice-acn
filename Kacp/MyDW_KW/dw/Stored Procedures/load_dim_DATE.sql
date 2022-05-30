@@ -4,6 +4,7 @@ exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start pr
 
 truncate table dw.dim_date
 
+begin try
 
 DECLARE @StartDate DATETIME = '05/30/2011' 
 DECLARE @EndDate DATETIME = '12/30/2021' 
@@ -55,3 +56,8 @@ begin
 end
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+end try
+begin catch
+exec log.handle_error
+end catch

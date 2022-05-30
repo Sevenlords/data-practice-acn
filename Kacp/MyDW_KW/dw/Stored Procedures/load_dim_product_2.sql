@@ -3,7 +3,7 @@
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 
-
+begin try
 
 --truncate table dw.dim_product
 update a
@@ -140,6 +140,16 @@ where b.ProductID is null
 
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+end try
+
+begin catch
+
+exec log.handle_error
+
+end catch
+
+
 --
 --
 --insert into dw.dim_product

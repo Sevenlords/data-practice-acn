@@ -3,6 +3,7 @@ as
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
+begin try
 select	C.CustomerID [CustomerID], 
 		C.AccountNumber [ResellerAlternateKey], 
 		S.Name [ResellerName]
@@ -33,3 +34,9 @@ from dw.dim_reseller a
 where a.CustomerID is null
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+end try
+
+begin catch
+exec log.handle_error
+end catch
