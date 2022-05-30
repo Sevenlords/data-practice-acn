@@ -3,7 +3,25 @@ CREATE procedure [dbo].[loadDimReseller]
 as
 BEGIN TRY
     
-	exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
+
+delete from DimReseller where ResellerKey=-1 
+
+set identity_insert dimreseller ON
+insert into DimReseller([ResellerKey]
+      ,[CustomerID]
+      ,[ResellerAlternateKey]
+      ,[ResellerName]
+      ,[Timeshtamp]
+      ,[ModifiedDate])
+Select -1 [ResellerKey]
+      ,-1 [CustomerID]
+      ,'-1'[ResellerAlternateKey]
+      ,'-1'[ResellerName]
+      ,getdate()[Timeshtamp]
+      ,getdate()[ModifiedDate]
+
+set identity_insert dimreseller OFF
 
 drop table if exists #reseller
 

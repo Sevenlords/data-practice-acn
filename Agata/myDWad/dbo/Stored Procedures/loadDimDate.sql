@@ -14,6 +14,37 @@ truncate table dbo.dimdate
 
 DECLARE @CurrentDate AS DATETIME = @StartDate
 
+delete from dimdate where datekey=19000101
+
+insert into DimDate
+([DateKey]
+      ,[Date]
+      ,[DayOfMonth]
+      ,[DayName]
+      ,[Month]
+      ,[MonthName]
+      ,[Quarter]
+      ,[QuarterName]
+      ,[Year]
+      ,[YearName]
+      ,[MonthYear]
+      ,[MMYYYY]
+      ,[IsWeekday]
+      ,[CreateDate])
+select 19000101[DateKey]
+      ,'1900-01-01 00:00:00.000'[Date]
+      ,0[DayOfMonth]
+      ,'-1'[DayName]
+      ,1[Month]
+      ,'January'[MonthName]
+      ,1[Quarter]
+      ,'First'[QuarterName]
+      ,1900[Year]
+      ,'CY1900'[YearName]
+      ,'Jan-1900'[MonthYear]
+      ,0119000[MMYYYY]
+      ,'-1'[IsWeekday]
+      ,getdate()[CreateDate]
 
 /********************************************************************************************/
 --Proceed only if Start Date(Current date ) is less than End date you specified above

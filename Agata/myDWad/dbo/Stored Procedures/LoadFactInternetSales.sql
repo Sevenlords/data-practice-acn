@@ -38,19 +38,19 @@ insert into dbo.FactInternetSales (
 	[SalesAmount])
 select 
 	soh.SalesOrderID,
-	soh.SalesOrderNumber,
-	sod.SalesOrderDetailID,
+	isnull(soh.SalesOrderNumber, -1), 
+	isnull(sod.SalesOrderDetailID, -1),
 	date.dateKey,
-	cust.CustomerKey,
-	prod.ProductKey,
+	isnull(cust.CustomerKey, -1),
+	isnull(prod.ProductKey, -1),
 	sod.OrderQty,
 	sod.UnitPrice,
-	sod.UnitPrice*sod.OrderQty as [ExtendedAmount],
+	isnull(sod.UnitPrice*sod.OrderQty,0.00) as [ExtendedAmount],
 	sod.UnitPriceDiscount,
-	(sod.UnitPrice*sod.OrderQty)*sod.UnitPriceDiscount as [DiscountAmount],
+	isnull((sod.UnitPrice*sod.OrderQty)*sod.UnitPriceDiscount,0.00) as [DiscountAmount],
 	prod.StandardCost,
 	prod.StandardCost*sod.OrderQty as [TotalProductCost],
-	(sod.UnitPrice*sod.OrderQty)-((sod.UnitPrice*sod.OrderQty)*sod.UnitPriceDiscount) as SalesAmount
+	isnull((sod.UnitPrice*sod.OrderQty)-((sod.UnitPrice*sod.OrderQty)*sod.UnitPriceDiscount),0.0) as SalesAmount
 from stg.Sales_SalesOrderHeader soh
 	join stg.Sales_SalesOrderDetail sod
 	on soh.SalesOrderID=sod.SalesOrderID

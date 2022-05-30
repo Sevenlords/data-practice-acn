@@ -6,6 +6,27 @@ as
 
 BEGIN TRY
 exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
+
+delete from dimCurrency where CurrencyKey=-1
+
+set identity_insert dimCurrency ON
+
+insert into dimCurrency(
+[CurrencyKey]
+      ,[CurrencyName]
+      ,[CurrencyALternateKey]
+      ,[SourceModifiedDate]
+      ,[timeshtamp]
+      ,[ModifiedDate])
+select -1 [CurrencyKey]
+      ,'-1'[CurrencyName]
+      ,'-1'[CurrencyALternateKey]
+      ,getdate()[SourceModifiedDate]
+      ,getdate()[timeshtamp]
+      ,getdate()[ModifiedDate]
+
+set identity_insert dimCurrency OFF
+
 drop table if exists #currency
 
 

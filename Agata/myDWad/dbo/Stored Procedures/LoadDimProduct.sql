@@ -5,6 +5,78 @@ as
 BEGIN TRY
 exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
 
+delete from DimProduct
+where ProductKey=-1
+
+SET IDENTITY_INSERT DimProduct ON
+
+insert into DimProduct
+([ProductKey]
+      ,[ProductID]
+      ,[ProductName]
+      ,[ProductAlternateKey]
+      ,[StandardCost]
+      ,[FinishedGoodFlag]
+      ,[Color]
+      ,[ListPrice]
+      ,[Size]
+      ,[SizeUnitMeasureCode]
+      ,[Weight]
+      ,[WeightUnitMeasureCode]
+      ,[DaysToManufacture]
+      ,[ProductLine]
+      ,[Class]
+      ,[Style]
+      ,[ProductCategoryID]
+      ,[ProductCategoryName]
+      ,[ProductSubcategoryID]
+      ,[ProductSubcategoryName]
+      ,[ProductModelID]
+      ,[ProductModelName]
+      ,[SellStartDate]
+      ,[SellEndDate]
+      ,[SourceModifiedDate]
+      ,[Timeshtamp]
+      ,[ModifiedDate]
+      ,[ManufactoryId]
+      ,[ManufactoryName]
+      ,[DateFrom]
+      ,[DateTo]
+      ,[CurrentRowIndicator])
+select -1 [ProductKey]
+      ,-1 [ProductID]
+      ,'-1' [ProductName]
+      ,'-1'[ProductAlternateKey]
+      ,-1 [StandardCost]
+      ,0 [FinishedGoodFlag]
+      ,'-1'[Color]
+      ,-1[ListPrice]
+      ,'-1'[Size]
+      ,'-1'[SizeUnitMeasureCode]
+      ,-1 [Weight]
+      ,'-1'[WeightUnitMeasureCode]
+      ,-1[DaysToManufacture]
+      ,'-1'[ProductLine]
+      ,'-1'[Class]
+      ,'-1'[Style]
+      ,-1[ProductCategoryID]
+      ,'-1'[ProductCategoryName]
+      ,-1[ProductSubcategoryID]
+      ,'-1'[ProductSubcategoryName]
+      ,-1[ProductModelID]
+      ,'-1'[ProductModelName]
+      ,'1900-01-01'[SellStartDate]
+      ,'2100-01-01'[SellEndDate]
+      ,getdate() [SourceModifiedDate]
+      ,getdate() [Timeshtamp]
+      ,getdate() [ModifiedDate]
+      ,-1[ManufactoryId]
+      ,'-1'[ManufactoryName]
+      ,'1900-01-01'[DateFrom]
+      ,'2100-01-01'[DateTo]
+      ,null[CurrentRowIndicator]
+
+SET IDENTITY_INSERT DimProduct OFF
 
 update a
 set CurrentRowIndicator='Expired'
@@ -12,6 +84,7 @@ set CurrentRowIndicator='Expired'
 from DimProduct a
 	join stg.Product_manufactory b on a.ProductID=b.ProductID and a.ManufactoryId<>b.ManufactoryId
 	join DimDate c on b.DateFrom=c.DateKey
+where a.CurrentRowIndicator='Curent'
 
 
 drop table if exists #product

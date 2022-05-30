@@ -109,5 +109,6 @@
     <Build Include="log\Stored Procedures\ErrorCall.sql" />
     <Build Include="log\Stored Procedures\ProcedureCall.sql" />
     <Build Include="Security\log.sql" />
+    <Build Include="dbo\Tables\DimCustomerTmp.sql" />
   </ItemGroup>
 </Project>
