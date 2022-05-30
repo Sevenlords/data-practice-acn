@@ -9,10 +9,11 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.180"
   DTS:LocaleID="1045"
+  DTS:MaxErrorCount="5"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{3AB67EBF-30D4-4B3A-BD5C-E4D70589BA3C}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{62B5F178-8971-42EB-8DAB-F9D3F3940920}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -24,6 +25,7 @@
       DTS:DTSID="{C68ED6D6-54BC-42A8-AE60-A85A2F968CF6}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
+      DTS:MaxErrorCount="5"
       DTS:ObjectName="Load STG"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
@@ -41,6 +43,7 @@
       DTS:DTSID="{ADBF9E27-5BD8-40CA-A0D2-738E552F5310}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
+      DTS:MaxErrorCount="5"
       DTS:ObjectName="LoadDW"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
@@ -75,39 +78,39 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="128,42.6666666666667"
+          Size="128,43"
           Id="Package\Load STG"
           TopLeft="151.874997736886,80.736843624934" />
         <NodeLayout
-          Size="121.333333333334,42.6666666666667"
+          Size="122,42"
           Id="Package\LoadDW"
           TopLeft="207.916663568467,228.526320090915" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="215.874997736886,123.403510291601">
+          TopLeft="215.874997736886,123.736843624934">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="52.7083324982474,105.122809799314"
+              EndConnector="53.041665831581,104.789476465981"
               Start="0,0"
-              End="52.7083324982474,97.6228097993142">
+              End="53.041665831581,97.289476465981">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.5614048996571" />
+                    End="0,48.3947382329905" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,48.5614048996571"
-                    Point2="0,52.5614048996571"
-                    Point3="4,52.5614048996571" />
+                    Point1="0,48.3947382329905"
+                    Point2="0,52.3947382329905"
+                    Point3="4,52.3947382329905" />
                   <mssgle:LineSegment
-                    End="48.7083324982474,52.5614048996571" />
+                    End="49.041665831581,52.3947382329905" />
                   <mssgle:CubicBezierSegment
-                    Point1="48.7083324982474,52.5614048996571"
-                    Point2="52.7083324982474,52.5614048996571"
-                    Point3="52.7083324982474,56.5614048996571" />
+                    Point1="49.041665831581,52.3947382329905"
+                    Point2="53.041665831581,52.3947382329905"
+                    Point3="53.041665831581,56.3947382329905" />
                   <mssgle:LineSegment
-                    End="52.7083324982474,97.6228097993142" />
+                    End="53.041665831581,97.289476465981" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
