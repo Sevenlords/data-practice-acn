@@ -11,6 +11,43 @@ exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
 
 BEGIN TRY
 
+delete from dimcustomer where CustomerKey=-1 
+
+set identity_insert dimcustomer ON
+insert into DimCustomer([CustomerKey]
+      ,[CustomerID]
+      ,[CustomerAlternateKey]
+      ,[PersonType]
+      ,[Title]
+      ,[FirstName]
+      ,[MiddleName]
+      ,[LastName]
+      ,[NameStyle]
+      ,[EmailPromotion]
+      ,[Suffix]
+      ,[EmailAddress]
+      ,[PhoneNumber]
+      ,[Timeshtamp]
+      ,[ModifiedDate]
+      ,[HashCode])
+Select -1 [CustomerKey]
+      ,-1 [CustomerID]
+      ,'-1'[CustomerAlternateKey]
+      ,'-'[PersonType]
+      ,'-1'[Title]
+      ,'-1'[FirstName]
+      ,'-1'[MiddleName]
+      ,'-1'[LastName]
+      ,'-1'[NameStyle]
+      ,-1[EmailPromotion]
+      ,'-1'[Suffix]
+      ,'-1'[EmailAddress]
+      ,'-1'[PhoneNumber]
+      ,getdate()[Timeshtamp]
+      ,getdate()[ModifiedDate]
+      ,null[HashCode]
+
+set identity_insert dimcustomer OFF
 
 drop table if exists dbo.dimCustomerTmp
 
