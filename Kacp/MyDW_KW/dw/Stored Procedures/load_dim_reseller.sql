@@ -4,9 +4,9 @@ as
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 begin try
-select	C.CustomerID [CustomerID], 
-		C.AccountNumber [ResellerAlternateKey], 
-		S.Name [ResellerName]
+select	isnull(C.CustomerID, -1) as [CustomerID], 
+		isnull(C.AccountNumber, 'unknown') as [ResellerAlternateKey], 
+		isnull(S.Name, 'unk') [ResellerName]
 
 into #resellers
 
