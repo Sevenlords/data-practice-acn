@@ -6,6 +6,31 @@
 
 	truncate table [dbo].[dimDate]
 
+	set identity_insert [dbo].[dimCustomer] ON
+
+	insert into [dbo].[dimDate](
+		[DateKey],[Date],[DayOfMonth],[DayName],[Month],[MonthName],
+		[Quater],[QuaterName],[Year],[YearName],[MonthYear],[MMYYYY],[IsWeekday],
+		[CreatedDate]
+	)
+	select 
+		-1 as [DateKey],
+		null as [Date],
+		'-1' as [DayOfMonth],
+		'-1' as [DayName],
+		'-1' as [Month],
+		'-1' as [MonthName],
+		'0' as [Quater],
+		'-1' as [QuaterName],
+		'-1' as [Year],
+		'-1' as [YearName],
+		'-1' as [MonthYear],
+		'-1' as [MMYYYY],
+		null as [IsWeekday],
+		getdate() as [CreatedDate]
+
+	set identity_insert [dbo].[dimCustomer] OFF
+
 	declare @StartDate datetime = '05/31/2011'	
 	--declare @EndDate datetime = '06/30/2014'
 	declare @EndDate datetime = '07/01/2021'	
@@ -62,16 +87,7 @@
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
 	
 	end try
+
 	begin catch
-		--declare @ErrorNumber int = ERROR_NUMBER(), 
-		--		@ErrorState int = ERROR_STATE(), 
-		--		@ErrorSeverity int = ERROR_SEVERITY(), 
-		--		@ErrorLine int = ERROR_LINE(), 
-		--		@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
-		--		@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
-
-		--exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
-		--						@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
-
 		exec [log].[ErrorCall]
 	end catch

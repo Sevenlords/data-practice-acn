@@ -45,9 +45,9 @@
 		SOH.SalesOrderID [SalesOrderID],
 		SOH.SalesOrderNumber [SalesOrderNumber],
 		SOD.SalesOrderDetailID [SalesOrderDetailID],
-		D.DateKey [DateKey],
-		R.ResellerKey [ResellerKey],
-		P.ProductKey [ProductKey],
+		isnull(D.DateKey,-1) [DateKey],
+		isnull(R.ResellerKey,-1) [ResellerKey],
+		isnull(P.ProductKey,-1) [ProductKey],
 		SOD.OrderQty [OrderQuantity],
 		SOD.UnitPrice [UnitPrice],
 		SOD.OrderQty*SOD.UnitPrice [ExtendedAmount],
@@ -104,16 +104,16 @@
 		cast(ST.order_number as int) [SalesOrderID],
 		0 [SalesOrderNumber],
 		cast(ST.line_number as int) [SalesOrderDetailID],
-		D.DateKey [DateKey],
-		R.ResellerKey [ResellerKey],
+		isnull(D.DateKey,-1) [DateKey],
+		isnull(R.ResellerKey,-1) [ResellerKey],
 		isnull(P.ProductKey,-1) [ProductKey],
 		cast(ST.qty as int) [OrderQuantity],
 		parse(ST.unit_price as money using 'de-DE') [UnitPrice],
 		cast(ST.qty as int)*parse(ST.unit_price as money using 'de-DE') [ExtendedAmount],
 		0 [UnitPriceDiscountPct],
 		0 [DiscountAmount],
-		P.StandardCost [ProductStandardCost],
-		cast(ST.qty as int)*P.StandardCost [TotalProductCost],
+		isnull(P.StandardCost,0) [ProductStandardCost],
+		isnull(cast(ST.qty as int)*P.StandardCost,0) [TotalProductCost],
 		cast(ST.qty as int)*parse(ST.unit_price as money using 'de-DE') [SalesAmount],
 		'SALES_TXT' [SourceID]
 	from [stg].[Sales_txt] ST
@@ -139,16 +139,7 @@
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
 
 	end try
+
 	begin catch
-		--declare @ErrorNumber int = ERROR_NUMBER(), 
-		--		@ErrorState int = ERROR_STATE(), 
-		--		@ErrorSeverity int = ERROR_SEVERITY(), 
-		--		@ErrorLine int = ERROR_LINE(), 
-		--		@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
-		--		@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
-
-		--exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
-		--						@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
-
 		exec [log].[ErrorCall]
 	end catch
