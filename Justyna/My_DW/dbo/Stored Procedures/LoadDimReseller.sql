@@ -5,6 +5,28 @@ BEGIN
 EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start Proc'
 
 BEGIN TRY
+	DELETE FROM [dbo].[DimReseller]
+	WHERE ResellerKey = -1
+
+	SET IDENTITY_INSERT DimReseller ON	
+
+	INSERT INTO [dbo].[DimReseller](
+		[ResellerKey],
+		[CustomerID],
+		[ResellerAlternateKey],
+		[ResellerName],
+		[CreatedDate],
+		[ModifiedDate])
+	
+	SELECT -1 AS [ResellerKey],
+		   -1 AS [CustomerID],
+		  '-1' AS [ResellerAlternateKey],
+		  '-1' AS [ResellerName],
+		  GETDATE() AS [CreatedDate],
+		  GETDATE() AS [ModifiedDate]
+	
+	SET IDENTITY_INSERT DimReseller OFF
+
 	--TRUNCATE TABLE dbo.DimReseller
 	DROP TABLE IF EXISTS #reseller
 

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="119"
-  DTS:VersionGUID="{B3FC479F-0E33-4668-951B-92264322983A}">
+  DTS:VersionBuild="144"
+  DTS:VersionGUID="{1986A073-3D2D-4CD3-B350-A4BE3393D9EC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -188,7 +188,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_Address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -206,7 +206,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_BusinessEntityAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -224,7 +224,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_EmailAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -242,7 +242,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_Person"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -260,7 +260,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_PersonPhone"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -278,7 +278,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Production_Product"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="10">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -296,7 +296,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Production_ProductCategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="12">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -314,7 +314,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Production_ProductModel"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="13">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -332,7 +332,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Production_ProductSubcategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="11">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -350,7 +350,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Product_manufactory, Manufactories"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="14">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -367,7 +367,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete SalesTXT"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -385,7 +385,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Sales_Currency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -403,7 +403,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Sales_Customer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -421,7 +421,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Sales_SalesOrderDetail"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="15">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -439,7 +439,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Sales_SalesOrderHeader"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -457,7 +457,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Sales_Store"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="15">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -9358,6 +9358,24 @@
           SQLTask:SqlStatementSource="TRUNCATE TABLE stg.SalesTXT_Delta" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update checksum"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F8F13E00-FB9B-4A6D-89F9-33D874B1395B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update checksum"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="9">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6457A9CC-11D3-4918-923A-CFC2C6F6E52F}"
+          SQLTask:SqlStatementSource="DECLARE @sqlFieldString AS varchar(MAX)&#xA;DECLARE @sqlStatementString AS varchar(MAX)&#xA;DECLARE @TableName AS varchar(100)&#xA;DECLARE @SchemaName AS varchar(20)&#xA;DECLARE @SchemaTableName AS varchar(120)&#xA;&#xA;SET @SchemaTableName = ?&#xA;&#xA;SET @SchemaName = LTRIM(RTRIM(LEFT(@SchemaTableName, CHARINDEX('.',@SchemaTableName)-1)))&#xA;&#xA;SET @TableName = LTRIM(RTRIM(RIGHT(@SchemaTableName, LEN(@SchemaTableName)- CHARINDEX('.',@SchemaTableName))))&#xA;&#xA;&#xA;SELECT @sglFieldString = [dbo].[get_hash_fields][@TableName,@SchemaName]&#xA;&#xA;SET @sqlStatementString = 'UPDATE' + @SchemaTableName + &#xA;'SET [checksum] = SUBSTRING(LOWER(CONVERT(varchar(32), HASHBYTES('MD5','+ @sqlFieldString +'),1)),3,32)'&#xA;&#xA;EXEC @sqlStatementString" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -9473,6 +9491,14 @@
       DTS:ObjectName="Constraint 1 3 1 1 1 1"
       DTS:To="Package\Load Sales_SalesOrderDetail" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{B9E456F3-8069-4CAD-8268-30EF8DF338B9}"
+      DTS:From="Package\Load Person_Person"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update checksum" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2 1]"
       DTS:CreationName=""
       DTS:DTSID="{a629de87-8780-4063-925c-73aa3469c887}"
@@ -9512,67 +9538,67 @@
         <NodeLayout
           Size="192,42.6666666666667"
           Id="Package\Delete Person_Address"
-          TopLeft="36.3169637445494,208.600877267035" />
+          TopLeft="24.4419639215007,304.635966480247" />
         <NodeLayout
           Size="254.666666666667,42.6666666666667"
           Id="Package\Delete Person_BusinessEntityAddress"
-          TopLeft="21.874999674037,727.071432818597" />
+          TopLeft="15.6249997671693,791.632837228869" />
         <NodeLayout
           Size="210,42.6666666666667"
           Id="Package\Delete Person_EmailAddress"
-          TopLeft="23.6607139331419,383.157901948839" />
+          TopLeft="17.4107140262742,447.719306359111" />
         <NodeLayout
           Size="183.333333333334,42.6666666666667"
           Id="Package\Delete Person_Person"
-          TopLeft="43.3482136397756,30.6184216289474" />
+          TopLeft="37.7232137235947,72.6008782458052" />
         <NodeLayout
           Size="217.333333333334,42.6666666666667"
           Id="Package\Delete Person_PersonPhone"
-          TopLeft="25.446428192247,559.635969661253" />
+          TopLeft="19.1964282853793,624.197374071525" />
         <NodeLayout
           Size="288,42.6666666666667"
           Id="Package\Delete Product_manufactory, Manufactories"
-          TopLeft="901.208330921208,451.263159800765" />
+          TopLeft="893.708331032967,536.350880386867" />
         <NodeLayout
           Size="186.666666666667,43.3333333333334"
           Id="Package\Delete Production_Product"
-          TopLeft="303.839281186728,27.0300737768473" />
+          TopLeft="297.58928127986,91.5914781871189" />
         <NodeLayout
           Size="228.666666666667,42.6666666666667"
           Id="Package\Delete Production_ProductCategory"
-          TopLeft="290.111602819857,207.86779454647" />
+          TopLeft="283.861602912989,272.429198956742" />
         <NodeLayout
           Size="236,42.6666666666667"
           Id="Package\Delete Production_ProductModel"
-          TopLeft="287.165174292334,557.998130803682" />
+          TopLeft="280.915174385466,622.559535213954" />
         <NodeLayout
           Size="230,42.6666666666667"
           Id="Package\Delete Production_ProductSubcategory"
-          TopLeft="289.330352831499,382.952384308168" />
+          TopLeft="283.080352924631,447.51378871844" />
         <NodeLayout
           Size="189.333333333334,42.6666666666667"
           Id="Package\Delete Sales_Currency"
-          TopLeft="575.892848561385,381.691736507709" />
+          TopLeft="569.642848654517,446.253140917981" />
         <NodeLayout
           Size="172,42.6666666666667"
           Id="Package\Delete Sales_Customer"
-          TopLeft="585.267848421686,207.81515544828" />
+          TopLeft="579.017848514818,272.376559858552" />
         <NodeLayout
           Size="228,42.6666666666667"
           Id="Package\Delete Sales_SalesOrderDetail"
-          TopLeft="568.303562960188,737.589601510196" />
+          TopLeft="562.05356305332,802.151005920467" />
         <NodeLayout
           Size="234.666666666667,42.6666666666667"
           Id="Package\Delete Sales_SalesOrderHeader"
-          TopLeft="568.303562960188,556.762530437401" />
+          TopLeft="562.05356305332,621.323934847672" />
         <NodeLayout
           Size="172,42.6666666666667"
           Id="Package\Delete Sales_Store"
-          TopLeft="586.428562690105,25.424174571613" />
+          TopLeft="580.178562783237,89.9855789818846" />
         <NodeLayout
           Size="168,42.6666666666667"
           Id="Package\Delete SalesTXT"
-          TopLeft="804.861101717171,106.172922343808" />
+          TopLeft="798.611101810303,170.73432675408" />
         <NodeLayout
           Size="161.333333333334,42.6666666666667"
           Id="Package\Foreach Loop Container\change file name"
@@ -9684,92 +9710,108 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="404,290.666666666667"
-          Size="404,334"
+          PanelSize="404,326.666666666667"
+          Size="404,370"
           Id="Package\Foreach Loop Container"
-          TopLeft="1014.36903498587,82.4636572044332" />
+          TopLeft="1008.119035079,147.025061614705" />
         <NodeLayout
           Size="185.333333333334,42.6666666666667"
           Id="Package\Load Person_Address"
-          TopLeft="36.785713737564,303.021931675857" />
+          TopLeft="30.5357138306963,367.583336086129" />
         <NodeLayout
           Size="233.333333333334,42.6666666666667"
           Id="Package\Load Person_BusinessEntityAddress"
-          TopLeft="31.7187495273531,821.614667680846" />
+          TopLeft="25.4687496204854,886.176072091117" />
         <NodeLayout
           Size="196.666666666667,42.6666666666667"
           Id="Package\Load Person_EmailAddress"
-          TopLeft="33.5044637864581,476.723693183668" />
+          TopLeft="27.2544638795904,541.28509759394" />
         <NodeLayout
           Size="180,42"
           Id="Package\Load Person_Person"
-          TopLeft="49.598213546643,127.776318194546" />
+          TopLeft="29.5982138446662,150.600879713962" />
         <NodeLayout
           Size="210.666666666667,42.6666666666667"
           Id="Package\Load Person_PersonPhone"
-          TopLeft="33.5044637864582,651.246873641241" />
+          TopLeft="27.2544638795905,715.808278051513" />
         <NodeLayout
           Size="280,42.6666666666667"
           Id="Package\Load Product_manufactory, Manufactories"
-          TopLeft="905.583330856015,543.631582592003" />
+          TopLeft="901.833330911894,611.442987063447" />
         <NodeLayout
           Size="186.666666666667,42.6666666666667"
           Id="Package\Load Production_Product"
-          TopLeft="304.977674026907,123.039474080228" />
+          TopLeft="298.727674120039,187.6008784905" />
         <NodeLayout
           Size="224.666666666667,42.6666666666667"
           Id="Package\Load Production_ProductCategory"
-          TopLeft="292.142852789589,301.433585781298" />
+          TopLeft="285.892852882721,365.99499019157" />
         <NodeLayout
           Size="229.333333333334,42.6666666666667"
           Id="Package\Load Production_ProductModel"
-          TopLeft="289.196424262066,651.563922038511" />
+          TopLeft="282.946424355198,716.125326448783" />
         <NodeLayout
           Size="224.666666666667,42.6666666666667"
           Id="Package\Load Production_ProductSubcategory"
-          TopLeft="291.361602801231,476.518175542997" />
+          TopLeft="285.111602894363,541.079579953269" />
         <NodeLayout
           Size="182.666666666667,42.6666666666667"
           Id="Package\Load Sales_Currency"
-          TopLeft="577.656241392251,478.678580438509" />
+          TopLeft="571.406241485383,543.239984848781" />
         <NodeLayout
           Size="185.333333333334,42.6666666666667"
           Id="Package\Load Sales_Customer"
-          TopLeft="586.406241261865,304.801999379081" />
+          TopLeft="580.156241354997,369.363403789353" />
         <NodeLayout
           Size="220,42.6666666666667"
           Id="Package\Load Sales_SalesOrderDetail"
-          TopLeft="569.441955800367,834.576445440996" />
+          TopLeft="563.191955893499,899.137849851268" />
         <NodeLayout
           Size="228,42.6666666666667"
           Id="Package\Load Sales_SalesOrderHeader"
-          TopLeft="569.441955800367,653.749374368202" />
+          TopLeft="563.191955893499,718.310778778474" />
         <NodeLayout
           Size="164,42.6666666666667"
           Id="Package\Load Sales_Store"
-          TopLeft="596.227669686943,121.042597424025" />
+          TopLeft="589.977669780075,185.604001834297" />
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
           Id="Package\Load SalesTXT"
-          TopLeft="813.090268261215,189.125304857562" />
+          TopLeft="806.21526836366,255.739340885417" />
         <NodeLayout
           Size="202.666666666667,42"
           Id="Package\Truncate SalesTXT_Delta"
           TopLeft="1106.45832438155,0.654134024118832" />
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\Update checksum"
+          TopLeft="33.7499994970859,227.403512738529" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="137.306546926543,73.2850882956141">
+          TopLeft="129.389880390261,115.267544912472">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,54.4912298989321"
+              EndConnector="-9.79166654559504,35.33333480149"
               Start="0,0"
-              End="0,46.9912298989321">
+              End="-9.79166654559504,27.83333480149">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,46.9912298989321" />
+                    End="0,13.666667400745" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.666667400745"
+                    Point2="0,17.666667400745"
+                    Point3="-4,17.666667400745" />
+                  <mssgle:LineSegment
+                    End="-5.79166654559504,17.666667400745" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.79166654559504,17.666667400745"
+                    Point2="-9.79166654559504,17.666667400745"
+                    Point3="-9.79166654559504,21.666667400745" />
+                  <mssgle:LineSegment
+                    End="-9.79166654559504,27.83333480149" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9780,7 +9822,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="397.741810940151,70.3634071101807">
+          TopLeft="391.491811033283,134.924811520452">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9802,7 +9844,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1]"
-          TopLeft="404.514132610533,600.664797470349">
+          TopLeft="398.264132703665,665.22620188062">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9824,7 +9866,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1 1]"
-          TopLeft="404.012644483032,425.619050974835">
+          TopLeft="397.762644576164,490.180455385107">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9846,7 +9888,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1 2]"
-          TopLeft="404.460561138057,250.534461213136">
+          TopLeft="398.210561231189,315.095865623408">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9868,18 +9910,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1 2 1]"
-          TopLeft="130.249255526467,425.824568615506">
+          TopLeft="123.999255619599,490.385973025778">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,50.8991245681618"
+              EndConnector="0,50.8991245681619"
               Start="0,0"
-              End="0,43.3991245681618">
+              End="0,43.3991245681619">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43.3991245681618" />
+                    End="0,43.3991245681619" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9890,7 +9932,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1 2 1 1]"
-          TopLeft="136.475445989353,602.30263632792">
+          TopLeft="130.225446082485,666.864040738192">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9912,7 +9954,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1 2 1 2]"
-          TopLeft="148.796874600695,769.738099485264">
+          TopLeft="142.546874693827,834.299503895536">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9934,18 +9976,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 2]"
-          TopLeft="130.88467207439,251.267543933702">
+          TopLeft="24.4419639215007,325.969299813581">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51.7543877421547"
+              EndConnector="6.09374990919555,62.9473696058816"
               Start="0,0"
-              End="0,44.2543877421547">
+              End="-1.40625009080445,62.9473696058816">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.2543877421547" />
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,58.9473696058816" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,58.9473696058816"
+                    Point2="-22.5,62.9473696058816"
+                    Point3="-18.5,62.9473696058816" />
+                  <mssgle:LineSegment
+                    End="-1.40625009080445,62.9473696058816" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9956,7 +10010,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 3]"
-          TopLeft="675.328116188524,68.0908412382797">
+          TopLeft="669.078116281656,132.652245648551">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9978,7 +10032,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 3 1]"
-          TopLeft="675.170378175109,250.481822114947">
+          TopLeft="668.920378268241,315.043226525219">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10000,7 +10054,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 3 1 1]"
-          TopLeft="669.774544976818,424.358403174376">
+          TopLeft="663.52454506995,488.919807584648">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10022,7 +10076,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 3 1 1 1]"
-          TopLeft="684.539426046944,599.429197104068">
+          TopLeft="678.289426140076,663.990601514339">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10044,7 +10098,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 3 1 1 1 1]"
-          TopLeft="680.872759380278,780.256268176862">
+          TopLeft="674.62275947341,844.817672587134">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10065,19 +10119,41 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2 1]"
-          TopLeft="889.309018322526,148.839589010475">
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="118.674106670876,192.600879713962">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,40.285715847087"
+              EndConnector="0,34.8026330245663"
               Start="0,0"
-              End="0,32.785715847087">
+              End="0,27.3026330245663">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.785715847087" />
+                    End="0,27.3026330245663" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2 1]"
+          TopLeft="882.746518420315,213.400993420747">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.3383474646704"
+              Start="0,0"
+              End="0,34.8383474646704">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.8383474646704" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10088,30 +10164,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="1207.79165771489,42.6541340241188">
+          TopLeft="1208.95534639694,42.6541340241188">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="8.57737727098811,39.8095231803143"
+              EndConnector="0,104.370927590586"
               Start="0,0"
-              End="8.57737727098811,32.3095231803143">
+              End="0,96.870927590586">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.9047615901572" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.9047615901572"
-                    Point2="0,19.9047615901572"
-                    Point3="4,19.9047615901572" />
-                  <mssgle:LineSegment
-                    End="4.57737727098811,19.9047615901572" />
-                  <mssgle:CubicBezierSegment
-                    Point1="4.57737727098811,19.9047615901572"
-                    Point2="8.57737727098811,19.9047615901572"
-                    Point3="8.57737727098811,23.9047615901572" />
-                  <mssgle:LineSegment
-                    End="8.57737727098811,32.3095231803143" />
+                    End="0,96.870927590586" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10122,18 +10186,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="1045.39583088861,493.929826467431">
+          TopLeft="1039.77083097243,579.017547053534">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,49.7017561245713"
+              EndConnector="0,32.4254400099134"
               Start="0,0"
-              End="0,42.2017561245713">
+              End="0,24.9254400099134">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.2017561245713" />
+                    End="0,24.9254400099134" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10154,6 +10218,10 @@
           Size="154.666666666667,42.6666666666667"
           Id="Package\Foreach Loop Container\Load SalesTXT_Delta\Flat File Source"
           TopLeft="308,71" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\Load SalesTXT_Delta\OLE DB Destination"
+          TopLeft="295,248.666666666667" />
         <NodeLayout
           Size="156,42.6666666666667"
           Id="Package\Foreach Loop Container\Load SalesTXT_Delta\Derived Column"
@@ -10180,10 +10248,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\Foreach Loop Container\Load SalesTXT_Delta\OLE DB Destination"
-          TopLeft="295,248.666666666667" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\Load SalesTXT_Delta.Paths[Derived Column Output]"
           TopLeft="383.166666666667,202.666666666667">
@@ -10554,29 +10618,29 @@
         <NodeLayout
           Size="184,42.6666666666667"
           Id="Package\Load Product_manufactory, Manufactories\OLE DB Destination 1"
-          TopLeft="315.624995296821,110.175440193433" />
+          TopLeft="323.624995296821,133.175440193433" />
         <NodeLayout
           Size="155.333333333334,42.6666666666667"
           Id="Package\Load Product_manufactory, Manufactories\Excel Source 1"
-          TopLeft="327.49999511987,34.0350882344409" />
+          TopLeft="333.49999511987,27.0350882344409" />
         <NodeLayout
           Size="142.666666666667,42.6666666666667"
           Id="Package\Load Product_manufactory, Manufactories\Excel Source"
           TopLeft="131.249998044223,30.789474263746" />
         <EdgeLayout
           Id="Package\Load Product_manufactory, Manufactories.Paths[Excel Source Output1]"
-          TopLeft="406.395828541679,76.7017549011076">
+          TopLeft="413.395828541679,69.7017549011076">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,33.4736852923258"
+              EndConnector="0,63.4736852923255"
               Start="0,0"
-              End="0,25.9736852923258">
+              End="0,55.9736852923255">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.9736852923258" />
+                    End="0,55.9736852923255" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11246,25 +11310,25 @@
         <NodeLayout
           Size="154.666666666667,42.6666666666667"
           Id="Package\Load SalesTXT\OLE DB Source"
-          TopLeft="437,66.2631578432226" />
+          TopLeft="437.624999990687,66.9473683824169" />
         <NodeLayout
           Size="174.666666666667,42.6666666666667"
           Id="Package\Load SalesTXT\OLE DB Destination"
-          TopLeft="427,154" />
+          TopLeft="428.749993611127,184.736845582476" />
         <EdgeLayout
           Id="Package\Load SalesTXT.Paths[OLE DB Source Output]"
-          TopLeft="514.333333333333,108.929824509889">
+          TopLeft="515.52083013424,109.614035049084">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.0701754901108"
+              EndConnector="0,75.1228105333924"
               Start="0,0"
-              End="0,37.5701754901108">
+              End="0,67.6228105333924">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5701754901108" />
+                    End="0,67.6228105333924" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
