@@ -40,11 +40,11 @@ insert into dbo.FactInternetSales
 
 SELECT   
 	h.SalesOrderID as [SalesOrderID],
-	h.SalesOrderNumber as [SalesOrderNumber],
-	o.SalesOrderDetailID as [SalesOrderDetailID],
-	d.DateKey as [DateKey],
-	c.CustomerKey as [CustomerKey],
-	p.ProductKey as [ProductKey],
+	isnull(h.SalesOrderNumber, -1) as [SalesOrderNumber],
+	isnull(o.SalesOrderDetailID, -1) as [SalesOrderDetailID],
+	isnull(d.DateKey, '1900-01-01') as [DateKey],
+	isnull(c.CustomerKey, -1) as [CustomerKey],
+	isnull(p.ProductKey, -1) as [ProductKey],
 	o.OrderQty as [OrderQuantity],
 	o.UnitPrice as [UnitPrice],
 	(o.OrderQty*o.UnitPrice) as [ExtendedAmount],
@@ -79,8 +79,6 @@ exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End 
 END TRY
 
 BEGIN CATCH 
-declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
 
-exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
-
+exec [log].[ErrorCall] 
 end catch

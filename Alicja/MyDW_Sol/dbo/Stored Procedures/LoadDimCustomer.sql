@@ -3,8 +3,51 @@
 	--truncate table dbo.dimCustomer
 
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 1, @Comment = 'Start Proc'
-
+	
 	begin try
+
+	delete from [dbo].[dimCustomer]
+	where CustomerKey = -1
+
+	set identity_insert [dbo].[dimCustomer] ON
+
+	insert into [dbo].[dimCustomer](
+		[CustomerKey]
+		,[CustomerID]
+		,[CustomerAlternateKey]
+		,[PersonType]
+		,[Title]
+		,[FirstName]
+		,[MiddleName]
+		,[LastName]
+		,[NameStyle]
+		,[EmailPromotion]
+		,[Suffix]
+		,[EmailAddress]
+		,[Phone]
+		,[CreatedDate]
+		,[ModifiedDate]
+		,[HashCode]
+	)
+	select
+		-1 as [CustomerKey],
+		-1 as [CustomerID],
+		'-1' as [CustomerAlternateKey],
+		'-1' as [PersonType],
+		'-1' as [Title],
+		'-1' as [FirstName],
+		'-1' as [MiddleName],
+		'-1' as [LastName],
+		0 as [NameStyle],
+		-1 as [EmailPromotion],
+		'-1' as [Suffix],
+		'-1' as [EmailAddress],
+		'-1' as [Phone],
+		getdate() as [CreatedDate],
+		getdate() as [ModifiedDate],
+		null as [HashCode]
+
+	set identity_insert [dbo].[dimCustomer] OFF
 
 	--drop table if exists #customers
 	drop table if exists [dbo].[dimCustomerTmp]
@@ -38,6 +81,8 @@
 	update [dbo].[dimCustomerTmp]
 	set [HashCode] = HASHBYTES('MD5', concat([CustomerID], [CustomerAlternateKey], [PersonType], [Title], [FirstName], [MiddleName], [LastName], 
 											[NameStyle], [EmailPromotion], [Suffix], [EmailAddress], [Phone]))
+
+	-- select * from INFORMATION_SCHEMA.COLUMNS
 
 	update a
 	set
@@ -106,14 +151,7 @@
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
 
 	end try
-	begin catch
-		declare @ErrorNumber int = ERROR_NUMBER(), 
-				@ErrorState int = ERROR_STATE(), 
-				@ErrorSeverity int = ERROR_SEVERITY(), 
-				@ErrorLine int = ERROR_LINE(), 
-				@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
-				@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
 
-		exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
-								@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+	begin catch
+		exec [log].[ErrorCall]
 	end catch

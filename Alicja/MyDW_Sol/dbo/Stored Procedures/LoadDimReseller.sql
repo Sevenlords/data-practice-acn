@@ -6,6 +6,28 @@
 
 	begin try
 
+	delete from [dbo].[dimReseller]
+	where ResellerKey = -1
+
+	set identity_insert [dbo].[dimReseller] ON
+
+	insert into [dbo].[dimReseller](
+		[ResellerKey],
+		[CustomerID],
+		[ResellerAlternateKey],
+		[ResellerName],
+		[CreatedDate], 
+		[ModifiedDate])
+	select
+		-1 as [ResellerKey],
+		-1 as [CustomerID],
+		'-1' as [ResellerAlternateKey],
+		'-1' as [ResellerName],
+		getdate() as [CreatedDate], 
+		getdate() as [ModifiedDate]
+
+	set identity_insert [dbo].[dimReseller] OFF
+
 	drop table if exists #resellers
 	
 	select
@@ -51,14 +73,7 @@
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
 
 	end try
-	begin catch
-			declare @ErrorNumber int = ERROR_NUMBER(), 
-				@ErrorState int = ERROR_STATE(), 
-				@ErrorSeverity int = ERROR_SEVERITY(), 
-				@ErrorLine int = ERROR_LINE(), 
-				@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
-				@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
 
-		exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
-								@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+	begin catch
+		exec [log].[ErrorCall]
 	end catch

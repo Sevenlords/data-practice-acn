@@ -7,107 +7,17 @@
   DTS:CreatorName="DIR\volodymyr.bunin"
   DTS:DTSID="{A77230E1-E559-4796-A426-F5E7A9D93A95}"
   DTS:ExecutableType="Microsoft.Package"
+  DTS:ExecValue="1"
+  DTS:ExecValueType="3"
   DTS:LastModifiedProductVersion="15.0.2000.180"
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{8B51318B-D01B-4363-B45B-234F74236D68}">
+  DTS:VersionBuild="104"
+  DTS:VersionGUID="{B3591263-0F73-424E-A55E-1CC0D8BD96DE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
-      DTS:CreationName="FLATFILE"
-      DTS:DTSID="{3E4BE1EC-122D-4DAF-A25A-31D75B2309E9}"
-      DTS:ObjectName="Flat File Connection Manager">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:Format="Delimited"
-          DTS:LocaleID="1045"
-          DTS:HeaderRowDelimiter="_x000D__x000A_"
-          DTS:ColumnNamesInFirstDataRow="True"
-          DTS:RowDelimiter=""
-          DTS:TextQualifier="_x003C_none_x003E_"
-          DTS:CodePage="65001"
-          DTS:ConnectionString="C:\Users\bartosz.pigula\OneDrive - Accenture\!Sync\Desktop\Szkółka\Repo\data-practice-acn\Bartek\MyDW_ETL\sales_01.txt">
-          <DTS:FlatFileColumns>
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x003B_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="order_number"
-              DTS:DTSID="{5DDFFD62-47D0-4A27-B56B-CC42D8D498E0}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x003B_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="line_number"
-              DTS:DTSID="{96FD0C66-2C51-4AB0-BB87-B2EBF35843AD}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x003B_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="date"
-              DTS:DTSID="{FF53F536-5AC6-437F-AA55-CB002DB34FB7}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x003B_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="customer"
-              DTS:DTSID="{C3564A05-8859-4210-8C18-78CC08A77BE8}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x003B_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="country"
-              DTS:DTSID="{28CD481C-FEDA-46EF-979A-57BD764D9936}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x003B_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="product"
-              DTS:DTSID="{0AF3DBAA-4D67-4B25-8490-C418701555D9}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x003B_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="qty"
-              DTS:DTSID="{C52F02A6-174D-4A5B-A8A3-00F5FFA992A6}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x000D__x000A_"
-              DTS:MaximumWidth="50"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="unit_price"
-              DTS:DTSID="{88D93BEA-DF91-446D-B8DC-D505B38B0C09}"
-              DTS:CreationName="" />
-          </DTS:FlatFileColumns>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost]"
       DTS:CreationName="OLEDB"
@@ -144,9 +54,171 @@
           DTS:ConnectionString="Data Source=localhost;Initial Catalog=MyDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MoveSuccess]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{BF96FEB4-ED3A-4DDE-A414-2CBD0D1C8FDC}"
+      DTS:ObjectName="MoveSuccess">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::Directory] + "\\success\\" +  @[User::FileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\bartosz.pigula\OneDrive - Accenture\!Sync\Desktop\Szkółka\Repo\data-practice-acn\Bartek\MyDW_ETL\pliki_ETL\success\sales.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sales]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{3E4BE1EC-122D-4DAF-A25A-31D75B2309E9}"
+      DTS:ObjectName="Sales">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1045"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Users\bartosz.pigula\OneDrive - Accenture\!Sync\Desktop\Szkółka\Repo\data-practice-acn\Bartek\MyDW_ETL\pliki_ETL\sales_01.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_number"
+              DTS:DTSID="{ED99F380-A45F-4C21-AB9E-2474C5146D28}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="line_number"
+              DTS:DTSID="{A1D01BAA-F394-4CEF-AD18-0EAFE8F7373F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="date"
+              DTS:DTSID="{77015B17-8B49-437F-9DFE-F8A1BDA56DE8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer"
+              DTS:DTSID="{C3E4DB2C-D7FA-48AE-A6AA-DF3935F8F110}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="country"
+              DTS:DTSID="{187A6923-0CBA-49B2-97BF-B9420D573F77}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product"
+              DTS:DTSID="{E839AC0F-918A-427E-BD88-4EE3432829BE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="qty"
+              DTS:DTSID="{885CE2B0-620D-4C57-96D7-58A36CFEF34F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="unit_price"
+              DTS:DTSID="{525D94CC-4BCA-42FD-9E10-7EF30D49DCC1}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sales.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{75DB24F4-5BAA-4788-A36F-F4EE4C48C7A8}"
+      DTS:ObjectName="sales.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\bartosz.pigula\OneDrive - Accenture\!Sync\Desktop\Szkółka\Repo\data-practice-acn\Bartek\MyDW_ETL\pliki_ETL\fail\MoveFail\sales.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8FB081DC-0697-43B8-9FA3-D7F682E4C14C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Directory">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\bartosz.pigula\OneDrive - Accenture\!Sync\Desktop\Szkółka\Repo\data-practice-acn\Bartek\MyDW_ETL\pliki_ETL</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5F5032F7-D9D0-47EE-B107-5BA6266A453D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">sales.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6ED1CEA9-58EF-4395-B888-B45A805D2636}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\bartosz.pigula\OneDrive - Accenture\!Sync\Desktop\Szkółka\Repo\data-practice-acn\Bartek\MyDW_ETL\pliki_ETL\sales_01.txt</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Change FileName"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{e5f15c8f-d272-455e-b134-2f47a880cede}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Change FileName"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::FileName] = REPLACE( @[User::FilePath], @[User::Directory] + &quot;\\&quot; , &quot;&quot; )" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Delete  Production_Product"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
@@ -156,7 +228,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete  Production_Product"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -173,12 +245,12 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_Address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{843DECE8-6EAD-4E52-B9E4-D1BB96E45C8B}"
-          SQLTask:SqlStatementSource="Delete from STG.Person_Address" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="Delete from STG.Person_Adress" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -190,7 +262,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_BusinessEntityAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -207,7 +279,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_EmailAddress"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -224,7 +296,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_Person"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -241,7 +313,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Person_PersonPhone"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -258,7 +330,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Production_ProductCategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -275,7 +347,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Production_ProductionModel"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -292,7 +364,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Production_ProductSubcategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -394,13 +466,757 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete Sales_Txt_Delta"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="15">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{843DECE8-6EAD-4E52-B9E4-D1BB96E45C8B}"
           SQLTask:SqlStatementSource="Delete from STG.Sales_Txt_Delta" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{C2FEF990-6BCA-42C0-8D6E-9E8205577B61}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{A6C086D1-E33B-41D0-8BD4-DD554A7E4133}"
+        DTS:ObjectName="{A6C086D1-E33B-41D0-8BD4-DD554A7E4133}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::Directory]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\bartosz.pigula\OneDrive - Accenture\!Sync\Desktop\Szkółka\Repo\data-practice-acn\Bartek\MyDW_ETL\pliki_ETL" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Change FileName"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{5F40A350-7190-4A53-9806-0FD5708728AA}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Change FileName"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="15">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::FileName] = SUBSTRING( RIGHT( @[User::FilePath],12 ), 1, 8)  + &quot;_&quot; + (DT_WSTR,4)DATEPART(&quot;yyyy&quot;,GetDate()) + &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;mm&quot;,GetDate()) ,2) + &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;dd&quot;,GetDate()),2) + &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;hh&quot;,GetDate()),2)+ &quot;_&quot; +&#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;mi&quot;,GetDate()),2)+ RIGHT( @[User::FilePath],4)" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Load Sales_Txt_Delta"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{1c9507d5-80c7-4483-acbb-dd51cdc68849}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Sales_Txt_Delta"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Output].Columns[FileName]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Output].Columns[FileName]"
+                          name="FileName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,65001)@[User::FileName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,65001)@[User::FileName]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1045"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sales]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
+                          name="order_number"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
+                          name="line_number"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
+                          name="date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
+                          name="customer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
+                          name="country"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
+                          name="product"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
+                          name="qty"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
+                          name="unit_price"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="order_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="line_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="date" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="customer" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="country" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="product" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="qty" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="unit_price" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG].[Sales_Txt_Delta]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MyDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MyDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_number]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_number"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[line_number]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="line_number"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="date"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[date]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="customer"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[customer]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[country]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="country"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[country]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[product]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[qty]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="qty"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[qty]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[unit_price]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="unit_price"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FileName]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FileName"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Output].Columns[FileName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="order_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="line_number" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="date" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="customer" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="country" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="product" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="qty" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="unit_price" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeShtamp]"
+                          dataType="dbTimeStamp"
+                          name="TimeShtamp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="FileName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Load Sales_Txt_Delta.Paths[Derived Column Output]"
+                  endId="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Load Sales_Txt_Delta.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\MoveFail"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{FF808263-9FAC-4D3F-AB78-7B7697E633D0}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="MoveFail"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="16">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskSourcePath="{3E4BE1EC-122D-4DAF-A25A-31D75B2309E9}"
+              TaskDestinationPath="{75DB24F4-5BAA-4788-A36F-F4EE4C48C7A8}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\MoveSuccess"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{55DECEBF-C791-49D6-A313-5435F320D800}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="MoveSuccess"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="15">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="{3E4BE1EC-122D-4DAF-A25A-31D75B2309E9}"
+              TaskDestinationPath="{BF96FEB4-ED3A-4DDE-A414-2CBD0D1C8FDC}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{24253632-F7B2-4A82-B022-281532EB5BB3}"
+          DTS:From="Package\Foreach Loop Container\Load Sales_Txt_Delta"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\MoveSuccess" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{57F02572-5E06-485C-B290-1676FF6610E9}"
+          DTS:From="Package\Foreach Loop Container\Change FileName"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container\Load Sales_Txt_Delta" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{AC73C181-20E2-4445-BA95-78A14A548A86}"
+          DTS:From="Package\Foreach Loop Container\Load Sales_Txt_Delta"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach Loop Container\MoveFail"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{4E0B492F-1F4A-4734-90D8-47BE682740AB}"
+          DTS:ObjectName="{4E0B492F-1F4A-4734-90D8-47BE682740AB}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FilePath" />
+      </DTS:ForEachVariableMappings>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load Person_Address"
@@ -7326,557 +8142,18 @@
       DTS:refId="Package\Load Sales_txt"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{2B03D283-0ACC-4FB1-BB0C-E4A8A9319E0B}"
+      DTS:DTSID="{a00fe447-6fe5-401e-968d-c6a062082002}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Load Sales_txt"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="15">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{843DECE8-6EAD-4E52-B9E4-D1BB96E45C8B}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="EXEC LoadSales_txt" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Load Sales_Txt_Delta"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{43883CDA-3144-4BD4-ADD3-035AC338A33D}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Load Sales_Txt_Delta"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\Load Sales_Txt_Delta\Flat File Source"
-              componentClassID="Microsoft.FlatFileSource"
-              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Flat File Source"
-              localeId="1045"
-              name="Flat File Source"
-              usesDispositions="true"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Specifies whether zero-length columns are treated as null."
-                  name="RetainNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
-                  name="FileNameColumnName"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load Sales_Txt_Delta\Flat File Source.Connections[FlatFileConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
-                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
-                  name="FlatFileConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output]"
-                  name="Flat File Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]"
-                      name="order_number"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]"
-                      name="line_number"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[date]"
-                      name="date"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[customer]"
-                      name="customer"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[country]"
-                      name="country"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[product]"
-                      name="product"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[qty]"
-                      name="qty"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
-                      length="50"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]"
-                      name="unit_price"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_number]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="order_number" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[line_number]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="line_number" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[date]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="date" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="customer" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[country]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="country" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[product]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="product" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[qty]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="qty" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[unit_price]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="unit_price" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output]"
-                  isErrorOut="true"
-                  name="Flat File Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
-                      codePage="65001"
-                      dataType="text"
-                      description="Flat File Source Error Output Column"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
-                      name="Flat File Source Error Output Column" />
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Load Sales_Txt_Delta\OLE DB Destination"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[STG].[Sales_Txt_Delta]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">65001</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">true</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.MyDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.MyDW]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_number]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="order_number"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[order_number]" />
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[line_number]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="line_number"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[line_number]" />
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="date"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[date]" />
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="customer"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[customer]" />
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[country]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="country"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[country]" />
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="product"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[product]" />
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[qty]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="qty"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[qty]" />
-                    <inputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[unit_price]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="unit_price"
-                      externalMetadataColumnId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
-                      lineageId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output].Columns[unit_price]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="order_number" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[line_number]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="line_number" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="date" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="customer" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="country" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="product" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[qty]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="qty" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="unit_price" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeShtamp]"
-                      dataType="dbTimeStamp"
-                      name="TimeShtamp" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      name="FileName" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load Sales_Txt_Delta\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Load Sales_Txt_Delta.Paths[Flat File Source Output]"
-              endId="Package\Load Sales_Txt_Delta\OLE DB Destination.Inputs[OLE DB Destination Input]"
-              name="Flat File Source Output"
-              startId="Package\Load Sales_Txt_Delta\Flat File Source.Outputs[Flat File Source Output]" />
-          </paths>
-        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -7924,16 +8201,16 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
       DTS:CreationName=""
-      DTS:DTSID="{FB09E2A6-C4D3-418B-A2BF-5B2774FF0C56}"
+      DTS:DTSID="{2E70C7DC-39BB-41CA-9938-1B7FC78702FE}"
       DTS:From="Package\Delete Sales_Txt_Delta"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 13"
-      DTS:To="Package\Load Sales_Txt_Delta" />
+      DTS:To="Package\Foreach Loop Container" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
       DTS:CreationName=""
-      DTS:DTSID="{EEACF517-744F-427D-85F8-84F9F855FAC7}"
-      DTS:From="Package\Load Sales_Txt_Delta"
+      DTS:DTSID="{0585D1F0-AF6A-4A7D-AD93-22E8DADB098D}"
+      DTS:From="Package\Foreach Loop Container"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 14"
       DTS:To="Package\Load Sales_txt" />
@@ -8013,7 +8290,11 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Change FileName"
+          TopLeft="1615,256.666666666667" />
         <NodeLayout
           Size="175,42"
           Id="Package\Delete  Production_Product"
@@ -8021,7 +8302,7 @@
         <NodeLayout
           Size="168,43"
           Id="Package\Delete Person_Address"
-          TopLeft="569.642848654517,570.40101153966" />
+          TopLeft="568.642848654517,571.40101153966" />
         <NodeLayout
           Size="173,58"
           Id="Package\Delete Person_BusinessEntityAddress"
@@ -8029,7 +8310,7 @@
         <NodeLayout
           Size="219,43"
           Id="Package\Delete Person_EmailAddress"
-          TopLeft="558.928563099887,416.94236203464" />
+          TopLeft="558.928563099887,418.94236203464" />
         <NodeLayout
           Size="181,41"
           Id="Package\Delete Person_Person"
@@ -8073,7 +8354,134 @@
         <NodeLayout
           Size="195,42"
           Id="Package\Delete Sales_Txt_Delta"
-          TopLeft="1143.45831995023,570.982463223562" />
+          TopLeft="1201.45831995023,650.315796556896" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Foreach Loop Container\Change FileName"
+          TopLeft="109.222222222222,17.7777777777778" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Foreach Loop Container\Load Sales_Txt_Delta"
+          TopLeft="50.7777777777781,84.7777777777779" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Foreach Loop Container\MoveSuccess"
+          TopLeft="49.2222222222219,180" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="144.277777777778,126.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.5555555555561,53.2222222222221"
+              Start="0,0"
+              End="-13.5555555555561,45.7222222222221">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.611111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.611111111111"
+                    Point2="0,26.611111111111"
+                    Point3="-4,26.611111111111" />
+                  <mssgle:LineSegment
+                    End="-9.55555555555611,26.611111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.55555555555611,26.611111111111"
+                    Point2="-13.5555555555561,26.611111111111"
+                    Point3="-13.5555555555561,30.611111111111" />
+                  <mssgle:LineSegment
+                    End="-13.5555555555561,45.7222222222221" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="193.222222222222,59.7777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-48.9444444444441,25.0000000000001"
+              Start="0,0"
+              End="-48.9444444444441,17.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.50000000000006" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.50000000000006"
+                    Point2="0,12.5000000000001"
+                    Point3="-4,12.5000000000001" />
+                  <mssgle:LineSegment
+                    End="-44.9444444444441,12.5000000000001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-44.9444444444441,12.5000000000001"
+                    Point2="-48.9444444444441,12.5000000000001"
+                    Point3="-48.9444444444441,16.5000000000001" />
+                  <mssgle:LineSegment
+                    End="-48.9444444444441,17.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Foreach Loop Container\MoveFail"
+          TopLeft="231,177" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="174.111111111111,126.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="138.388888888889,50.2222222222221"
+              Start="0,0"
+              End="138.388888888889,42.7222222222221">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.3445269235301" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.3445269235301"
+                    Point2="0,20.3445269235301"
+                    Point3="4,20.3445269235301" />
+                  <mssgle:LineSegment
+                    End="134.388888888889,20.3445269235301" />
+                  <mssgle:CubicBezierSegment
+                    Point1="134.388888888889,20.3445269235301"
+                    Point2="138.388888888889,20.3445269235301"
+                    Point3="138.388888888889,24.3445269235301" />
+                  <mssgle:LineSegment
+                    End="138.388888888889,42.7222222222221" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="53.9530967881943,25.3445269235301,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="433,298"
+          Size="433,341"
+          Id="Package\Foreach Loop Container"
+          TopLeft="1493.33333333333,456.666666666667" />
         <NodeLayout
           Size="185,43"
           Id="Package\Load Person_Address"
@@ -8133,11 +8541,7 @@
         <NodeLayout
           Size="152,42"
           Id="Package\Load Sales_txt"
-          TopLeft="1163,689" />
-        <NodeLayout
-          Size="187,42"
-          Id="Package\Load Sales_Txt_Delta"
-          TopLeft="1150.20831981984,631.140359789161" />
+          TopLeft="1898.33333333333,689.666666666667" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="181.166668241932,159.098040867292">
@@ -8250,30 +8654,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="1143.45831995023,591.982463223562">
+          TopLeft="1396.45831995023,671.315796556896">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="6.74999986961006,60.157896565599"
+              EndConnector="96.8750133831002,-44.149129890229"
               Start="0,0"
-              End="-0.750000130389935,60.157896565599">
+              End="89.3750133831002,-44.149129890229">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-18.5,0" />
+                    End="44.4375066915501,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="-18.5,0"
-                    Point2="-22.5,0"
-                    Point3="-22.5,4" />
+                    Point1="44.4375066915501,0"
+                    Point2="48.4375066915501,0"
+                    Point3="48.4375066915501,-4" />
                   <mssgle:LineSegment
-                    End="-22.5,56.157896565599" />
+                    End="48.4375066915501,-40.149129890229" />
                   <mssgle:CubicBezierSegment
-                    Point1="-22.5,56.157896565599"
-                    Point2="-22.5,60.157896565599"
-                    Point3="-18.5,60.157896565599" />
+                    Point1="48.4375066915501,-40.149129890229"
+                    Point2="48.4375066915501,-44.149129890229"
+                    Point3="52.4375066915501,-44.149129890229" />
                   <mssgle:LineSegment
-                    End="-0.750000130389935,60.157896565599" />
+                    End="89.3750133831002,-44.149129890229" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8284,30 +8688,24 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="1337.20831981984,652.140359789161">
+          TopLeft="1926.33333333333,627.166666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-22.20831981984,57.859640210839"
+              EndConnector="48,104.5"
               Start="0,0"
-              End="-14.70831981984,57.859640210839">
+              End="48,97">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="18.5,0" />
+                    End="44,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="18.5,0"
-                    Point2="22.5,0"
-                    Point3="22.5,4" />
+                    Point1="44,0"
+                    Point2="48,0"
+                    Point3="48,4" />
                   <mssgle:LineSegment
-                    End="22.5,53.859640210839" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22.5,53.859640210839"
-                    Point2="22.5,57.859640210839"
-                    Point3="18.5,57.859640210839" />
-                  <mssgle:LineSegment
-                    End="-14.70831981984,57.859640210839" />
+                    End="48,97" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8408,18 +8806,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="665.255944072225,459.609028701307">
+          TopLeft="665.339277405558,461.94236203464">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.0451158912086"
+              EndConnector="0,29.711782557876"
               Start="0,0"
-              End="0,24.5451158912086">
+              End="0,22.211782557876">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.5451158912086" />
+                    End="0,22.211782557876" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8430,18 +8828,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="656.190467728745,613.067678206327">
+          TopLeft="655.607134395412,614.40101153966">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,34.4010038493162"
+              EndConnector="0,33.067670515983"
               Start="0,0"
-              End="0,26.9010038493162">
+              End="0,25.567670515983">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.9010038493162" />
+                    End="0,25.567670515983" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8532,44 +8930,145 @@
     </LayoutInfo>
   </Package>
   <TaskHost
+    design-time-name="Package\Foreach Loop Container\Load Sales_Txt_Delta">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,43"
+          Id="Package\Foreach Loop Container\Load Sales_Txt_Delta\Flat File Source"
+          TopLeft="433.374996582046,55.4736860264042" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination"
+          TopLeft="377.249994393438,321.73684680594" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Foreach Loop Container\Load Sales_Txt_Delta\Derived Column"
+          TopLeft="399,180" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load Sales_Txt_Delta.Paths[Flat File Source Output]"
+          TopLeft="510.874996582046,98.4736860264042">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32.874996582046,81.5263139735958"
+              Start="0,0"
+              End="-32.874996582046,74.0263139735958">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.7631569867979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.7631569867979"
+                    Point2="0,40.7631569867979"
+                    Point3="-4,40.7631569867979" />
+                  <mssgle:LineSegment
+                    End="-28.874996582046,40.7631569867979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.874996582046,40.7631569867979"
+                    Point2="-32.874996582046,40.7631569867979"
+                    Point3="-32.874996582046,44.7631569867979" />
+                  <mssgle:LineSegment
+                    End="-32.874996582046,74.0263139735958" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load Sales_Txt_Delta.Paths[Derived Column Output]"
+          TopLeft="478,222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.250005606562,99.73684680594"
+              Start="0,0"
+              End="-12.250005606562,92.23684680594">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.86842340297" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.86842340297"
+                    Point2="0,49.86842340297"
+                    Point3="-4,49.86842340297" />
+                  <mssgle:LineSegment
+                    End="-8.25000560656201,49.86842340297" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.25000560656201,49.86842340297"
+                    Point2="-12.250005606562,49.86842340297"
+                    Point3="-12.250005606562,53.86842340297" />
+                  <mssgle:LineSegment
+                    End="-12.250005606562,92.23684680594" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Load Sales_Txt_Delta\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
     design-time-name="Package\Load Person_Address">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="154.666666666667,42.6666666666667"
+          Size="155,43"
           Id="Package\Load Person_Address\OLE DB Source"
           TopLeft="402,169" />
         <NodeLayout
-          Size="174.666666666667,42.6666666666667"
+          Size="175,43"
           Id="Package\Load Person_Address\OLE DB Destination"
-          TopLeft="470,330" />
+          TopLeft="471,331" />
         <EdgeLayout
           Id="Package\Load Person_Address.Paths[OLE DB Source Output]"
-          TopLeft="479.333333333333,211.666666666667">
+          TopLeft="479.5,212">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="78.0000000000001,118.333333333333"
+              EndConnector="79,119"
               Start="0,0"
-              End="78.0000000000001,110.833333333333">
+              End="79,111.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.1666666666667" />
+                    End="0,55.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,55.1666666666667"
-                    Point2="0,59.1666666666667"
-                    Point3="4,59.1666666666667" />
+                    Point1="0,55.5"
+                    Point2="0,59.5"
+                    Point3="4,59.5" />
                   <mssgle:LineSegment
-                    End="74.0000000000001,59.1666666666667" />
+                    End="75,59.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="74.0000000000001,59.1666666666667"
-                    Point2="78.0000000000001,59.1666666666667"
-                    Point3="78.0000000000001,63.1666666666667" />
+                    Point1="75,59.5"
+                    Point2="79,59.5"
+                    Point3="79,63.5" />
                   <mssgle:LineSegment
-                    End="78.0000000000001,110.833333333333" />
+                    End="79,111.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9530,69 +10029,6 @@
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Load Sales_Txt_Delta">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="155,43"
-          Id="Package\Load Sales_Txt_Delta\Flat File Source"
-          TopLeft="229.374996582046,96.4736860264042" />
-        <NodeLayout
-          Size="175,43"
-          Id="Package\Load Sales_Txt_Delta\OLE DB Destination"
-          TopLeft="376.249994393438,249.73684680594" />
-        <EdgeLayout
-          Id="Package\Load Sales_Txt_Delta.Paths[Flat File Source Output]"
-          TopLeft="306.70832991538,139.140352693071">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="156.874997811392,110.596494112869"
-              Start="0,0"
-              End="156.874997811392,103.096494112869">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,51.2982470564345" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,51.2982470564345"
-                    Point2="0,55.2982470564345"
-                    Point3="4,55.2982470564345" />
-                  <mssgle:LineSegment
-                    End="152.874997811392,55.2982470564345" />
-                  <mssgle:CubicBezierSegment
-                    Point1="152.874997811392,55.2982470564345"
-                    Point2="156.874997811392,55.2982470564345"
-                    Point3="156.874997811392,59.2982470564345" />
-                  <mssgle:LineSegment
-                    End="156.874997811392,103.096494112869" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Sales_Txt_Delta\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

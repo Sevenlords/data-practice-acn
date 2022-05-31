@@ -3,7 +3,7 @@
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
 
-
+begin try
 
 --truncate table dw.dim_product
 update a
@@ -16,39 +16,42 @@ from dw.dim_product a
 	join dw.dim_date c on c.DateKey = b.DateFrom
 	where a.ManufactoryID <> b.ManufactoryID and a.currentflag = 'current'
 
-drop table if exists #product
-
+drop table if exists dw.dim_product_temp --#product
+-- select * from dw.dim_product order by 1
+--select * from dw.fact_InternetSales order by 5
 SELECT
-		P.ProductID AS [ProductID],
-		P.Name AS [ProductName],
-		P.ProductNumber AS [ProductAlternateKey],
-		P.StandardCost AS [StandardCost],
-		P.FinishedGoodsFlag AS [FinishedGoodsFlag],
+		isnull(P.ProductID, -1) AS [ProductID],
+		isnull(P.Name, 'unknown') as [ProductName],
+		isnull(P.ProductNumber, 'unknown') AS [ProductAlternateKey],
+		isnull(P.StandardCost, 0)  AS [StandardCost],
+		isnull(P.FinishedGoodsFlag, -1) AS [FinishedGoodsFlag],
 		ISNULL(P.Color, 'N/D') AS [Color],
-		P.ListPrice AS [ListPrice],
+		isnull(P.ListPrice, -1) AS [ListPrice],
 		ISNULL(P.Size, 'N/D') AS [Size],
 		ISNULL(P.SizeUnitMeasureCode, 'N/D') AS [SizeUnitMeasureCode],
-		P.Weight AS [Weight],
+		isnull(P.Weight, -1) AS [Weight],
 		ISNULL(P.WeightUnitMeasureCode, 'N/D') AS [WeightUnitMeasureCode],
-		P.DaysToManufacture AS [DaysToManufacture],
+		isnull(P.DaysToManufacture, -1) AS [DaysToManufacture],
 		ISNULL(CONVERT(nchar(3),P.ProductLine), 'N/D') AS [ProductLine],
 		ISNULL(CONVERT(nchar(3),P.Class), 'N/D') AS [Class],
 		ISNULL(CONVERT(nchar(3),P.Style), 'N/D') AS [Style],
-		PS.ProductCategoryID AS [ProductCategoryID],
+		isnull(PS.ProductCategoryID, -1) AS [ProductCategoryID],
 		ISNULL(PC.Name, 'N/D') AS [ProductCategoryName],
-		P.ProductSubcategoryID AS [ProductSubcategoryID],
+		isnull(P.ProductSubcategoryID, -1) AS [ProductSubcategoryID],
 		ISNULL(PS.Name, 'N/D')  AS [ProductSubcategoryName],
-		P.ProductModelID AS [ProductModelID],
+		isnull(P.ProductModelID, -1) AS [ProductModelID],
 		ISNULL(PM.Name, 'N/D')  AS [ProductModelName],
-		P.SellStartDate AS [SellStartDate],
-		P.SellEndDate AS [SellEndDate],
-		P.ModifiedDate AS [SourceModifiedDate],
-		v1.ManufactoryID as ManufactoryID,
-		m1.ManufactoryName as ManufactoryName,
-		v1.DateFrom,
-		v1.DateTo,
-		'Current' as CurrentFlag
-into #product
+		isnull(P.SellStartDate, '1990-01-01') AS [SellStartDate],
+		isnull(P.SellEndDate, '2100-12-31') AS [SellEndDate],
+		isnull(P.ModifiedDate, getdate()) AS [SourceModifiedDate],
+		isnull(v1.ManufactoryID, -1) as ManufactoryID,
+		isnull(m1.ManufactoryName, 'unknown') as ManufactoryName,
+		isnull(v1.DateFrom,'1990=01-01') as DateFrom,
+		isnull(v1.DateTo,'2100,12-31') as Dateto,
+		'Current' as CurrentFlag,
+		cast(null as varbinary(30)) as HashCode
+--into #product
+into dw.dim_product_temp
 FROM [AdventureWorks2017].[Production].[Product] AS P
 		LEFT JOIN [AdventureWorks2017].[Production].[ProductSubcategory] AS PS
 		ON P.ProductSubcategoryID = PS.ProductSubcategoryID
@@ -59,7 +62,15 @@ FROM [AdventureWorks2017].[Production].[Product] AS P
 		left join stg.prod_manu_v1 v1 on v1.productid = p.ProductID
 		left join stg.manu_manu_v1 m1 on m1.manufactoryID = v1.manufactoryID
 
---select * from #product
+update dw.dim_product_temp
+set HashCode = HASHBYTES('MD5', concat([ProductID],[ProductName],[ProductAlternateKey],[StandardCost]
+									,[FinishedGoodsFlag],[Color],[ListPrice]
+									,[Size],[SizeUnitMeasureCode],[Weight],[WeightUnitMeasureCode],[DaysToManufacture]
+									,[ProductLine]
+									,[Class],[Style],[ProductCategoryID],[ProductCategoryName],[ProductSubcategoryID]
+									,[ProductSubcategoryName],[ProductModelID]
+									,[ProductModelName],[SellStartDate],[SellEndDate],[SourceModifiedDate],ManufactoryID,ManufactoryName
+									,DateFrom ,DateTo ,CurrentFlag))
 
 update a
 set 
@@ -92,8 +103,11 @@ set
 	  ,DateFrom = b.DateFrom
 	  ,DateTo = b.DateTo
 	  ,CurrentFlag = b.CurrentFlag
+	  ,HashCode = b.HashCode
 from dw.dim_product a 
-	join #product b ON a.ProductID = b.ProductID and a.ManufactoryID = b.ManufactoryID -- collate Polish_CI_AS
+	join dw.dim_product_temp b ON a.ProductID = b.ProductID and a.ManufactoryID = b.ManufactoryID 
+where 
+	a.HashCode <> b.HashCode or a.hashcode is null
 
 
 
@@ -127,12 +141,13 @@ insert into dw.dim_product
 	  ,DateFrom 
 	  ,DateTo 
 	  ,CurrentFlag
+	  ,HashCode 
 	  ,CreatedDate
 	  ,ModifiedDate
-	   )
+	  )
 
 SELECT a.*, getdate(), getdate()
-from #product a 
+from dw.dim_product_temp a 
 	left join dw.dim_product b on a.ProductID = b.ProductID
 where b.ProductID is null 
 	or (a.ManufactoryID != b.ManufactoryID 
@@ -140,6 +155,16 @@ where b.ProductID is null
 
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+end try
+
+begin catch
+
+exec log.handle_error
+
+end catch
+
+
 --
 --
 --insert into dw.dim_product

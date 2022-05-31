@@ -1,7 +1,82 @@
 ﻿
+
 CREATE procedure [dbo].[LoadDimProduct]
 as
+BEGIN TRY
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
 
+delete from DimProduct
+where ProductKey=-1
+
+SET IDENTITY_INSERT DimProduct ON
+
+insert into DimProduct
+([ProductKey]
+      ,[ProductID]
+      ,[ProductName]
+      ,[ProductAlternateKey]
+      ,[StandardCost]
+      ,[FinishedGoodFlag]
+      ,[Color]
+      ,[ListPrice]
+      ,[Size]
+      ,[SizeUnitMeasureCode]
+      ,[Weight]
+      ,[WeightUnitMeasureCode]
+      ,[DaysToManufacture]
+      ,[ProductLine]
+      ,[Class]
+      ,[Style]
+      ,[ProductCategoryID]
+      ,[ProductCategoryName]
+      ,[ProductSubcategoryID]
+      ,[ProductSubcategoryName]
+      ,[ProductModelID]
+      ,[ProductModelName]
+      ,[SellStartDate]
+      ,[SellEndDate]
+      ,[SourceModifiedDate]
+      ,[Timeshtamp]
+      ,[ModifiedDate]
+      ,[ManufactoryId]
+      ,[ManufactoryName]
+      ,[DateFrom]
+      ,[DateTo]
+      ,[CurrentRowIndicator])
+select -1 [ProductKey]
+      ,-1 [ProductID]
+      ,'-1' [ProductName]
+      ,'-1'[ProductAlternateKey]
+      ,-1 [StandardCost]
+      ,0 [FinishedGoodFlag]
+      ,'-1'[Color]
+      ,-1[ListPrice]
+      ,'-1'[Size]
+      ,'-1'[SizeUnitMeasureCode]
+      ,-1 [Weight]
+      ,'-1'[WeightUnitMeasureCode]
+      ,-1[DaysToManufacture]
+      ,'-1'[ProductLine]
+      ,'-1'[Class]
+      ,'-1'[Style]
+      ,-1[ProductCategoryID]
+      ,'-1'[ProductCategoryName]
+      ,-1[ProductSubcategoryID]
+      ,'-1'[ProductSubcategoryName]
+      ,-1[ProductModelID]
+      ,'-1'[ProductModelName]
+      ,'1900-01-01'[SellStartDate]
+      ,'2100-01-01'[SellEndDate]
+      ,getdate() [SourceModifiedDate]
+      ,getdate() [Timeshtamp]
+      ,getdate() [ModifiedDate]
+      ,-1[ManufactoryId]
+      ,'-1'[ManufactoryName]
+      ,'1900-01-01'[DateFrom]
+      ,'2100-01-01'[DateTo]
+      ,null[CurrentRowIndicator]
+
+SET IDENTITY_INSERT DimProduct OFF
 
 update a
 set CurrentRowIndicator='Expired'
@@ -9,6 +84,7 @@ set CurrentRowIndicator='Expired'
 from DimProduct a
 	join stg.Product_manufactory b on a.ProductID=b.ProductID and a.ManufactoryId<>b.ManufactoryId
 	join DimDate c on b.DateFrom=c.DateKey
+where a.CurrentRowIndicator='Curent'
 
 
 drop table if exists #product
@@ -85,8 +161,7 @@ set [ProductName] = b.[ProductName]
 	  ,DateTo=b.DateTo
 	  ,CurrentRowIndicator=b.CurrentRowIndicator
 	  ,SourceModifiedDate=B.SourceModifiedDate
-	  ,ModifiedDate = getdate()
-	  
+	  ,ModifiedDate = getdate()  
 from DimProduct a 
 	join #product b ON a.ProductID = b.ProductID and a.ManufactoryId=b.ManufactoryId
 
@@ -124,11 +199,10 @@ insert into [dbo].[DimProduct]
 	  ,Timeshtamp
 	  ,ModifiedDate
 	  )
-
 SELECT a.*, getdate(), getdate()
 from #product a 
-	left join DimProduct b on a.ProductID = b.ProductID 
-where b.ProductID is null or a.ManufactoryId<>b.ManufactoryId
+	left join DimProduct b on a.ProductID = b.ProductID and a.ManufactoryId=b.ManufactoryId
+where b.ProductID is null 
 
 
 
@@ -136,7 +210,24 @@ where b.ProductID is null or a.ManufactoryId<>b.ManufactoryId
 ---- select *
 --from DimProduct a 
 --	left join #product b on a.ProductID = b.ProductID
---where b.ProductID is null
+
+
+
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=999, @Comment='End Proc'
+END TRY
+BEGIN CATCH
+
+declare @ErrorNumber int = (select ERROR_NUMBER())
+declare @ErrorState int = (select ERROR_STATE())
+declare @ErrorSeverity int = (select ERROR_SEVERITY())
+declare @ErrorLine int = (select ERROR_LINE())
+declare @ErrorProcedure varchar(max) = (select ERROR_PROCEDURE())
+declare @ErrorMessage varchar(max) = (select ERROR_MESSAGE())
+
+exec log.ErrorCall @ErrorNumber,@ErrorState,@ErrorSeverity,@ErrorLine, @ErrorProcedure,@ErrorMessage
+
+
+END CATCH
 GO
 
 

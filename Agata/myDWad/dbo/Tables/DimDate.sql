@@ -3,7 +3,7 @@
     [Date]        DATETIME    NULL,
     [DayOfMonth]  VARCHAR (2) NULL,
     [DayName]     VARCHAR (9) NULL,
-    [Month]       VARCHAR (2) NULL,
+    [Month]       INT         NULL,
     [MonthName]   VARCHAR (9) NULL,
     [Quarter]     CHAR (1)    NULL,
     [QuarterName] VARCHAR (9) NULL,
@@ -15,4 +15,6 @@
     [CreateDate]  DATETIME    NULL,
     PRIMARY KEY CLUSTERED ([DateKey] ASC)
 );
+
+
 

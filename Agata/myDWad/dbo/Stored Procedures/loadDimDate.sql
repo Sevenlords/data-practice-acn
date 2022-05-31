@@ -8,10 +8,43 @@
 CREATE procedure [dbo].[loadDimDate] @StartDate Datetime='01/01/2005',@EndDate DATETIME = '01/01/2025'
 as
 
+BEGIN TRY
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=1, @Comment='Start Proc'
 truncate table dbo.dimdate
 
 DECLARE @CurrentDate AS DATETIME = @StartDate
 
+delete from dimdate where datekey=19000101
+
+insert into DimDate
+([DateKey]
+      ,[Date]
+      ,[DayOfMonth]
+      ,[DayName]
+      ,[Month]
+      ,[MonthName]
+      ,[Quarter]
+      ,[QuarterName]
+      ,[Year]
+      ,[YearName]
+      ,[MonthYear]
+      ,[MMYYYY]
+      ,[IsWeekday]
+      ,[CreateDate])
+select 19000101[DateKey]
+      ,'1900-01-01 00:00:00.000'[Date]
+      ,0[DayOfMonth]
+      ,'-1'[DayName]
+      ,1[Month]
+      ,'January'[MonthName]
+      ,1[Quarter]
+      ,'First'[QuarterName]
+      ,1900[Year]
+      ,'CY1900'[YearName]
+      ,'Jan-1900'[MonthYear]
+      ,0119000[MMYYYY]
+      ,'-1'[IsWeekday]
+      ,getdate()[CreateDate]
 
 /********************************************************************************************/
 --Proceed only if Start Date(Current date ) is less than End date you specified above
@@ -67,5 +100,21 @@ BEGIN
 		GETDATE() as CreateDate
 		SET @CurrentDate = DATEADD(DD, 1, @CurrentDate)
 
+
 END
+exec log.[procedurecall] @ProcedureID=@@ProcID, @Step=999, @Comment='End Proc'
+END TRY
+BEGIN CATCH
+
+declare @ErrorNumber int = (select ERROR_NUMBER())
+declare @ErrorState int = (select ERROR_STATE())
+declare @ErrorSeverity int = (select ERROR_SEVERITY())
+declare @ErrorLine int = (select ERROR_LINE())
+declare @ErrorProcedure varchar(max) = (select ERROR_PROCEDURE())
+declare @ErrorMessage varchar(max) = (select ERROR_MESSAGE())
+
+exec log.ErrorCall @ErrorNumber,@ErrorState,@ErrorSeverity,@ErrorLine, @ErrorProcedure,@ErrorMessage
+
+
+END CATCH
 

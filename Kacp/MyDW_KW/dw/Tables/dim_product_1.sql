@@ -30,6 +30,9 @@
     [ManufactoryName]        NVARCHAR (255) NULL,
     [DateFrom]               DATE           NULL,
     [DateTo]                 DATE           NULL,
-    [CurrentFlag]            NVARCHAR (20)  NULL
+    [CurrentFlag]            NVARCHAR (20)  NULL,
+    [HashCode]               VARBINARY (30) NULL
 );
+
+
 

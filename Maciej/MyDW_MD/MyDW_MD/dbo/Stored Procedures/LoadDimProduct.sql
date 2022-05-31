@@ -6,8 +6,83 @@ exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start 
 
 BEGIN TRY
 
+
 drop table if exists #product
 
+delete from dbo.DimProduct
+where ProductKey = -1
+
+
+SET IDENTITY_INSERT [dbo].[DimProduct] on
+
+insert into [dbo].[DimProduct]
+([ProductKey]
+      ,[ProductID]
+      ,[ProductName]
+      ,[ProductAlternateKey]
+      ,[StandardCost]
+      ,[FinishedGoodsFlag]
+      ,[Color]
+      ,[ListPrice]
+      ,[Size]
+      ,[SizeUnitMeasureCode]
+      ,[Weight]
+      ,[WeightUnitMeasureCode]
+      ,[DaysToManufacture]
+      ,[ProductLine]
+      ,[Class]
+      ,[Style]
+      ,[ProductCategoryID]
+      ,[ProductCategoryName]
+      ,[ProductSubcategoryID]
+      ,[ProductSubcategoryName]
+      ,[ProductModelID]
+      ,[ProductModelName]
+      ,[SellStartDate]
+      ,[SellEndDate]
+      ,[SourceModifiedDate]
+      ,[CreatedDate]
+      ,[ModifiedDate]
+      ,[ManufactoryID]
+      ,[ManufactoryName]
+      ,[DateFrom]
+      ,[DateTo]
+      ,[CurrentRowIndicator])
+select  -1 AS [ProductKey]
+	  ,-1 as [ProductID]
+      , 'Unknown' as [ProductName]
+      ,'Unknown' as [ProductAlternateKey]
+      ,0 AS [StandardCost]
+      ,0 AS [FinishedGoodsFlag]
+      ,'-1' as [Color]
+      ,-1 AS [ListPrice]
+      ,'-1' AS [Size]
+      ,'-1' as [SizeUnitMeasureCode]
+      ,0 AS [Weight]
+      ,'-1' as [WeightUnitMeasureCode]
+      ,-1 AS [DaysToManufacture]
+	  ,'-1' as [ProductLine]
+	  ,'-1' as [Class]
+	  ,'-1' as [Style]
+	  ,-1 AS [ProductCategoryID]
+	  ,'Unknown' as [ProductCategoryName]
+	  ,-1 AS [ProductSubcategoryID]
+	  ,'Unknown' as [ProductSubcategoryName]
+	  ,-1 AS [ProductModelID]
+	  ,-1 AS [ProductModelName]
+	  ,'1900-01-01' as [SellStartDate]
+	  ,'2100-01-01' as [SellEndDate]
+	  ,getdate() as [SourceModifiedDate]
+	  ,getdate() as [CreatedDate]
+	  ,getdate() as [ModifiedDate]
+	  ,-1 as [ManufactoryID]
+	  ,'Unknown' as [ManufactoryName]
+	  ,'1900-01-01' as[DateFrom]
+	  ,'2100-01-01' as [DateTo]
+	  ,'Current' as CurrentRowIndicator
+
+
+SET IDENTITY_INSERT [dbo].[DimProduct] off
 
 update a 
 set CurrentRowIndicator = 'Expired', Dateto =cast(dateadd(dd,-1,c.Date) as date)
@@ -226,8 +301,7 @@ Merge dbo.DimProduct as target
 END TRY
 
 BEGIN CATCH 
-declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
 
-exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+exec [log].[ErrorCall] 
 
 end catch

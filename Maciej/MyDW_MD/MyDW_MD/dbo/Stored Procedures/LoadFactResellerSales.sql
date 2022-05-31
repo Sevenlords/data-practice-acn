@@ -14,9 +14,9 @@ SELECT
 	cast(s.order_number as int) as [SalesOrderID],
 	cast(0 as nvarchar) as [SalesOrderNumber],
 	0 as [SalesOrderDetailID],
-	d.DateKey as [DateKey],
-	r.ResellerKey as [ResellerKey],
-	p.ProductKey as [ProductKey],
+	isnull(d.DateKey, '1900-01-01') as [DateKey],
+	isnull(r.ResellerKey, -1) as [ResellerKey],
+	isnull(p.ProductKey, -1) as [ProductKey],
 	cast(s.qty as money) [OrderQuantity],
 	parse(s.unit_price as money using 'de-DE') as [UnitPrice],
 	cast(s.qty as money)*(parse(s.unit_price as money using 'de-DE')) as [ExtendedAmount],
@@ -29,9 +29,10 @@ SELECT
 	into #RSales
 	from
 	[stg].[sales_txt] as s
-	join [MyDW].[dbo].DimProduct as p on p.ProductAlternateKey = s.product
+	left join [MyDW].[dbo].DimProduct as p on p.ProductAlternateKey = s.product
 	join [MyDW].[dbo].DimReseller r on r.ResellerAlternateKey = s.customer
-	join[MyDW].[dbo].DimDate as d on convert(date,s.date,104) = d.[Date]
+	left join [dbo].[dimDate] D on IIF(charindex('-',s.date)=0, convert(datetime, s.date ,104), convert(datetime, s.date)) = d.Date
+
 
 
 
@@ -53,12 +54,12 @@ insert into #RSales
 	[SalesAmount],
 	[SourceID])
 SELECT   
-	h.SalesOrderID as [SalesOrderID],
-	h.SalesOrderNumber as [SalesOrderNumber],
-	o.SalesOrderDetailID as [SalesOrderDetailID],
-	d.DateKey as [DateKey],
-	r.ResellerKey as [ResellerKey],
-	p.ProductKey as [ProductKey],
+	isnull(h.SalesOrderID, -1) as [SalesOrderID],
+	isnull(h.SalesOrderNumber, -1) as [SalesOrderNumber],
+	isnull(o.SalesOrderDetailID, -1) as [SalesOrderDetailID],
+	isnull(d.DateKey, '1900-01-01') as [DateKey],
+	isnull(r.ResellerKey, -1) as [ResellerKey],
+	isnull(p.ProductKey, -1) as [ProductKey],
 	o.OrderQty as [OrderQuantity],
 	o.UnitPrice as [UnitPrice],
 	(o.OrderQty*o.UnitPrice) as [ExtendedAmount],
@@ -148,8 +149,6 @@ exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End 
 END TRY
 
 BEGIN CATCH 
-declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
 
-exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
-
+exec [log].[ErrorCall] 
 end catch

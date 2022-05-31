@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{D6AA5845-A63F-494F-80CB-D1603B5D81CF}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{6B10E939-0715-4A1A-BB01-DB3CDAB1500B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -50,7 +50,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Load DimCurrency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -67,7 +67,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Load DimCustomer"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -84,12 +84,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Load DimData"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{96C7F569-6B1B-4AD2-AC59-ADD82863862A}"
-              SQLTask:SqlStatementSource="EXEC dbo.LoadDimData" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="EXEC dbo.LoadDimDate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -101,7 +101,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Load DimProduct"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -118,7 +118,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Load DimReseller"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -147,7 +147,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Load FactInternetSales"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -164,7 +164,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Load FactResellerSales"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -198,44 +198,44 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="168,42.6666666666667"
+          Size="168,43"
           Id="Package\Load Dim\Load DimCurrency"
           TopLeft="12.162872159402,24.0829417884656" />
         <NodeLayout
-          Size="168,42.6666666666667"
+          Size="168,43"
           Id="Package\Load Dim\Load DimCustomer"
           TopLeft="185.106051072704,22.3413159401963" />
         <NodeLayout
-          Size="168,42.6666666666667"
+          Size="168,43"
           Id="Package\Load Dim\Load DimData"
           TopLeft="363.984836276056,21.7193063591106" />
         <NodeLayout
-          Size="168,42.6666666666667"
+          Size="168,43"
           Id="Package\Load Dim\Load DimProduct"
           TopLeft="15.6893869206083,82.6762453055168" />
         <NodeLayout
-          Size="168,42.6666666666667"
+          Size="168,43"
           Id="Package\Load Dim\Load DimReseller"
           TopLeft="196.939384219773,80.8102165622594" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="547.333333333334,240.666666666667"
-          Size="547.333333333334,284"
+          PanelSize="547,241"
+          Size="547,284"
           Id="Package\Load Dim"
           TopLeft="121.704543641006,54.7368431355485" />
         <NodeLayout
-          Size="189.333333333334,42.6666666666667"
+          Size="189,43"
           Id="Package\Load Fact\Load FactInternetSales"
           TopLeft="78.022724351761,51.9202644676884" />
         <NodeLayout
-          Size="193.333333333334,42.6666666666667"
+          Size="193,43"
           Id="Package\Load Fact\Load FactResellerSales"
           TopLeft="324.613629768179,46.9441878190021" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="604,173.333333333334"
+          PanelSize="604,173"
           Size="604,216"
           Id="Package\Load Fact"
           TopLeft="118.181816420772,398.708141475983" />

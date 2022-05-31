@@ -2,7 +2,7 @@
 as
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
-
+begin try
 --delete from stg.sales_txt
 delete a
 from stg.sales_txt a join stg.sales_txt_delta b
@@ -39,3 +39,8 @@ from stg.sales_txt_delta
 
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+end try
+
+begin catch
+exec log.handle_error
+end catch

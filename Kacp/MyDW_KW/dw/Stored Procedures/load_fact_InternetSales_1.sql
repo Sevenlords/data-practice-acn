@@ -3,6 +3,8 @@ as
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
+begin try
+
 declare @startDate datetime
 select @startDate = ISNULL(max([Timestamp]),'1900-01-01') from dw.fact_InternetSales
 
@@ -79,3 +81,9 @@ where a.ProductKey <> b.ProductKey
 --select * from dw.fact_internetsales
 
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
+
+end try
+
+begin catch
+exec log.handle_error
+end catch

@@ -2,6 +2,24 @@
 as
 exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start proc'
 
+delete from [dbo].[DimReseller] where ResellerKey = -1 
+
+set identity_insert [dbo].[DimReseller] ON
+
+insert into [dbo].[DimReseller]([ResellerKey]
+      ,[CustomerID]
+      ,[ResellerAlternateKey]
+      ,[ResellerName]
+      ,[CreatedDate]
+      ,[ModifiedDate])
+Select -1 as [ResellerKey]
+      ,-1 as  [CustomerID]
+      ,'-1' as [ResellerAlternateKey]
+      ,'-1' as [ResellerName]
+      ,getdate() as [CreatedDate]
+      ,getdate() as [ModifiedDate]
+
+set identity_insert [dbo].[DimReseller] OFF
 
 drop table if exists #reseller
 BEGIN TRY
@@ -45,8 +63,7 @@ exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End 
 END TRY
 
 BEGIN CATCH 
-declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
 
-exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
+exec [log].[ErrorCall] 
 
 end catch
