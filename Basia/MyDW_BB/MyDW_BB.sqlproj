@@ -65,6 +65,8 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="stg\Stored Procedures\" />
+    <Folder Include="log\" />
+    <Folder Include="log\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="stg\Tables\Person_Person.sql" />
@@ -94,5 +96,8 @@
     <Build Include="dbo\Tables\FactResellerSales.sql" />
     <Build Include="dbo\Tables\FactInternetSales.sql" />
     <Build Include="dbo\Stored Procedures\LoadDimCurrency.sql" />
+    <Build Include="log\Tables\Error.sql" />
+    <Build Include="log\Tables\Procedure.sql" />
+    <Build Include="Security\log.sql" />
   </ItemGroup>
 </Project>
