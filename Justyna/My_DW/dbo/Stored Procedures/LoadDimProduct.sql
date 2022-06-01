@@ -262,6 +262,80 @@ SELECT  -1 AS [ProductKey],
 		SOURCE.[DateTo],
 		SOURCE.[CurrentRowIndicator]);
 
+		--Late Arriving Dimension
+		SELECT DISTINCT D.Product, P.ProductAlternateKey
+		INTO #tempLateProd
+		FROM [stg].[SalesTXT_Delta] D
+		LEFT JOIN [dbo].[DimProduct] P
+		ON D.product = P.ProductAlternateKey
+		WHERE P.ProductAlternateKey IS NULL
+
+		INSERT INTO   [dbo].[DimProduct](
+			[ProductID],
+			[ProductName],
+			[ProductAlternateKey],
+			[StandartCost],
+			[FinishedGoodFlag],
+			[Color],
+			[ListPrice],
+			[Size],
+			[SizeUnitMeasureCode],
+			[Weight],
+			[WeightUnitMeasureCode],
+			[DaysToManufacture],
+			[ProductLine],
+			[Class],
+			[Style],
+			[ProductCategoryID],
+			[ProductCategoryName],
+			[ProductSubcategoryID],
+			[ProductSubcategoryName],
+			[ProductModelID],
+			[ProductModelName],
+			[SellStartDate],
+			[SellEndDate],
+			[SourceModifiedDate],
+			[CreatedDate],
+			[ModifiedDate],
+			[ManufactoryId],
+			[ManufactoryName],
+			[DateFrom],
+			[DateTo],
+			[CurrentRowIndicator])
+		SELECT
+			-2 AS [ProductID],
+			'Unk' AS [ProductName],
+			Product AS [ProductAlternateKey],
+			-1 AS [StandartCost],
+			0 AS [FinishedGoodFlag],
+			'Unk' AS [Color],
+			-1 AS [ListPrice],
+			'Unk' AS [Size],
+			'Unk' AS [SizeUnitMeasureCode],
+			-1 AS [Weight],
+			'Unk' AS [WeightUnitMeasureCode],
+			-1 AS [DaysToManufacture],
+			'Unk' AS [ProductLine],
+			'Unk' AS [Class],
+			'Unk' AS [Style],
+			-1 AS [ProductCategoryID],
+			'Unk' AS [ProductCategoryName],
+			-1 AS [ProductSubcategoryID],
+			'Unk' AS [ProductSubcategoryName],
+			-1 AS [ProductModelID],
+			'Unk' AS [ProductModelName],
+			'1900-01-01' AS [SellStartDate],
+			'2100-12-31' AS [SellEndDate],
+			GETDATE() AS [SourceModifiedDate],
+			GETDATE() AS [CreatedDate],
+			GETDATE() AS [ModifiedDate],
+			-1 AS [ManufactoryId],
+			'Unk' AS [ManufactoryName],
+			'1900-01-01'AS [DateFrom],
+			'2100-12-31'AS [DateTo],
+			'Unk' AS [CurrentRowIndicator]
+		FROM #tempLateProd
+
 	EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
 END TRY
 
