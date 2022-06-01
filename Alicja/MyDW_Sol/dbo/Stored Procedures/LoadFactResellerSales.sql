@@ -102,7 +102,7 @@
 		[SourceID])
 	select
 		cast(ST.order_number as int) [SalesOrderID],
-		0 [SalesOrderNumber],
+		-1 [SalesOrderNumber],
 		cast(ST.line_number as int) [SalesOrderDetailID],
 		isnull(D.DateKey,-1) [DateKey],
 		isnull(R.ResellerKey,-1) [ResellerKey],
@@ -112,8 +112,8 @@
 		cast(ST.qty as int)*parse(ST.unit_price as money using 'de-DE') [ExtendedAmount],
 		0 [UnitPriceDiscountPct],
 		0 [DiscountAmount],
-		isnull(P.StandardCost,0) [ProductStandardCost],
-		isnull(cast(ST.qty as int)*P.StandardCost,0) [TotalProductCost],
+		P.StandardCost [ProductStandardCost],
+		cast(ST.qty as int)*P.StandardCost [TotalProductCost],
 		cast(ST.qty as int)*parse(ST.unit_price as money using 'de-DE') [SalesAmount],
 		'SALES_TXT' [SourceID]
 	from [stg].[Sales_txt] ST
