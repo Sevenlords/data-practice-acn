@@ -42,9 +42,9 @@
 		SOH.SalesOrderID [SalesOrderID],
 		SOH.SalesOrderNumber [SalesOrderNumber],
 		SOD.SalesOrderDetailID [SalesOrderDetailID],
-		D.DateKey [DateKey],
-		C.CustomerKey [CustomerKey],
-		P.ProductKey [ProductKey],
+		isnull(D.DateKey,-1) [DateKey],
+		isnull(C.CustomerKey,-1) [CustomerKey],
+		isnull(P.ProductKey,-1) [ProductKey],
 		SOD.OrderQty [OrderQuantity],
 		SOD.UnitPrice [UnitPrice],
 		SOD.OrderQty*SOD.UnitPrice [ExtendedAmount],
@@ -78,16 +78,7 @@
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
 
 	end try
+
 	begin catch
-		--declare @ErrorNumber int = ERROR_NUMBER(), 
-		--		@ErrorState int = ERROR_STATE(), 
-		--		@ErrorSeverity int = ERROR_SEVERITY(), 
-		--		@ErrorLine int = ERROR_LINE(), 
-		--		@ErrorProcedure nvarchar(max) = ERROR_PROCEDURE(), 
-		--		@ErrorMessage nvarchar(max) = ERROR_MESSAGE()
-
-		--exec [log].[ErrorCall]	@ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, 
-		--						@ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
-
 		exec [log].[ErrorCall]
 	end catch

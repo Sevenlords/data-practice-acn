@@ -30,7 +30,7 @@
 		-1 as [ListPrice],
 		'-1' as [Size],
 		'-1' as [SizeUnitMeasureCode],
-		-1 as [Weight],
+		0 as [Weight],
 		'-1' as [WeightUnitMeasureCode],
 		-1 as [DaysToManufacture],
 		'-1' as [ProductLine],
@@ -73,7 +73,7 @@
 		P.ListPrice as [ListPrice],
 		isnull(P.Size, 'N/D') as [Size],
 		isnull(P.SizeUnitMeasureCode, 'N/D') as [SizeUnitMeasureCode],
-		isnull(P.Weight, 0) as [Weight],													--NULL nie jest zamieniany
+		isnull(P.[Weight], 0) as [Weight],													--NULL zamieniany na 0
 		isnull(P.WeightUnitMeasureCode, 'N/D') as [WeightUnitMeasureCode],
 		P.DaysToManufacture as [DaysToManufacture],
 		isnull(cast(P.ProductLine as nchar(3)), 'N/D') as [ProductLine],
@@ -188,6 +188,59 @@
 	left join #products b on a.ProductID = b.ProductID
 	where b.ProductID = null
 	*/
+
+	drop table if exists #tempLateProd
+
+	select distinct ST.product
+	into #tempLateProd
+	from [stg].[Sales_txt] ST
+	left join [dbo].[dimProduct] DP on ST.product = DP.ProductAlternateKey
+	where DP.ProductAlternateKey is null
+
+	--delete from dbo.dimProduct
+	--where ProductID = -2
+
+	insert into [dbo].[dimProduct](
+		[ProductID], [ProductName], [ProductAlternateKey], [StandardCost], [FinishedGoodsFlag],
+		[Color], [ListPrice], [Size], [SizeUnitMeasureCode], [Weight], [WeightUnitMeasureCode],	[DaysToManufacture],
+		[ProductLine], [Class],	[Style], [ProductCategoryID], [ProductCategoryName], [ProductSubCategoryID],
+		[ProductSubCategoryName], [ProductModelID],	[ProductModelName],	[SellStartDate], [SellEndDate],
+		[SourceModifiedDate], [CreatedDate], [ModifiedDate], [ManufactoryId], [ManufactoryName], [DateFrom],
+		[DateTo], [CurrentRowIndicator]
+	)
+	select
+		-2 as [ProductID],
+		'-2' as [ProductName],
+		product as [ProductAlternateKey],
+		0 as [StandardCost],
+		0 as [FinishedGoodsFlag],
+		'-2' as [Color],
+		-2 as [ListPrice],
+		'-2' as [Size],
+		'-2' as [SizeUnitMeasureCode],
+		0 as [Weight],
+		'-2' as [WeightUnitMeasureCode],
+		-2 as [DaysToManufacture],
+		'-2' as [ProductLine],
+		'-2' as [Class],
+		'-2' as [Style],
+		-2 as [ProductCategoryID],
+		'-2' as [ProductCategoryName],
+		-2 as [ProductSubCategoryID],
+		'-2' as [ProductSubCategoryName],
+		-2 as [ProductModelID],
+		'-1' as [ProductModelName],
+		'1900-01-01' as [SellStartDate],
+		'2100-12-31' as [SellEndDate],
+		getdate() as [SourceModifiedDate],
+		getdate() as [CreatedDate],
+		getdate() as [ModifiedDate],
+		-2 as [ManufactoryId],
+		'-2' as [ManufactoryName],
+		'1900-01-01' as [DateFrom],
+		'2100-12-31' as [DateTo],
+		'-2' as [CurrentRowIndicator]
+	from #tempLateProd
 
 	exec [log].[ProcedureCall] @ProcedureId = @@procid, @Step = 999, @Comment = 'End Proc'
 	
