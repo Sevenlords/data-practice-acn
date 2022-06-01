@@ -8,10 +8,86 @@
 
 
 
+
+
 CREATE PROCEDURE [dbo].[LoadDimProduct]
 as
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
+
+BEGIN TRY
+
+DELETE FROM DimProduct where ProductKey=-1
+
+SET IDENTITY_INSERT DimProduct ON
+
+INSERT INTO DimProduct ([ProductKey]
+      ,[ProductID]
+      ,[ProductName]
+      ,[ProductAlternateKey]
+      ,[StandardCost]
+      ,[FinishedGoodFlag]
+      ,[Color]
+      ,[ListPrice]
+      ,[Size]
+      ,[SizeUnitMeasureCode]
+      ,[Weight]
+      ,[WeightUnitMeasureCode]
+      ,[DaysToManufacture]
+      ,[ProductLine]
+      ,[Class]
+      ,[Style]
+      ,[ProductCategoryID]
+      ,[ProductCategoryName]
+      ,[ProductSubcategoryID]
+      ,[ProductSubcategoryName]
+      ,[ProductModelID]
+      ,[ProductModelName]
+      ,[SellStartDate]
+      ,[SellEndDate]
+      ,[SourceModifiedDate]
+      ,[CreatedDate]
+      ,[ModifiedDate]
+      ,[ManufactoryId]
+      ,[ManufactoryName]
+      ,[DateFrom]
+      ,[DateTo]
+      ,[CurrentRowIndicator])
+	  SELECT
+	  -1 [ProductKey]
+      ,-1[ProductID]
+      ,'N/D'[ProductName]
+      ,'N/D'[ProductAlternateKey]
+      ,-1[StandardCost]
+      ,0[FinishedGoodFlag]
+      ,'N/D'[Color]
+      ,-1[ListPrice]
+      ,-1[Size]
+      ,'N/D' [SizeUnitMeasureCode]
+      ,-1 [Weight]
+      ,'N/D' [WeightUnitMeasureCode]
+      ,-1 [DaysToManufacture]
+      ,'-1' [ProductLine]
+      ,'-1'[Class]
+      ,'-1'[Style]
+      ,-1[ProductCategoryID]
+      ,'-1'[ProductCategoryName]
+      ,-1[ProductSubcategoryID]
+      ,'-1'[ProductSubcategoryName]
+      ,-1[ProductModelID]
+      ,'-1'[ProductModelName]
+      ,getdate()[SellStartDate]
+      ,getdate()[SellEndDate]
+      ,getdate()[SourceModifiedDate]
+      ,getdate()[CreatedDate]
+      ,getdate()[ModifiedDate]
+      ,-1[ManufactoryId]
+      ,'-1'[ManufactoryName]
+      ,getdate()[DateFrom]
+      ,getdate()[DateTo]
+      ,'-1'[CurrentRowIndicator]
+
+SET IDENTITY_INSERT DimProduct OFF
 
 UPDATE a SET CurrentRowIndicator = 'Expired',
 	DateTo = cast(DATEADD(DD, -1, c.Date) as date)
@@ -196,3 +272,12 @@ INSERT (
 		);
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'
+
+END TRY
+
+BEGIN CATCH
+
+EXEC [log].[ErrorCall] --@ErrorNumber =  ERROR_NUMBER(), @ErrorState = ERROR_STATE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorLine =  ERROR_LINE(), @ErrorProcedure = ERROR_PROCEDURE(), @ErrorMessage = ERROR_MESSAGE()
+
+
+END CATCH

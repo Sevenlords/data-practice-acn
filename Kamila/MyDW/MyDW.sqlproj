@@ -107,5 +107,7 @@
     <Build Include="log\Tables\Procedure.sql" />
     <Build Include="log\Stored Procedures\ProcedureCall.sql" />
     <Build Include="Security\log.sql" />
+    <Build Include="log\Tables\Error.sql" />
+    <Build Include="log\Stored Procedures\ErrorCall.sql" />
   </ItemGroup>
 </Project>

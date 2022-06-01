@@ -7,11 +7,12 @@
 
 
 
+
 CREATE PROCEDURE [dbo].[LoadResellerSales]
 as
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
-
+BEGIN TRY
 drop table if exists #resellersales
 
 SELECT
@@ -196,3 +197,11 @@ THEN INSERT
 	;
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step =99, @Comment = 'Finish procedure'
+
+END TRY
+
+BEGIN CATCH
+
+EXEC [log].[ErrorCall] 
+
+END CATCH

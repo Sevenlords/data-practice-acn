@@ -4,11 +4,12 @@
 
 
 
+
 CREATE PROCEDURE [dbo].[LoadSalesTxt]
 as
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
-
+BEGIN TRY
 truncate table stg.sales_txt
 
 
@@ -46,3 +47,11 @@ SELECT
 FROM stg.sales_txt_delta
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'
+
+END TRY
+
+BEGIN CATCH
+
+EXEC [log].[ErrorCall]
+
+END CATCH
