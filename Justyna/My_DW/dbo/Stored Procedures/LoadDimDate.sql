@@ -14,6 +14,40 @@ BEGIN TRY
 	/********************************************************************************************/
 	--Proceed only if Start Date(Current date ) is less than End date you specified above
 
+	
+	DELETE FROM [dbo].[DimDate]
+	WHERE DateKey = -1
+
+	INSERT INTO [dbo].[DimDate]
+			([DateKey]
+		  ,[Date]
+		  ,[DayOfMonth]
+		  ,[DayName]
+		  ,[Month]
+		  ,[MonthName]
+		  ,[Quarter]
+		  ,[QuarterName]
+		  ,[Year]
+		  ,[YearName]
+		  ,[MonthYear]
+		  ,[MMYYYY]
+		  ,[IsWeekday])
+	SELECT  -1 AS [DateKey]
+			,'1900-01-01' AS [Date]
+			,'-1' AS [DayOfMonth]
+			,'-1' AS [DayName]
+			,'-1' AS [Month]
+			,'-1' AS [MonthName]
+			,'0' AS [Quarter]
+			,'-1' AS [QuarterName]
+			,'-1' AS [Year]
+			,'-1' AS [YearName]
+			,'-1' AS [MonthYear]
+			,'-1' AS [MMYYYY]
+			,0 AS [IsWeekday]
+	
+
+
 	WHILE @CurrentDate <= @EndDate
 	BEGIN
 	/* Populate Your Dimension Table with values*/

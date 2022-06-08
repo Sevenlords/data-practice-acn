@@ -17,15 +17,15 @@ begin try
 drop table if exists dw.customers_temp
 
 select
-	SC.CustomerID			AS [CustomerID],
-	SC.AccountNumber		AS [CustomerAlternateKey],
-	PP.PersonType			AS [PersonType],
+	isnull(SC.CustomerID, -1)	AS [CustomerID],
+	isnull(SC.AccountNumber, 'unknown')		AS [CustomerAlternateKey],
+	isnull(PP.PersonType, 'ND')			AS [PersonType],
 	ISNULL(PP.Title, 'N/D') AS [Title],
-	PP.FirstName			AS [FirstName],
+	isnull(PP.FirstName, 'unknown')			AS [FirstName],
 	ISNULL(PP.MiddleName, 'N/D') AS [MiddleName],
-	PP.LastName				AS [LastName],
-	PP.NameStyle			AS [NameStyle],
-	PP.EmailPromotion		AS [EmailPromotion],
+	isnull(PP.LastName, 'unknown')			AS [LastName],
+	isnull(PP.NameStyle, -1)			AS [NameStyle],
+	isnull(PP.EmailPromotion, -1)		AS [EmailPromotion],
 	ISNULL(PP.Suffix, 'N/D') AS [Suffix],
 	ISNULL(EA.EmailAddress, 'N/D') AS [EmailAddress],
 	ISNULL(PPH.PhoneNumber, 'N/D') AS [PhoneNumber],
@@ -45,8 +45,6 @@ FROM stg.sales_customer AS SC
 update dw.customers_temp
 set HashCode = Hashbytes('MD5', concat(CustomerID,CustomerAlternateKey,PersonType,title, FirstName, 
 										MiddleName, LastName,EmailPromotion, Suffix, EmailAddress, PhoneNumber))
-	
----- select * from #customers
 
 
 update a

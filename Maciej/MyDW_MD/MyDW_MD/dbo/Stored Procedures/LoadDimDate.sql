@@ -9,6 +9,38 @@ DECLARE @EndDate DATETIME = '01/01/2030' --End Value of Date Range
 
 DECLARE @CurrentDate AS DATETIME = @StartDate
 
+delete from dimdate where datekey=19000101
+
+insert into DimDate
+([DateKey]
+      ,[Date]
+      ,[DayOfMonth]
+      ,[DayName]
+      ,[Month]
+      ,[MonthName]
+      ,[Quarter]
+      ,[QuarterName]
+      ,[Year]
+      ,[YearName]
+      ,[MonthYear]
+      ,[MMYYYY]
+      ,[IsWeekday]
+      ,[CreatedDate])
+select 19000101 as [DateKey]
+      ,'1900-01-01 00:00:00.000' as [Date]
+      ,1 as [DayOfMonth]
+      ,'-1'[DayName]
+      ,1 as [Month]
+      ,'January' as [MonthName]
+      ,1 as [Quarter]
+      ,'First' as [QuarterName]
+      ,1900 as [Year]
+      ,'CY1900' as [YearName]
+      ,'Jan-1900' as [MonthYear]
+      ,0119000 as [MMYYYY]
+      ,'-1' as [IsWeekday]
+      ,getdate() as [CreateDate]
+
 WHILE @CurrentDate < @EndDate
 BEGIN
  

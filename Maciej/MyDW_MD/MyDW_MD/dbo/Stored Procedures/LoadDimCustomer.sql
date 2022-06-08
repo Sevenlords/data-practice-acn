@@ -1,4 +1,5 @@
 ﻿
+
 CREATE procedure [dbo].[LoadDimCustomer]
 as
 
@@ -6,6 +7,42 @@ exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 1, @Comment ='Start 
 
 BEGIN TRY
 
+delete from [dbo].[DimCustomer] where CustomerKey = -1 
+
+set identity_insert [dbo].[DimCustomer] ON
+insert into [dbo].[DimCustomer] ([CustomerKey]
+      ,[CustomerID]
+      ,[CustomerAlternateKey]
+      ,[PersonType]
+      ,[Title]
+      ,[FirstName]
+      ,[MiddleName]
+      ,[LastName]
+      ,[NameStyle]
+      ,[EmailPromotion]
+      ,[Suffix]
+      ,[EmailAddress]
+      ,[PhoneNumber]
+      ,[CreatedDate]
+      ,[ModifiedDate])
+Select -1 as [CustomerKey]
+      ,-1 as [CustomerID]
+      ,'-1' as [CustomerAlternateKey]
+      ,'-1' as [PersonType]
+      ,'-1' as [Title]
+      ,'-1' as [FirstName]
+      ,'-1' as [MiddleName]
+      ,'-1' as [LastName]
+      ,'-1' as [NameStyle]
+      ,-1 as [EmailPromotion]
+      ,'-1' as [Suffix]
+      ,'-1' as [EmailAddress]
+      ,'-1' as [PhoneNumber]
+      ,getdate() as [CreatedDate]
+      ,getdate() as[ModifiedDate]
+
+
+set identity_insert [dbo].[DimCustomer] OFF
 
 drop table if exists #customer
 SELECT   
@@ -86,9 +123,8 @@ exec [log].[ProcedureCall] @ProcedureID = @@procid ,@Step = 999, @Comment ='End 
 END TRY
 
 BEGIN CATCH 
-declare @Errornumber int =  ERROR_NUMBER(), @ErrorState int = error_state(), @ErrorSeverity int = error_severity(), @ErrorLine int = error_Line(), @ErrorProcedure nvarchar(max)= error_procedure(), @ErrorMessage nvarchar(max) = error_message()
 
-exec [log].[ErrorCall] @ErrorNumber = @ErrorNumber, @ErrorState = @ErrorState, @ErrorSeverity = @ErrorSeverity, @ErrorLine = @ErrorLine, @ErrorProcedure = @ErrorProcedure, @ErrorMessage = @ErrorMessage
 
+exec [log].[ErrorCall] 
 end catch
 		

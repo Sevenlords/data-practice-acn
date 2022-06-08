@@ -1,0 +1,1056 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "pl-PL",
+    "dataSources": [
+      {
+        "name": "myDW",
+        "connectionString": "Provider=SQLNCLI11;Data Source=localhost;Initial Catalog=myDW;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateAccount",
+        "account": "DIR\\m.chmist.soczynska",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "Customer",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CustomerAlternateKey",
+            "dataType": "string",
+            "sourceColumn": "CustomerAlternateKey",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PersonType",
+            "dataType": "string",
+            "sourceColumn": "PersonType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Title",
+            "dataType": "string",
+            "sourceColumn": "Title",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FirstName",
+            "dataType": "string",
+            "sourceColumn": "FirstName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "MiddleName",
+            "dataType": "string",
+            "sourceColumn": "MiddleName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "LastName",
+            "dataType": "string",
+            "sourceColumn": "LastName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "NameStyle",
+            "dataType": "boolean",
+            "sourceColumn": "NameStyle",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "EmailPromotion",
+            "dataType": "int64",
+            "sourceColumn": "EmailPromotion",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Suffix",
+            "dataType": "string",
+            "sourceColumn": "Suffix",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "EmailAddress",
+            "dataType": "string",
+            "sourceColumn": "EmailAddress",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "PhoneNumber",
+            "dataType": "string",
+            "sourceColumn": "PhoneNumber",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CreatedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "CreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Customer",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[DimCustomer].* FROM [dbo].[DimCustomer] ",
+              "dataSource": "myDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimCustomer].* FROM [dbo].[DimCustomer] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimCustomer"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Date",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "Date",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "DayOfMonth",
+            "dataType": "string",
+            "sourceColumn": "DayOfMonth",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DayName",
+            "dataType": "string",
+            "sourceColumn": "DayName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Month",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Month",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "string",
+            "sourceColumn": "Quarter",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "QuarterName",
+            "dataType": "string",
+            "sourceColumn": "QuarterName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Year",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Year",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "YearName",
+            "dataType": "string",
+            "sourceColumn": "YearName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "MonthYear",
+            "dataType": "string",
+            "sourceColumn": "MonthYear",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "MMYYYY",
+            "dataType": "string",
+            "sourceColumn": "MMYYYY",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "IsWeekday",
+            "dataType": "boolean",
+            "sourceColumn": "IsWeekday",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "Timeshtamp",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "Timeshtamp",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Date",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[DimDate].* FROM [dbo].[DimDate] ",
+              "dataSource": "myDW"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Y_M_D",
+            "levels": [
+              {
+                "name": "Year",
+                "ordinal": 0,
+                "column": "Year"
+              },
+              {
+                "name": "Month",
+                "ordinal": 1,
+                "column": "Month"
+              },
+              {
+                "name": "Date",
+                "ordinal": 2,
+                "column": "Date"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimDate].* FROM [dbo].[DimDate] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimDate"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Product",
+        "columns": [
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductAlternateKey",
+            "dataType": "string",
+            "sourceColumn": "ProductAlternateKey",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "StandardCost",
+            "dataType": "decimal",
+            "sourceColumn": "StandardCost",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "FinishedGoodFlag",
+            "dataType": "boolean",
+            "sourceColumn": "FinishedGoodFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "Color",
+            "dataType": "string",
+            "sourceColumn": "Color",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ListPrice",
+            "dataType": "decimal",
+            "sourceColumn": "ListPrice",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Size",
+            "dataType": "string",
+            "sourceColumn": "Size",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SizeUnitMeasureCode",
+            "dataType": "string",
+            "sourceColumn": "SizeUnitMeasureCode",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Weight",
+            "dataType": "double",
+            "sourceColumn": "Weight",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "WeightUnitMeasureCode",
+            "dataType": "string",
+            "sourceColumn": "WeightUnitMeasureCode",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DaysToManufacture",
+            "dataType": "int64",
+            "sourceColumn": "DaysToManufacture",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductLine",
+            "dataType": "string",
+            "sourceColumn": "ProductLine",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Class",
+            "dataType": "string",
+            "sourceColumn": "Class",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Style",
+            "dataType": "string",
+            "sourceColumn": "Style",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductCategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductCategoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductCategoryName",
+            "dataType": "string",
+            "sourceColumn": "ProductCategoryName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductSubcategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductSubcategoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductSubcategoryName",
+            "dataType": "string",
+            "sourceColumn": "ProductSubcategoryName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductModelID",
+            "dataType": "int64",
+            "sourceColumn": "ProductModelID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductModelName",
+            "dataType": "string",
+            "sourceColumn": "ProductModelName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SellStartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "SellStartDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "SellEndDate",
+            "dataType": "dateTime",
+            "sourceColumn": "SellEndDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "SourceModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "SourceModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "CreatedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "CreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ManufactoryID",
+            "dataType": "int64",
+            "sourceColumn": "ManufactoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ManufactoryName",
+            "dataType": "string",
+            "sourceColumn": "ManufactoryName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DateFrom",
+            "dataType": "dateTime",
+            "sourceColumn": "DateFrom",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "DateTo",
+            "dataType": "dateTime",
+            "sourceColumn": "DateTo",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "CurrentRowIndicator",
+            "dataType": "string",
+            "sourceColumn": "CurrentRowIndicator",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Product",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[dimProduct].* FROM [dbo].[dimProduct] ",
+              "dataSource": "myDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[dimProduct].* FROM [dbo].[dimProduct] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dimProduct"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Reseller",
+        "columns": [
+          {
+            "name": "ResellerKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ResellerKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ResellerAlternateKey",
+            "dataType": "string",
+            "sourceColumn": "ResellerAlternateKey",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ResellerName",
+            "dataType": "string",
+            "sourceColumn": "ResellerName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CreatedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "CreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Reseller",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[DimReseller].* FROM [dbo].[DimReseller] ",
+              "dataSource": "myDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimReseller].* FROM [dbo].[DimReseller] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimReseller"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "FactInternetSales",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesOrderNumber",
+            "dataType": "string",
+            "sourceColumn": "SalesOrderNumber",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductKey",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "OrderQuantity",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "OrderQuantity",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "UnitPrice",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "ExtendedAmount",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "ExtendedAmount",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "UnitPriceDiscountPct",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "UnitPriceDiscountPct",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "DiscountAmount",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "DiscountAmount",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "ProductStandardCost",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "ProductStandardCost",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "TotalProductCost",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "TotalProductCost",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "SalesAmount",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "SalesAmount",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "CreatedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "CreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactInternetSales",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[FactInternetSales].* FROM [dbo].[FactInternetSales] ",
+              "dataSource": "myDW"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Sales Amount Internet",
+            "expression": " sum(FactInternetSales[SalesAmount])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[FactInternetSales].* FROM [dbo].[FactInternetSales] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "FactInternetSales"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "FactResellerSales",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesOrderNumber",
+            "dataType": "string",
+            "sourceColumn": "SalesOrderNumber",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ResellerKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ResellerKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderQuantity",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "OrderQuantity",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "UnitPrice",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "ExtendedAmount",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "ExtendedAmount",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "UnitPriceDiscountPct",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "UnitPriceDiscountPct",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "DiscountAmount",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "DiscountAmount",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "ProductStandardCost",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "ProductStandardCost",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "TotalProductCost",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "TotalProductCost",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "SalesAmount",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "SalesAmount",
+            "formatString": "#,0.00 \"zł\";-#,0.00 \"zł\";#,0.00 \"zł\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1045\" DisplayName=\"zł Polish (Poland)\" Symbol=\"zł\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "CreatedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "CreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactResellerSales",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[FactResellerSales].* FROM [dbo].[FactResellerSales] ",
+              "dataSource": "myDW"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Sales Amount Reseller",
+            "expression": " sum(FactInternetSales[SalesAmount])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[FactResellerSales].* FROM [dbo].[FactResellerSales] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "FactResellerSales"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "761ddc48-681c-4a48-9697-80ee4cb01ede",
+        "fromTable": "FactInternetSales",
+        "fromColumn": "CustomerKey",
+        "toTable": "Customer",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "21b671a2-8238-4d24-8534-4fe6f38569ea",
+        "fromTable": "FactInternetSales",
+        "fromColumn": "DateKey",
+        "toTable": "Date",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "78565a1f-ca72-4460-8c3b-2d74265f80db",
+        "fromTable": "FactInternetSales",
+        "fromColumn": "ProductKey",
+        "toTable": "Product",
+        "toColumn": "ProductKey"
+      },
+      {
+        "name": "a05fc13b-d324-48c3-8650-bb0df19a24ce",
+        "fromTable": "FactResellerSales",
+        "fromColumn": "ResellerKey",
+        "toTable": "Reseller",
+        "toColumn": "ResellerKey"
+      },
+      {
+        "name": "ff9fdf42-5a70-46fb-8c37-30b5e660c4f7",
+        "fromTable": "FactResellerSales",
+        "fromColumn": "DateKey",
+        "toTable": "Date",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "12577e56-1cb6-4864-b4e2-e70c854305a4",
+        "fromTable": "FactResellerSales",
+        "fromColumn": "ProductKey",
+        "toTable": "Product",
+        "toColumn": "ProductKey"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}

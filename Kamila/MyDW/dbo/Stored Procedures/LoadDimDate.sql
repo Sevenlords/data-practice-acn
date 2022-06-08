@@ -5,10 +5,51 @@
 
 
 
+
+
+
 CREATE PROCEDURE [dbo].[LoadDimDate]
 as
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
+
+begin try
+
+DELETE FROM DimDate where DateKey=-1
+
+
+INSERT INTO DimDate (
+		[DateKey]
+      ,[Date]
+      ,[DayOfMonth]
+      ,[DayName]
+      ,[Month]
+      ,[MonthName]
+      ,[Quarter]
+      ,[QuarterName]
+      ,[Year]
+      ,[YearName]
+      ,[MonthYear]
+      ,[MMYYYY]
+      ,[IsWeekday]
+      ,[CreatedDate]
+)
+SELECT -1 AS [DateKey]
+      ,getdate() [Date]
+      ,1[DayOfMonth]
+      ,'-1' AS [DayName]
+      ,1 [Month]
+      ,'January'[MonthName]
+      ,1[Quarter]
+      ,'First'[QuarterName]
+      ,1111 [Year]
+      ,'CY1111' [YearName]
+      ,'Jan-1111'[MonthYear]
+      ,'011111'[MMYYYY]
+      ,'-1'[IsWeekday]
+      ,GETDATE() [CreatedDate]
+
+
 
 DECLARE @StartDate DATETIME = '01/01/2011' --Starting value of Date Range
 DECLARE @EndDate DATETIME = '12/31/2022' --End Value of Date Range
@@ -157,3 +198,10 @@ BEGIN
 	SET @CurrentDate = DATEADD(DD, 1, @CurrentDate)
 END
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'
+END TRY
+
+BEGIN CATCH
+
+EXEC [log].[ErrorCall] 
+
+END CATCH

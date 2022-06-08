@@ -6,6 +6,50 @@ EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start
 
 
 BEGIN TRY
+
+	DELETE FROM [dbo].[DimCustomer]
+	WHERE CustomerKey = -1
+
+	SET IDENTITY_INSERT DimCustomer ON
+
+	INSERT INTO [dbo].[DimCustomer](
+		[CustomerKey],
+		[CustomerID],
+		[CustomerAlternateKey],
+		[PersonType],
+		[Title],
+		[FirstName],
+		[MiddleName],
+		[LastName],
+		[NameStyle],
+		[EmailPromotion],
+		[Suffix],
+		[EmailAddress],
+		[PhoneNumber],
+		[CreatedDate],
+		[ModifiedDate],
+		[HashCode])
+	SELECT 
+		-1 AS [CustomerKey],
+		-1 AS [CustomerID],
+		'-1' AS [CustomerAlternateKey],
+		'-1' AS [PersonType],
+		'-1' AS [Title],
+		'-1' AS [FirstName],
+		'-1' AS [MiddleName],
+		'-1' AS [LastName],
+		0 AS [NameStyle],
+		-1 AS [EmailPromotion],
+		'-1' AS [Suffix],
+		'-1' AS [EmailAddress],
+		'-1' AS [PhoneNumber],
+		GETDATE() AS [CreatedDate],
+		GETDATE() AS [ModifiedDate],
+		0 AS [HashCode]
+
+	SET IDENTITY_INSERT DimCustomer OFF
+
+
 	--TRUNCATE TABLE dbo.DimCustomer
 	--DROP TABLE IF EXISTS #customer
 	DROP TABLE IF EXISTS [dbo].[DimCustomerTmp]

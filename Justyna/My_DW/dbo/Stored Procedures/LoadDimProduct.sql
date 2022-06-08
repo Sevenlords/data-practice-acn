@@ -5,14 +5,88 @@ BEGIN
 
 EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 1, @Comment = 'Start Proc'
 BEGIN TRY
+
+DELETE FROM [dbo].[DimProduct]
+WHERE ProductKey = -1
+
+SET IDENTITY_INSERT DimProduct ON
+
+INSERT INTO   [dbo].[DimProduct](
+		[ProductKey],
+		[ProductID],
+		[ProductName],
+		[ProductAlternateKey],
+		[StandartCost],
+		[FinishedGoodFlag],
+		[Color],
+		[ListPrice],
+		[Size],
+		[SizeUnitMeasureCode],
+		[Weight],
+		[WeightUnitMeasureCode],
+		[DaysToManufacture],
+		[ProductLine],
+		[Class],
+		[Style],
+		[ProductCategoryID],
+		[ProductCategoryName],
+		[ProductSubcategoryID],
+		[ProductSubcategoryName],
+		[ProductModelID],
+		[ProductModelName],
+		[SellStartDate],
+		[SellEndDate],
+		[SourceModifiedDate],
+		[CreatedDate],
+		[ModifiedDate],
+		[ManufactoryId],
+		[ManufactoryName],
+		[DateFrom],
+		[DateTo],
+		[CurrentRowIndicator])
+SELECT  -1 AS [ProductKey],
+		-1 AS [ProductID],
+		'-1' AS [ProductName],
+		'-1' AS [ProductAlternateKey],
+		-1 AS [StandartCost],
+		0 AS [FinishedGoodFlag],
+		'-1' AS [Color],
+		-1 AS [ListPrice],
+		'-1' AS [Size],
+		'-1' AS [SizeUnitMeasureCode],
+		-1 AS [Weight],
+		'-1' AS [WeightUnitMeasureCode],
+		-1 AS [DaysToManufacture],
+		'-1' AS [ProductLine],
+		'-1' AS [Class],
+		'-1' AS [Style],
+		-1 AS [ProductCategoryID],
+		'-1' AS [ProductCategoryName],
+		-1 AS [ProductSubcategoryID],
+		'-1' AS[ProductSubcategoryName],
+		-1 AS [ProductModelID],
+		'-1' AS [ProductModelName],
+		'1900-01-01' AS [SellStartDate],
+		'2100-12-31' AS [SellEndDate],
+		GETDATE() AS [SourceModifiedDate],
+		GETDATE() AS [CreatedDate],
+		GETDATE() AS [ModifiedDate],
+		-1 AS [ManufactoryId],
+		'-1' AS [ManufactoryName],
+		'1900-01-01' AS [DateFrom],
+		'2100-12-31' AS [DateTo],
+		'-1' AS [CurrentRowIndicator]
+
+	SET IDENTITY_INSERT DimProduct OFF
+
 	UPDATE dP
-	SET CurrentRowIndicator = 'Expired',
-		DateTo = CAST(DATEADD(DD, -1,D.Date) AS date)
+	SET CurrentRowIndicator = 'Expired', DateTo = CAST(DATEADD(DD, -1,D.Date) AS date)
 	FROM [dbo].[DimProduct] dP
 		JOIN [stg].[Product_manufactory] PMAN
 			ON dP.ProductID = PMAN.ProductID AND dP.ManufactoryId <> PMAN.ManufactoryId
 		JOIN [dbo].[DimDate]  D
 			ON D.DateKey = PMAN.DateFrom
+	WHERE CurrentRowIndicator = 'Current'
 
 	DROP TABLE IF EXISTS #product
 
@@ -187,6 +261,80 @@ BEGIN TRY
 		SOURCE.[DateFrom],
 		SOURCE.[DateTo],
 		SOURCE.[CurrentRowIndicator]);
+
+		--Late Arriving Dimension
+		SELECT DISTINCT D.Product, P.ProductAlternateKey
+		INTO #tempLateProd
+		FROM [stg].[SalesTXT_Delta] D
+		LEFT JOIN [dbo].[DimProduct] P
+		ON D.product = P.ProductAlternateKey
+		WHERE P.ProductAlternateKey IS NULL
+
+		INSERT INTO   [dbo].[DimProduct](
+			[ProductID],
+			[ProductName],
+			[ProductAlternateKey],
+			[StandartCost],
+			[FinishedGoodFlag],
+			[Color],
+			[ListPrice],
+			[Size],
+			[SizeUnitMeasureCode],
+			[Weight],
+			[WeightUnitMeasureCode],
+			[DaysToManufacture],
+			[ProductLine],
+			[Class],
+			[Style],
+			[ProductCategoryID],
+			[ProductCategoryName],
+			[ProductSubcategoryID],
+			[ProductSubcategoryName],
+			[ProductModelID],
+			[ProductModelName],
+			[SellStartDate],
+			[SellEndDate],
+			[SourceModifiedDate],
+			[CreatedDate],
+			[ModifiedDate],
+			[ManufactoryId],
+			[ManufactoryName],
+			[DateFrom],
+			[DateTo],
+			[CurrentRowIndicator])
+		SELECT
+			-2 AS [ProductID],
+			'Unk' AS [ProductName],
+			Product AS [ProductAlternateKey],
+			-1 AS [StandartCost],
+			0 AS [FinishedGoodFlag],
+			'Unk' AS [Color],
+			-1 AS [ListPrice],
+			'Unk' AS [Size],
+			'Unk' AS [SizeUnitMeasureCode],
+			-1 AS [Weight],
+			'Unk' AS [WeightUnitMeasureCode],
+			-1 AS [DaysToManufacture],
+			'Unk' AS [ProductLine],
+			'Unk' AS [Class],
+			'Unk' AS [Style],
+			-1 AS [ProductCategoryID],
+			'Unk' AS [ProductCategoryName],
+			-1 AS [ProductSubcategoryID],
+			'Unk' AS [ProductSubcategoryName],
+			-1 AS [ProductModelID],
+			'Unk' AS [ProductModelName],
+			'1900-01-01' AS [SellStartDate],
+			'2100-12-31' AS [SellEndDate],
+			GETDATE() AS [SourceModifiedDate],
+			GETDATE() AS [CreatedDate],
+			GETDATE() AS [ModifiedDate],
+			-1 AS [ManufactoryId],
+			'Unk' AS [ManufactoryName],
+			'1900-01-01'AS [DateFrom],
+			'2100-12-31'AS [DateTo],
+			'Unk' AS [CurrentRowIndicator]
+		FROM #tempLateProd
 
 	EXEC [log].[ProcedureCall] @ProcedureId = @@PROCID, @Step = 999, @Comment = 'End Proc'
 END TRY
