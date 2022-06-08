@@ -73,7 +73,7 @@
 		P.ListPrice as [ListPrice],
 		isnull(P.Size, 'N/D') as [Size],
 		isnull(P.SizeUnitMeasureCode, 'N/D') as [SizeUnitMeasureCode],
-		isnull(P.[Weight], 0) as [Weight],													--NULL zamieniany na 0
+		P.[Weight] as [Weight],													--NULL nie jest zamieniany
 		isnull(P.WeightUnitMeasureCode, 'N/D') as [WeightUnitMeasureCode],
 		P.DaysToManufacture as [DaysToManufacture],
 		isnull(cast(P.ProductLine as nchar(3)), 'N/D') as [ProductLine],
