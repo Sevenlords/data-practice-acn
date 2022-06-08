@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{24AD5311-C3AE-4DB8-8DCD-564269A99EF7}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{0A89C85F-66AF-44C2-94A9-737C2D252D2C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -47,6 +47,23 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{F15D1D1F-DAD2-4BDA-9D92-60D940B06D07}"
+      DTS:ObjectName="localhost.importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;User ID=dir\agata.dyrda;Initial Catalog=importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2;Provider=MSOLAP.8;Impersonation Level=Impersonate;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArEBNqKaE2kKZox1qIfNVNAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADwFCSDKfcwZSmaMwW38g7pAAAAAASAAACgAAAAEAAAAGTTMDbNbnXYEFGrPPIiovUYAAAAa+dpmd7wcjtyuySeP4gSEG97bwiWNuLmFAAAAC91sfebcljdR9QJTmNqs5HZxrR7</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost.mydw]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{61698B76-D417-4264-B6C5-A0A15A607539}"
@@ -61,6 +78,22 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Analysis Services Processing Task"
+      DTS:CreationName="Microsoft.DTSProcessingTask"
+      DTS:Description="Analysis Services Processing Task"
+      DTS:DTSID="{6ABCFFEA-7C70-4E5E-9B4C-D7A66704381F}"
+      DTS:ExecutableType="Microsoft.DTSProcessingTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Analysis Services Processing Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ASProcessingData
+          ConnectionName="localhost.importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2"
+          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;automatic&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load DIM"
       DTS:CreationName="Microsoft.ExecutePackageTask"
@@ -131,6 +164,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\LOAD FACT" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8EFAE560-18B9-4AA4-9B1E-F76B7C2FCD8B}"
+      DTS:From="Package\LOAD FACT"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Analysis Services Processing Task" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -147,29 +188,29 @@
         <NodeLayout
           Size="188,42.6666666666667"
           Id="Package\Load DIM"
-          TopLeft="89.3749986682089,192.947372052809" />
+          TopLeft="83.1249987613412,97.3973737613761" />
         <NodeLayout
           Size="140,42.6666666666667"
           Id="Package\LOAD FACT"
-          TopLeft="115.624998277054,315.421058568598" />
+          TopLeft="108.124998388813,167.871061206998" />
         <NodeLayout
           Size="128,42.6666666666667"
           Id="Package\Load STG"
           TopLeft="111.874998332933,29.4210531853573" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="179.624998500571,72.087719852024">
+          TopLeft="176.499998547137,72.087719852024">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,120.859652200785"
+              EndConnector="0,25.3096539093521"
               Start="0,0"
-              End="0,113.359652200785">
+              End="0,17.8096539093521">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,113.359652200785" />
+                    End="0,17.8096539093521" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -180,18 +221,44 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="184.499998472631,235.614038719476">
+          TopLeft="177.624998575077,140.064040428043">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,79.807019849122"
+              EndConnector="0,27.8070207789548"
               Start="0,0"
-              End="0,72.307019849122">
+              End="0,20.3070207789548">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,72.307019849122" />
+                    End="0,20.3070207789548" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="237.333333333334,42.6666666666667"
+          Id="Package\Analysis Services Processing Task"
+          TopLeft="59.3749991152435,253.499995467067" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="178.083332085361,210.537727873664">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.9622675934026"
+              Start="0,0"
+              End="0,35.4622675934026">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4622675934026" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -203,5 +270,9 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost.importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
