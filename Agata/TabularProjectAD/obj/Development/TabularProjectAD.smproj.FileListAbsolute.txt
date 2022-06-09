@@ -1,7 +1,0 @@
-C:\Users\agata.dyrda\source\repos\TabularProjectAD\bin\Model.asdatabase
-C:\Users\agata.dyrda\source\repos\TabularProjectAD\bin\Model.deploymenttargets
-C:\Users\agata.dyrda\source\repos\TabularProjectAD\bin\Model.deploymentoptions
-C:\Users\agata.dyrda\source\repos\TabularProjectAD\obj\Development\TabularProjectAD.smproj.CoreCompileInputs.cache
-C:\Users\agata.dyrda\source\repos\TabularProjectAD\obj\Development\Model.asdatabase
-C:\Users\agata.dyrda\source\repos\TabularProjectAD\obj\Development\Model.deploymentoptions
-C:\Users\agata.dyrda\source\repos\TabularProjectAD\obj\Development\Model.deploymenttargets
