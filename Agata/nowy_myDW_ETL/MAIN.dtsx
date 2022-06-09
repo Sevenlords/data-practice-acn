@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{0A89C85F-66AF-44C2-94A9-737C2D252D2C}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{5B8D203A-F888-4472-AE6D-FD98C0D13716}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -47,6 +47,23 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{87958E45-7FCC-4B1B-8994-1A919C1DD96B}"
+      DTS:ObjectName="localhost">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;User ID=dir\agata.dyrda;Initial Catalog=TabularProjectAD;Provider=MSOLAP.8;Impersonation Level=Impersonate;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArEBNqKaE2kKZox1qIfNVNAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAe159H4l3W9ty/EvbkANH5AAAAAASAAACgAAAAEAAAAAmtYgxWpvhBvTrqAsm+ZlcYAAAAXPJPtjpyVakBNr4mOoh8ti3dczqu400DFAAAADt11UvlTLzSJ3inoyx80jIPw2lB</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost.importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2]"
       DTS:CreationName="MSOLAP100"
       DTS:DTSID="{F15D1D1F-DAD2-4BDA-9D92-60D940B06D07}"
@@ -55,12 +72,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Data Source=localhost;User ID=dir\agata.dyrda;Initial Catalog=importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2;Provider=MSOLAP.8;Impersonation Level=Impersonate;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArEBNqKaE2kKZox1qIfNVNAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABtgdDJFx+HrKhoPZfvWLWjAAAAAASAAACgAAAAEAAAAEb8sit5PcdahhC7QXDyTzgYAAAAcL3/SiVNbwjJAERoldmOAVWF+UHVXyn8FAAAAIJ4c9ZpG+xOZ4pX7qp9Qx1wCq7q</DTS:Password>
-        </DTS:ConnectionManager>
+          DTS:ConnectionString="Data Source=localhost;User ID=dir\agata.dyrda;Initial Catalog=TabularProjectAD;Provider=MSOLAP.8;Impersonation Level=Impersonate;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -73,6 +85,30 @@
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=localhost;Initial Catalog=mydw;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.TabularProjectAD]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{DD22FF68-7ABE-43A6-9FBF-959E23E1756D}"
+      DTS:ObjectName="localhost.TabularProjectAD">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;User ID=dir\agata.dyrda;Initial Catalog=TabularProjectAD;Provider=MSOLAP.8;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.TabularProjectAD 1]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{DCD9B636-0B2C-4423-BD99-B368AD91B8BF}"
+      DTS:ObjectName="localhost.TabularProjectAD 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TabularProjectAD;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -90,8 +126,8 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <ASProcessingData
-          ConnectionName="localhost.importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2"
-          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;automatic&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
+          ConnectionName="localhost.TabularProjectAD"
+          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;full&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;TabularProjectAD&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -186,6 +222,10 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="237.333333333334,42.6666666666667"
+          Id="Package\Analysis Services Processing Task"
+          TopLeft="59.3749991152435,253.499995467067" />
+        <NodeLayout
           Size="188,42.6666666666667"
           Id="Package\Load DIM"
           TopLeft="83.1249987613412,97.3973737613761" />
@@ -194,12 +234,12 @@
           Id="Package\LOAD FACT"
           TopLeft="108.124998388813,167.871061206998" />
         <NodeLayout
-          Size="128,42.6666666666667"
+          Size="125.333333333334,42.6666666666667"
           Id="Package\Load STG"
           TopLeft="111.874998332933,29.4210531853573" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="176.499998547137,72.087719852024">
+          TopLeft="175.83333188047,72.087719852024">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -241,10 +281,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="237.333333333334,42.6666666666667"
-          Id="Package\Analysis Services Processing Task"
-          TopLeft="59.3749991152435,253.499995467067" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="178.083332085361,210.537727873664">
@@ -272,6 +308,18 @@
   </Package>
   <ConnectionManager
     design-time-name="Package.ConnectionManagers[localhost.importfromtabular_agata_dyrda_17c3bc04-9215-4285-a6fe-6c1225e72ca2]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost.TabularProjectAD]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost.TabularProjectAD 1]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost]">
     <ProjectReferenceName></ProjectReferenceName>
   </ConnectionManager>
 </Objects>]]></DTS:DesignTimeProperties>

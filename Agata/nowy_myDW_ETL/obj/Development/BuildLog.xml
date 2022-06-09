@@ -2,13 +2,13 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>nowy_myDW_ETL</Name>
-    <LastWriteTime>2022-06-03T10:36:55.406682Z</LastWriteTime>
+    <LastWriteTime>2022-06-08T10:46:33.221115Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>LOAD_Dim.dtsx</Name>
-      <LastWriteTime>2022-05-24T11:52:32.5282445Z</LastWriteTime>
+      <LastWriteTime>2022-06-08T09:24:38.3666247Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
@@ -18,7 +18,7 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>MAIN.dtsx</Name>
-      <LastWriteTime>2022-06-03T10:36:55.3233715Z</LastWriteTime>
+      <LastWriteTime>2022-06-08T10:43:24.4338018Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>

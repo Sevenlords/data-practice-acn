@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{AEA90C87-9595-4944-AEA4-0DB9AF1198FA}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{B18A395A-9FCA-4950-8E75-30119889A15E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,6 +35,7 @@
       DTS:refId="Package\DimDate"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{6340F56C-E973-44E1-BECF-E9AF3F4EFF44}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -67,7 +68,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimCurrency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -84,7 +85,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimCustomer"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -101,7 +102,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimProduct"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -118,7 +119,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimReseller"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -152,6 +153,10 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\DimDate"
+          TopLeft="324.041661013539,46.5789468146428" />
+        <NodeLayout
           Size="140,42.6666666666667"
           Id="Package\Load Dim\DimCurrency"
           TopLeft="6.74999942258,87.385967397844" />
@@ -174,10 +179,6 @@
           Size="426,380"
           Id="Package\Load Dim"
           TopLeft="204.374996954575,188.842108817642" />
-        <NodeLayout
-          Size="121.333333333334,42.6666666666667"
-          Id="Package\DimDate"
-          TopLeft="324.041661013539,46.5789468146428" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="384.708327680205,89.2456134813094">
