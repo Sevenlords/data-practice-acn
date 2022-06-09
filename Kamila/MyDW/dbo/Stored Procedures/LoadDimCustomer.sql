@@ -5,6 +5,9 @@
 
 
 
+
+
+
 /*** dbo.LoadDimCustomer Date: 21.04.2022 ***/
 
 CREATE PROCEDURE [dbo].[LoadDimCustomer]
@@ -12,8 +15,51 @@ as
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
 
+BEGIN TRY
 
 drop table if exists #customer
+
+DELETE FROM DimCustomer where CustomerKey=-1
+
+SET IDENTITY_INSERT DimCustomer ON
+
+INSERT INTO DimCustomer (
+		[CustomerKey]
+      ,[CustomerID]
+      ,[CustomerAlternateKey]
+      ,[PersonType]
+      ,[Title]
+      ,[FirstName]
+      ,[MiddleName]
+      ,[LastName]
+      ,[NameStyle]
+      ,[EmailPromotion]
+      ,[Suffix]
+      ,[EmailAddress]
+      ,[PhoneNumber]
+      ,[CreatedDate]
+      ,[ModifiedDate]
+      ,[HashCode]
+)
+	SELECT 
+	   -1 AS [CustomerKey]
+      ,-1 AS [CustomerID]
+      ,'Unknown' AS [CustomerAlternateKey]
+      ,'-1' AS [PersonType]
+      ,'Unknown' AS [Title]
+      ,'Unknown' AS [FirstName]
+      ,'Unknown' AS[MiddleName]
+      ,'Unknown' AS[LastName]
+      ,0 AS [NameStyle]
+      ,-1 AS [EmailPromotion]
+      ,'Unknown' AS [Suffix]
+      ,'Unknown' AS [EmailAddress]
+      ,'Unknown' AS [PhoneNumber]
+      ,GETDATE() AS[CreatedDate]
+      ,GETDATE() AS [ModifiedDate]
+      ,null as [HashCode]
+SET IDENTITY_INSERT DimCustomer OFF
+
 
 SELECT
 	C.CustomerID AS [CustomerID],
@@ -30,7 +76,8 @@ SELECT
 	ISNULL(PP.PhoneNumber, 'N/D') AS [PhoneNumber],
 	-- audyt kolumny
 	GETDATE() as [CreatedDate],
-	P.Timestamp as [ModifiedDate]
+	P.Timestamp as [ModifiedDate],
+	cast(null as varbinary(30)) as [HashCode]
 INTO #customer
 FROM stg.Sales_Customer AS C
 JOIN stg.Person_Person AS P
@@ -40,21 +87,20 @@ LEFT JOIN stg.Person_EmailAddress AS EA
 LEFT JOIN stg.Person_PersonPhone AS PP 
 	ON P.BusinessEntityID = PP.BusinessEntityID
 
+UPDATE dbo.DimCustomer
+SET HashCode = HASHBYTES('MD5', CONVERT(varchar(10), CustomerID)+[CustomerAlternateKey]+[PersonType]+[Title]+
+[FirstName]+[MiddleName]+[LastName]+CONVERT(varchar(10),[NameStyle])+CONVERT(varchar(10),[EmailPromotion])+[Suffix]+[EmailAddress]+CONVERT(varchar(10),[PhoneNumber])
+)
+
+UPDATE #customer
+SET HashCode = HASHBYTES('MD5', CONVERT(varchar(10), CustomerID)+[CustomerAlternateKey]+[PersonType]+[Title]+
+[FirstName]+[MiddleName]+[LastName]+CONVERT(varchar(10),[NameStyle])+CONVERT(varchar(10),[EmailPromotion])+[Suffix]+[EmailAddress]+CONVERT(varchar(10),[PhoneNumber])
+)
+
 MERGE INTO dbo.DimCustomer as TARGET
 USING #customer as SOURCE
 ON SOURCE.CustomerID = TARGET.CustomerID
-WHEN MATCHED AND TARGET.[CustomerID] <> SOURCE.[CustomerID]
-	OR TARGET.[CustomerAlternateKey] <> SOURCE.[CustomerAlternateKey]
-	OR TARGET.[PersonType] <> SOURCE.[PersonType]
-	OR TARGET.[Title] <> SOURCE.[Title]
-	OR TARGET.[FirstName] <> SOURCE.[FirstName]
-	OR TARGET.[MiddleName] <> SOURCE.[MiddleName]
-	OR TARGET.[LastName] <> SOURCE.[LastName]
-	OR TARGET.[NameStyle] <> SOURCE.[NameStyle]
-	OR TARGET.[EmailPromotion] <> SOURCE.[EmailPromotion]
-	OR TARGET.[Suffix] <> SOURCE.[Suffix]
-	OR TARGET.[EmailAddress] <> SOURCE.[EmailAddress]
-	OR TARGET.[PhoneNumber] <> SOURCE.[PhoneNumber]
+WHEN MATCHED AND TARGET.HashCode <> SOURCE.HashCode
 THEN UPDATE SET
 	[CustomerID] = SOURCE.[CustomerID],
 	[CustomerAlternateKey] = SOURCE.[CustomerAlternateKey],
@@ -68,7 +114,8 @@ THEN UPDATE SET
 	[Suffix] = SOURCE.[Suffix],
 	[EmailAddress] = SOURCE.[EmailAddress],
 	[PhoneNumber] = SOURCE.[PhoneNumber],
-	[ModifiedDate]  = GETDATE()
+	[ModifiedDate]  = GETDATE(),
+	[HashCode] = SOURCE.[HashCode]
 WHEN NOT MATCHED BY TARGET
 THEN INSERT
 	(
@@ -85,7 +132,8 @@ THEN INSERT
 	[EmailAddress],
 	[PhoneNumber],
 	[CreatedDate],
-	[ModifiedDate]
+	[ModifiedDate],
+	[HashCode]
 	)
 	VALUES(
 	SOURCE.[CustomerID],
@@ -101,8 +149,18 @@ THEN INSERT
 	SOURCE.[EmailAddress],
 	SOURCE.[PhoneNumber],
 	GETDATE(),
-	GETDATE()
+	GETDATE(),
+	SOURCE.[HashCode]
 	);
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'
+
+END TRY
+
+BEGIN CATCH
+
+EXEC [log].[ErrorCall] --@ErrorNumber =  ERROR_NUMBER(), @ErrorState = ERROR_STATE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorLine =  ERROR_LINE(), @ErrorProcedure = ERROR_PROCEDURE(), @ErrorMessage = ERROR_MESSAGE()
+
+
+END CATCH
 

@@ -5,10 +5,32 @@
 
 
 
+
+
 CREATE PROCEDURE [dbo].[LoadDimReseller]
 as
 
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 1, @Comment = 'Start procedure'
+BEGIN TRY
+
+DELETE FROM DimReseller where ResellerKey=-1
+
+SET IDENTITY_INSERT DimReseller ON
+
+INSERT INTO DimReseller ([ResellerKey]
+      ,[CustomerID]
+      ,[ResellerAlternateKey]
+      ,[ResellerName]
+      ,[CreatedDate]
+      ,[ModifiedDate])
+SELECT -1 [ResellerKey]
+      ,-1 [CustomerID]
+      ,'Unknown' [ResellerAlternateKey]
+      ,'Unknown'[ResellerName]
+      ,GETDATE() [CreatedDate]
+      ,GETDATE() [ModifiedDate]
+
+SET IDENTITY_INSERT DimReseller OFF
 
 drop table if exists #reseller
 
@@ -51,4 +73,15 @@ THEN INSERT
 	GETDATE()
 	);
 
+
+
 EXEC [log].[ProcedureCall] @ProcedureName = @@PROCID, @Step = 99, @Comment = 'Finish procedure'
+
+END TRY
+
+BEGIN CATCH
+
+EXEC [log].[ErrorCall]
+
+
+END CATCH
