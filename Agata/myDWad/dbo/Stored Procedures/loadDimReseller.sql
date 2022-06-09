@@ -26,9 +26,9 @@ set identity_insert dimreseller OFF
 drop table if exists #reseller
 
 select 
-c.CustomerID,
-c.AccountNumber as [ResellerAlternateKey],
-s.Name as [ResellerName]
+ISNULL(C.CustomerID, -1) AS [CustomerID],
+ISNULL(C.AccountNumber, 'N/D') AS [ResellerAlternateKey],
+ISNULL(S.Name, 'N/D') AS [ResellerName]
 into #reseller
 from stg.sales_store s
 left join stg.Sales_customer c 

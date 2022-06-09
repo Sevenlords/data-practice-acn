@@ -1,16 +1,18 @@
 ﻿CREATE TABLE [dbo].[DimCustomerTmp] (
-    [CustomerID]           INT            NULL,
-    [CustomerAlternateKey] VARCHAR (10)   NULL,
-    [PersonType]           NVARCHAR (2)   NULL,
+    [CustomerID]           INT            NOT NULL,
+    [CustomerAlternateKey] VARCHAR (10)   NOT NULL,
+    [PersonType]           NVARCHAR (2)   NOT NULL,
     [Title]                NVARCHAR (8)   NOT NULL,
-    [FirstName]            NVARCHAR (50)  NULL,
+    [FirstName]            NVARCHAR (50)  NOT NULL,
     [MiddleName]           NVARCHAR (50)  NOT NULL,
-    [LastName]             NVARCHAR (50)  NULL,
+    [LastName]             NVARCHAR (50)  NOT NULL,
     [NameStyle]            BIT            NULL,
-    [EmailPromotion]       INT            NULL,
+    [EmailPromotion]       INT            NOT NULL,
     [Suffix]               NVARCHAR (10)  NOT NULL,
     [EmailAddress]         NVARCHAR (50)  NOT NULL,
     [PhoneNumber]          NVARCHAR (25)  NOT NULL,
     [HashCode]             VARBINARY (30) NULL
 );
+
+
 

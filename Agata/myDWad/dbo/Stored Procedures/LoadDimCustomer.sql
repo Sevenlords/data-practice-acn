@@ -54,19 +54,19 @@ drop table if exists dbo.dimCustomerTmp
 
 
 SELECT   
-	C.CustomerID AS [CustomerID],
-	C.AccountNumber AS [CustomerAlternateKey],
-	P.PersonType AS [PersonType],
-	ISNULL(P.Title, 'N/D') AS [Title],
-	P.FirstName AS [FirstName],
-	ISNULL(P.MiddleName, 'N/D') AS [MiddleName],
-	P.LastName AS [LastName],
-	P.NameStyle AS [NameStyle],
-	P.EmailPromotion AS [EmailPromotion],
-	ISNULL(P.Suffix, 'N/D') AS [Suffix],
-	ISNULL(EA.EmailAddress, 'N/D') AS [EmailAddress],
-	ISNULL(PP.PhoneNumber, 'N/D') AS [PhoneNumber],
-	cast(null as varbinary(30)) as HashCode
+		ISNULL(C.CustomerID, -1) AS [CustomerID],
+		ISNULL(C.AccountNumber, 'N/D') AS [CustomerAlternateKey],
+		ISNULL(P.PersonType, '#') AS [PersonType],
+		ISNULL(P.Title, 'N/D') AS [Title],
+		ISNULL(P.FirstName, 'N/D') AS [FirstName],
+		ISNULL(P.MiddleName, 'N/D') AS [MiddleName],
+		ISNULL(P.LastName, 'N/D') AS [LastName],
+		ISNULL(P.NameStyle, 'N/D') AS [NameStyle],
+		ISNULL(P.EmailPromotion, -1) AS [EmailPromotion],
+		ISNULL(P.Suffix, 'N/D') AS [Suffix],
+		ISNULL(EA.EmailAddress, 'N/D') AS [EmailAddress],
+		ISNULL(PP.PhoneNumber, 'N/D') AS [PhoneNumber],
+		CAST(NULL AS varbinary(30)) AS [HashCode]
 		into dbo.DimCustomerTmp
 	FROM mydw.stg.Sales_Customer AS C
 	JOIN mydw.stg.Person_Person AS P
