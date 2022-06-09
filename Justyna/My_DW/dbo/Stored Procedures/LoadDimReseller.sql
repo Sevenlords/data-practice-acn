@@ -31,9 +31,9 @@ BEGIN TRY
 	DROP TABLE IF EXISTS #reseller
 
 	SELECT   
-		C.CustomerID AS [CustomerID],
-		C.AccountNumber AS [ResellerAlternateKey],
-		S.Name AS [ResellerName]
+		ISNULL(C.CustomerID, -1) AS [CustomerID],
+		ISNULL(C.AccountNumber, 'N/D') AS [ResellerAlternateKey],
+		ISNULL(S.Name, 'N/D') AS [ResellerName]
 	INTO #reseller
 	FROM [stg].[Sales_Store] AS S
 	JOIN [stg].[Sales_Customer] AS C
