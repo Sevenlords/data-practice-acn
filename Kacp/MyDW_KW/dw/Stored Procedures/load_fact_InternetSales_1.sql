@@ -43,11 +43,11 @@ insert into dw.fact_internetsales
 )
 select-- p.datefrom, p.dateto, p.manufactoryname, p.manufactoryid, oh.OrderDate,
 	oh.SalesOrderID,
-	oh.SalesOrderNumber,
-	od.SalesOrderDetailID,
+	isnull(oh.SalesOrderNumber,1),
+	isnull(od.SalesOrderDetailID, -1),
 	d.datekey, 
-	cu.CustomerKey, 
-	p.ProductKey,
+	isnull(cu.CustomerKey,-1), 
+	isnull(p.ProductKey, -1),
 --	cn.currencyKey as CurrencyKey, --dw.sales_currency_NEW
 	od.OrderQty,
 	od.UnitPrice,

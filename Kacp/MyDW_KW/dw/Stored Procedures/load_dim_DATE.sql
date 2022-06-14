@@ -7,7 +7,7 @@ truncate table dw.dim_date
 begin try
 
 DECLARE @StartDate DATETIME = '05/30/2011' 
-DECLARE @EndDate DATETIME = '12/30/2021' 
+DECLARE @EndDate DATETIME = '12/30/2023' 
 DECLARE @CurrentDate AS DATETIME = @StartDate
 
 while @CurrentDate < @EndDate
@@ -31,9 +31,9 @@ begin
 	select
 		CONVERT (char,@CurrentDate,112)		as DateKey,
 		cast(@CurrentDate as date)			as Date,
-		day(@CurrentDate)					as DayOfMonth,
+		cast(day(@CurrentDate) as int)		as DayOfMonth,
 		datename(weekday,@CurrentDate)		as DayName,
-		month(@CurrentDate)					as Month,
+		cast(month(@CurrentDate) as int)			as Month,
 		datename(month, @CurrentDate)		as MonthName,
 		datename(qq, @CurrentDate)			as quarter,
 		case datename(qq, @CurrentDate)

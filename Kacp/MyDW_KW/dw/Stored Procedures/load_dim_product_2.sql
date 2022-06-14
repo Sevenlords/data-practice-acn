@@ -154,6 +154,92 @@ where b.ProductID is null
 			 and b.ProductID not in (select ProductID from dw.dim_product where CurrentFlag='Current'))
 
 
+
+--late ariving dimension
+
+--select distinct product, b.productalternatekey
+--from stg.sales_txt a
+--left join dw.dim_product b on a.product = b.ProductAlternateKey
+--where b.ProductAlternateKey is null
+
+--begin tran
+
+insert into dw.dim_product(
+		[ProductID]
+      ,[ProductName]
+      ,[ProductAlternateKey]
+      ,[StandardCost]
+      ,[FinishedGoodsFlag]
+      ,[Color]
+      ,[ListPrice]
+      ,[Size]
+      ,[SizeUnitMeasureCode]
+      ,[Weight]
+      ,[WeightUnitMeasureCode]
+      ,[DaysToManufacture]
+      ,[ProductLine]
+      ,[Class]
+      ,[Style]
+      ,[ProductCategoryID]
+      ,[ProductCategoryName]
+      ,[ProductSubcategoryID]
+      ,[ProductSubcategoryName]
+      ,[ProductModelID]
+      ,[ProductModelName]
+      ,[SellStartDate]
+      ,[SellEndDate]
+      ,[SourceModifiedDate]
+	  ,ManufactoryID
+	  ,ManufactoryName
+	  ,DateFrom 
+	  ,DateTo 
+	  ,CurrentFlag
+	  ,HashCode 
+	  ,CreatedDate
+	  ,ModifiedDate
+	  )
+select
+	isnull(ProductID, -2) AS [ProductID],
+	'unknown' as [ProductName],
+	product AS [ProductAlternateKey],
+	0 AS [StandardCost],
+	-1 AS [FinishedGoodsFlag],
+	'N/D' AS [Color],
+	-1 AS [ListPrice],
+	'N/D' AS [Size],
+	 'N/D' AS [SizeUnitMeasureCode],
+	 -1 AS [Weight],
+	 'N/D' AS [WeightUnitMeasureCode],
+	-1 AS [DaysToManufacture],
+	 'N/D' AS [ProductLine],
+	 'N/D' AS [Class],
+	 'N/D' AS [Style],
+	-1 AS [ProductCategoryID],
+	'N/D' AS [ProductCategoryName],
+	-1 AS [ProductSubcategoryID],
+	'N/D'  AS [ProductSubcategoryName],
+	-1 AS [ProductModelID],
+	'N/D'  AS [ProductModelName],
+	'1990-01-01' AS [SellStartDate],
+	'2100-12-31' AS [SellEndDate],
+	getdate() AS [SourceModifiedDate],
+	-1 as ManufactoryID,
+	'unknown' as ManufactoryName,
+	'1990-01-01' as DateFrom,
+	'2100-12-31' as Dateto,
+	'Current' as CurrentFlag,
+	cast(null as varbinary(30)) as HashCode,
+	getdate() as CreatedDate,
+	getdate() as ModifiedDate
+from stg.sales_txt a
+left join dw.dim_product b on a.product = b.ProductAlternateKey
+where b.ProductAlternateKey is null
+
+--select @@trancount
+--rollback tran
+
+
+
 exec log.write_proc_call @ProcedureID = @@procid ,@Step = 999, @Comment ='End proc'
 
 end try

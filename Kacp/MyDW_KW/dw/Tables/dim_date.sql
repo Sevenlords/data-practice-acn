@@ -1,17 +1,18 @@
-﻿CREATE TABLE [dw].[dim_date](
-	[DateKey]		[int]  NOT NULL,
-	[Date]			[date] NULL,
-	[DayOfMonth]	[varchar](2) NULL,
-	[DayName]		[varchar](9) NULL,
-	[Month]			[varchar](2) NULL,
-	[MonthName]		[varchar](9) NULL,
-	[Quarter]		[char](1) NULL,
-	[QuarterName]	[varchar](9) NULL,
-	[Year]			[char](4) NULL,
-	[YearName]		[char](7) NULL,
-	[MonthYear]		[char](10) NULL,
-	[MMYYYY]		[char](6) NULL,
-	[IsWeekday]		[varchar](9) NULL,
-	[CreatedDate]	[datetime]  DEFAULT (getdate()) NULL,
-	PRIMARY KEY CLUSTERED ([DateKey] ASC)
-)
+﻿CREATE TABLE [dw].[dim_date] (
+    [DateKey]     INT         NOT NULL,
+    [Date]        DATE        NULL,
+    [DayOfMonth]  INT         NULL,
+    [DayName]     VARCHAR (9) NULL,
+    [Month]       INT         NULL,
+    [MonthName]   VARCHAR (9) NULL,
+    [Quarter]     CHAR (1)    NULL,
+    [QuarterName] VARCHAR (9) NULL,
+    [Year]        INT         NULL,
+    [YearName]    CHAR (7)    NULL,
+    [MonthYear]   CHAR (10)   NULL,
+    [MMYYYY]      CHAR (6)    NULL,
+    [IsWeekday]   VARCHAR (9) NULL,
+    [CreatedDate] DATETIME    DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([DateKey] ASC)
+);
+
