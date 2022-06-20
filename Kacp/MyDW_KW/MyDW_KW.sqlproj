@@ -131,5 +131,10 @@
     <Build Include="log\Stored Procedures\handle_error.sql" />
     <Build Include="dw\Tables\dim_product_temp.sql" />
     <Build Include="dbo\Stored Procedures\insert_minusone.sql" />
+    <Build Include="stg\Tables\sales_sales_orderheader_enlarged_index.sql" />
+    <Build Include="stg\Tables\sales_sales_orderheader_enlarged.sql" />
+    <Build Include="stg\Tables\sales_sales_orderdetail_enlarged_index.sql" />
+    <Build Include="stg\Tables\sales_sales_orderdetail_enlarged.sql" />
+    <Build Include="log\Tables\load_time_enlarged.sql" />
   </ItemGroup>
 </Project>
